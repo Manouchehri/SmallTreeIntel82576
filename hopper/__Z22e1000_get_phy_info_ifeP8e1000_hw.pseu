@@ -1,0 +1,37 @@
+    rbx = arg0;
+    rax = e1000_phy_has_link_generic(arg0, 0x1, 0x0, &var_B);
+    if (rax == 0x0) {
+            rax = 0xfffffffd;
+            if (var_B != 0x0) {
+                    rax = (*(rbx + 0x3d8))(rbx, 0x11, &var_A);
+                    if (rax == 0x0) {
+                            rax = var_A & 0xffff;
+                            rcx = rax >> 0x4 & 0x1;
+                            *(int8_t *)(rbx + 0x485) = rax >> 0x4 & 0x1 ^ 0x1;
+                            if (rcx != 0x0) {
+                                    *(int32_t *)(rbx + 0x45c) = rax >> 0x5 & 0x1;
+                                    rax = (*(rbx + 0x3d8))(rbx, 0x1c, &var_A);
+                                    if (rax == 0x0) {
+                                            *(int8_t *)(rbx + 0x484) = var_A >> 0x5 & 0x1;
+                                            *(int16_t *)(rbx + 0x47c) = 0xff;
+                                            *(rbx + 0x44c) = 0xff000000ff;
+                                            rax = 0x0;
+                                    }
+                            }
+                            else {
+                                    rax = e1000_check_polarity_ife(rbx);
+                                    if (rax == 0x0) {
+                                            rax = (*(rbx + 0x3d8))(rbx, 0x1c, &var_A);
+                                            if (rax == 0x0) {
+                                                    *(int8_t *)(rbx + 0x484) = var_A >> 0x5 & 0x1;
+                                                    *(int16_t *)(rbx + 0x47c) = 0xff;
+                                                    *(rbx + 0x44c) = 0xff000000ff;
+                                                    rax = 0x0;
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+

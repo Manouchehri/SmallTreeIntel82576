@@ -1,0 +1,17 @@
+    rsi = arg1;
+    r14 = rsi;
+    r15 = arg0;
+    rbx = 0x8;
+    do {
+            rbx = rbx - 0x1;
+            BIT_TEST(r14, rbx);
+            rsi = rsi - rsi + CARRY(RFLAGS(cf)) & 0x1;
+            rax = e1000_clock_out_i2c_bit(r15, rsi);
+            if (rax != 0x0) {
+                break;
+            }
+            rax = 0x0;
+    } while (rbx > 0x0);
+    *(int32_t *)(*(r15 + 0x8) + 0x102c) = *(int32_t *)(*(r15 + 0x8) + 0x102c) | 0x800;
+    return rax;
+

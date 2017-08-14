@@ -1,0 +1,51 @@
+    rbx = arg0;
+    rax = *(rbx + 0x3a0);
+    if (rax == 0x0) goto loc_cc18;
+
+loc_cc07:
+    rcx = (rax)(rbx);
+    rax = 0x0;
+    if (rcx != 0x0) goto .l1;
+
+loc_cc18:
+    rax = *(int32_t *)(rbx + 0x384);
+    if (rax != 0xff) goto loc_cc86;
+
+loc_cc25:
+    rax = (*(rbx + 0x4a0))(rbx, 0xf, 0x1, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_cc44:
+    rax = var_A & 0xffff & 0x3000;
+    if (rax == 0x2000) {
+            *(int32_t *)(rbx + 0x384) = 0x2;
+            rax = 0x2;
+    }
+    else {
+            if (rax == 0x0) {
+                    *(int32_t *)(rbx + 0x384) = 0x0;
+                    rax = 0x0;
+            }
+            else {
+                    *(int32_t *)(rbx + 0x384) = 0x3;
+                    rax = 0x3;
+            }
+    }
+    goto loc_cc86;
+
+loc_cc86:
+    *(int32_t *)(rbx + 0x380) = rax;
+    rax = (*(rbx + 0xb8))(rbx);
+    if (rax == 0x0) {
+            *(int32_t *)(*(rbx + 0x8) + 0x30) = 0x8808;
+            *(int32_t *)(*(rbx + 0x8) + 0x2c) = 0x100;
+            *(int32_t *)(*(rbx + 0x8) + 0x28) = 0xc28001;
+            *(int32_t *)(*(rbx + 0x8) + 0x170) = *(int16_t *)(rbx + 0x378) & 0xffff;
+            e1000_set_fc_watermarks_generic(rbx);
+            rax = 0x0;
+    }
+    return rax;
+
+.l1:
+    return rax;
+

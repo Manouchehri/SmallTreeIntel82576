@@ -1,0 +1,18 @@
+    r14 = arg0;
+    rax = 0xfffffff5;
+    if ((*(int8_t *)(r14 + 0x351) != 0x0) && ((*(int32_t *)(*(r14 + 0x8) + 0x8f00) & 0x1) != 0x0)) {
+            rbx = 0x0;
+            do {
+                    if ((*(int32_t *)(*(r14 + 0x8) + 0x8f00) & 0x2) == 0x0) {
+                        break;
+                    }
+                    _IODelay(0x3e8);
+                    rbx = rbx + 0x1;
+            } while ((rbx & 0xff) < 0xa);
+            rax = 0xfffffff5;
+            if ((rbx & 0xff) != 0xa) {
+                    rax = 0x0;
+            }
+    }
+    return rax;
+

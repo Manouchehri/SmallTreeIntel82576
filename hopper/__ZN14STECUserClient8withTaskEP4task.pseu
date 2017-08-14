@@ -1,0 +1,15 @@
+    r14 = arg0;
+    rbx = OSObject::operator new(0xe8);
+    IOUserClient::IOUserClient(rbx, STECUserClient::gMetaClass);
+    *rbx = 0x18e30;
+    OSMetaClass::instanceConstructed(STECUserClient::gMetaClass);
+    if ((rbx != 0x0) && ((*(*rbx + 0x88))(rbx) == 0x0)) {
+            (*(*rbx + 0x28))(rbx);
+            rbx = 0x0;
+    }
+    else {
+            *(rbx + 0xe0) = r14;
+    }
+    rax = rbx;
+    return rax;
+

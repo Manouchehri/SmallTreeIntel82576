@@ -1,0 +1,75 @@
+    r14 = arg1;
+    rbx = arg0;
+    _memset(r14, 0x0, 0x14);
+    (*(rbx + 0x4a0))(rbx, 0x43, 0x1, &var_16);
+    rax = *(int32_t *)(rbx + 0x11c);
+    if (rax >= 0x4) goto loc_ebbf;
+
+loc_eb6c:
+    if ((var_16 & 0xffff & 0xf000) != 0x8000) {
+            (*(rbx + 0x4a0))(rbx, 0x5, 0x1, &var_18);
+            *(int16_t *)(r14 + 0x4) = (var_18 & 0xffff) >> 0xc;
+            *(int16_t *)(r14 + 0x6) = (var_18 & 0xffff) >> 0x4 & 0xff;
+            *(int16_t *)(r14 + 0x8) = var_18 & 0xffff & 0xf;
+    }
+    else {
+            (*(rbx + 0x4a0))(rbx, 0x5, 0x1, &var_18);
+            rax = var_18 & 0xffff;
+            *(int16_t *)(r14 + 0x4) = rax >> 0xc;
+            rcx = rax >> 0x4;
+            if ((HIBYTE(rax) & 0xf) == 0x0) {
+                    rcx = rax;
+            }
+            var_14 = rcx & 0xff;
+            *(int16_t *)(r14 + 0x6) = (rcx & 0xf) + ((rcx & 0xf0) >> 0x4) * 0xa & 0xff;
+    }
+    goto loc_ecc2;
+
+loc_ecc2:
+    rax = var_16 & 0xffff & 0xf000;
+    if (rax == 0x8000) {
+            (*(rbx + 0x4a0))(rbx, 0x42, 0x1, &var_14);
+            (*(rbx + 0x4a0))(rbx, 0x43, 0x1, &var_12);
+            rax = (var_12 & 0xffff) << 0x10;
+            *(int32_t *)r14 = var_14 & 0xffff | rax;
+    }
+    return rax;
+
+loc_ebbf:
+    if (rax >= 0x6) goto loc_ed12;
+
+loc_ebcb:
+    (*(rbx + 0x4a0))(rbx, 0x3d, 0x1, &var_1E);
+    rax = var_1E & 0xffff;
+    if ((rax + 0x1 & 0xffff) >= 0x2) {
+            (*(rbx + 0x4a0))(rbx, rax + 0x84 & 0xffff, 0x1, &var_1A);
+            (*(rbx + 0x4a0))(rbx, (var_1E & 0xffff) + 0x83 & 0xffff, 0x1, &var_1C);
+            rax = var_1C;
+            if (rax != 0x0) {
+                    rcx = var_1A & 0xffff;
+                    if (((rcx != 0x0) && ((rcx & 0xffff) != 0xffff)) && ((rax & 0xffff) != 0xffff)) {
+                            *(int8_t *)(r14 + 0xd) = 0x1;
+                            *(int16_t *)(r14 + 0xe) = HIBYTE(rax) & 0xff;
+                            asm { shld       ax, cx, 0x8 };
+                            *(int16_t *)(r14 + 0x10) = rax;
+                            *(int16_t *)(r14 + 0x12) = rcx & 0xff;
+                    }
+            }
+    }
+    (*(rbx + 0x4a0))(rbx, 0x5, 0x1, &var_18);
+    rax = var_18 & 0xffff;
+    *(int16_t *)(r14 + 0x4) = rax >> 0xc;
+    rcx = rax >> 0x4;
+    if ((HIBYTE(rax) & 0xf) == 0x0) {
+            rcx = rax;
+    }
+    var_14 = rcx & 0xff;
+    *(int16_t *)(r14 + 0x6) = (rcx & 0xf) + ((rcx & 0xf0) >> 0x4) * 0xa & 0xff;
+    goto loc_ecc2;
+
+loc_ed12:
+    if (rax == 0x6) {
+            rax = e1000_read_invm_version(rbx, r14);
+    }
+    return rax;
+

@@ -1,0 +1,8 @@
+    r14 = arg2;
+    rbx = arg0;
+    rax = (*(rbx + 0x410))(arg0, 0x10, arg1);
+    if (rax == 0x0) {
+            rax = (*(rbx + 0x3d8))(rbx, 0x11, r14);
+    }
+    return rax;
+

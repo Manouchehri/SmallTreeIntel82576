@@ -1,0 +1,85 @@
+    r8 = rdx;
+    r14 = arg1;
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            rsi = rbx + 0x38b;
+            r9 = 0x0;
+            if (r8 != 0x0) {
+                    r9 = *(int32_t *)r8;
+            }
+            _IOLog("%s %s: pOut=%p pOutSize=%p *pOutSize=0x%lx\n", rsi, "cmdInitDumpTxRing", r14, r8, r9);
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            _IOLog("%s %s: ring_setup=%u sizeof(desc_t)=%lu sizeof(mbuf_t)=%lu descBytes=%lu mbufsBytes=%lu\n", rbx + 0x38b, "cmdInitDumpTxRing", *(int32_t *)(rbx + 0x7a0), 0x10, 0x8, *(int32_t *)(rbx + 0x444), *(int32_t *)(rbx + 0x440));
+    }
+    if (*(int32_t *)(rbx + 0x7a0) == 0x0) goto loc_14021;
+
+loc_13fea:
+    r14 = 0xe00002bc;
+    if ((*(int8_t *)(rbx + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: Ring already setup, exiting\n", rbx + 0x38b, "cmdInitDumpTxRing");
+    }
+    goto loc_141ae;
+
+loc_141ae:
+    rax = r14;
+    return rax;
+
+loc_14021:
+    *(int32_t *)(rbx + 0x7a0) = 0x1;
+    *(int32_t *)(rbx + 0x78c) = *(int16_t *)(rbx + 0x424) & 0xffff;
+    *(int32_t *)(rbx + 0x790) = *(int16_t *)(rbx + 0x426) & 0xffff;
+    *(int32_t *)(rbx + 0x794) = *(int32_t *)(rbx + 0x420);
+    *(int32_t *)(rbx + 0x798) = *(int32_t *)(rbx + 0x444);
+    *(int32_t *)(rbx + 0x79c) = *(int32_t *)(rbx + 0x440);
+    rax = _IOMalloc(*(int32_t *)(rbx + 0x444));
+    *(rbx + 0x7a8) = rax;
+    if (rax == 0x0) goto loc_1412a;
+
+loc_1407e:
+    rax = _IOMalloc(*(int32_t *)(rbx + 0x79c));
+    *(rbx + 0x7b0) = rax;
+    if (rax == 0x0) goto loc_14147;
+
+loc_14099:
+    _memcpy(*(rbx + 0x7a8), *(rbx + 0x418), *(int32_t *)(rbx + 0x798));
+    _memcpy(*(rbx + 0x7b0), *(rbx + 0x438), *(int32_t *)(rbx + 0x79c));
+    _memcpy(r14, rbx + 0x78c, 0x18);
+    r14 = 0x0;
+    if ((*(int8_t *)(rbx + 0x785) & 0x10) != 0x0) {
+            r14 = 0x0;
+            _IOLog("%s %s: Returning with ring_head=%u ring_tail=%u ring_length=%u\n", rbx + 0x38b, "cmdInitDumpTxRing", *(int32_t *)(rbx + 0x78c), *(int32_t *)(rbx + 0x790), *(int32_t *)(rbx + 0x794));
+    }
+    goto loc_141ae;
+
+loc_14147:
+    if ((*(int16_t *)(rbx + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_14170;
+
+loc_14154:
+    rdi = "%s %s: Failed to allocate txMbufSnap\n";
+    goto loc_14162;
+
+loc_14162:
+    _IOLog(rdi);
+    goto loc_14170;
+
+loc_14170:
+    *(int32_t *)(rbx + 0x7a0) = 0x0;
+    if (*(rbx + 0x7a8) != 0x0) {
+            _IOFree();
+    }
+    r14 = 0xe00002bc;
+    if (*(rbx + 0x7b0) != 0x0) {
+            _IOFree();
+    }
+    goto loc_141ae;
+
+loc_1412a:
+    if ((*(int16_t *)(rbx + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_14170;
+
+loc_14137:
+    rdi = "%s %s: Failed to allocate txDescSnap\n";
+    goto loc_14162;
+

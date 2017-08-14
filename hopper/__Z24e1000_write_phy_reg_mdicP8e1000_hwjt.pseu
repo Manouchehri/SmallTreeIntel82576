@@ -1,0 +1,9 @@
+    rdx = arg2;
+    r14 = arg1;
+    r15 = arg0;
+    rax = 0xfffffffc;
+    if (r14 <= 0x1f) {
+            rax = loc_effe();
+    }
+    return rax;
+

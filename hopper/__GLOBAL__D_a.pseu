@@ -1,0 +1,3 @@
+    OSMetaClass::~OSMetaClass(SmallTreeIntel82576::gMetaClass);
+    return;
+

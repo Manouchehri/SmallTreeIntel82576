@@ -1,0 +1,23 @@
+    r14 = rsi;
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "configureInterface");
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    *(rbx + 0x130) = r14;
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "configureInterface");
+    }
+    r14 = SmallTreeIntel82576::runCommand(rbx);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rbx = rbx + 0x38b;
+            rcx = "false";
+            if (r14 == 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", rbx, "configureInterface", rcx);
+    }
+    rax = r14 == 0x0 ? 0x1 : 0x0;
+    return rax;
+

@@ -1,0 +1,4 @@
+    IOUserClient::~IOUserClient();
+    rax = OSObject::operator delete(rdi, 0xe8);
+    return rax;
+

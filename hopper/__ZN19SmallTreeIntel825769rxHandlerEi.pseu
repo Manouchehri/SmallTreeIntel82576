@@ -1,0 +1,136 @@
+    rbx = rsi;
+    r9 = arg0;
+    var_30 = *___stack_chk_guard;
+    if ((rbx != 0x0) && ((*(int8_t *)(r9 + 0x784) & 0x1) != 0x0)) {
+            _IOLog("%s %s: Invalid ring %d - returning\n", r9 + 0x38b, "rxHandler", rbx);
+            r9 = r9;
+    }
+    rcx = sign_extend_64(rbx) << 0x6;
+    r10 = 0xffff + *(int32_t *)(r9 + rcx + 0x460);
+    rax = r9 + rcx + 0x464;
+    var_A0 = rax;
+    r8 = *(int16_t *)(r9 + rcx + 0x464);
+    rdx = r8 & 0xffff;
+    rsi = rbx;
+    if (rbx <= 0x3) {
+            rsi = (rsi << 0x8) + 0x2810;
+    }
+    else {
+            rsi = (rsi << 0x6) + 0xc010;
+    }
+    r14 = *(int32_t *)(*(r9 + 0x7f0) + rsi) - rdx;
+    r14 = r14 & r10;
+    rdx = 0x0;
+    if (r14 == 0x0) goto loc_6760;
+
+loc_65ff:
+    var_94 = rbx;
+    var_A4 = r10 & 0xffff;
+    r13 = r9 + rcx + 0x458;
+    rdx = 0x0;
+    rcx = &var_88;
+    rsi = &var_90;
+    goto loc_6627;
+
+loc_6627:
+    var_98 = rdx;
+    rdx = r8;
+    goto loc_6631;
+
+loc_6631:
+    r12 = 0x0;
+    r15 = rdx;
+    goto loc_6638;
+
+loc_6638:
+    rbx = r12 & 0xffff;
+    if ((r14 & 0xffff) == rbx) goto loc_66ab;
+
+loc_6644:
+    r11 = r15 & 0xffff;
+    *rcx = *(*r13 + (r11 << 0x4) + 0x8);
+    *(rcx + 0xfffffffffffffff8) = *(*r13 + (r11 << 0x4));
+    rdi = *(int32_t *)rcx;
+    if ((rdi & 0x1) == 0x0) goto loc_676c;
+
+loc_6673:
+    r15 = r15 + 0x1 & r10;
+    if ((rdi & 0x2) != 0x0) goto loc_66da;
+
+loc_667f:
+    *(int8_t *)(r9 + 0x384) = (*(int32_t *)(rcx + 0x4) & 0xffff) == *(int32_t *)(r9 + 0x3bc) ? 0x1 : 0x0;
+    r12 = r12 + 0x1;
+    rcx = rcx + 0x10;
+    if ((r12 & 0xffff) < 0x5) goto loc_6638;
+
+loc_67ba:
+    r15 = r8;
+    rdx = var_98;
+    rax = var_A0;
+    goto loc_67d8;
+
+loc_67d8:
+    *(int16_t *)rax = r15;
+    r14 = var_94;
+    goto loc_67e3;
+
+loc_67e3:
+    if (rdx != 0x0) {
+            *(int32_t *)*(r9 + 0x140) = *(int32_t *)*(r9 + 0x140) + rdx;
+            (*(**(r9 + 0x3e0) + 0x880))(*(r9 + 0x3e0));
+            r9 = r9;
+            *(r9 + 0x6d8) = *(r9 + 0x6d8) + 0x1;
+    }
+    rax = SmallTreeIntel82576::stockRxRing(r9);
+    if (*___stack_chk_guard != var_30) {
+            rax = ___stack_chk_fail();
+    }
+    return rax;
+
+loc_66da:
+    *(int8_t *)(r9 + 0x384) = 0x0;
+    rax = SmallTreeIntel82576::rxFrame(r9, rsi, rdx & 0xffff, r12 + 0x1 & 0xffff);
+    rsi = &var_90;
+    r10 = r10;
+    r9 = r9;
+    rdx = var_98 + (rax & 0xff);
+    rax = r14 + 0xffffffffffffffff & 0xffff;
+    r14 = r14 - r12 - 0x1;
+    COND = rax != rbx;
+    r8 = r15;
+    rax = var_A0;
+    rcx = &var_88;
+    if (COND) goto loc_6627;
+    goto loc_67d8;
+
+loc_676c:
+    rsi = *r13;
+    rdx = 0xfffffffe;
+    r8 = var_A4;
+    do {
+            rdi = *(rsi + ((r11 + rdx & r8) << 0x4) + 0x8);
+            rbx = *(rsi + ((r11 + rdx & r8) << 0x4));
+            rdx = rdx + 0x1;
+    } while (rdx != 0x4);
+    *rcx = rdi;
+    *(rcx + 0xfffffffffffffff8) = rbx;
+    r14 = var_94;
+    rdx = var_98;
+    goto loc_67e3;
+
+loc_66ab:
+    if (r12 != 0x0) goto loc_67ba;
+
+loc_66b5:
+    rax = r14 + 0xffffffffffffffff;
+    r14 = r14 - r12 - 0x1;
+    rdx = r15;
+    rcx = &var_88;
+    if ((rax & 0xffff) != rbx) goto loc_6631;
+    goto loc_67ba;
+
+loc_6760:
+    var_94 = rbx;
+    r15 = r8;
+    goto loc_67d8;
+

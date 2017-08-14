@@ -1,0 +1,8 @@
+    rsi = arg1;
+    rdi = arg0;
+    if (rsi != 0x0) {
+            rax = *(rdi + 0x8);
+            *(int32_t *)(rax + 0x5b00) = *(int32_t *)(rax + 0x5b00) & 0xffffffc0 | rsi;
+    }
+    return rax;
+

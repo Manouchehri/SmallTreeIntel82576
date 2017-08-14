@@ -1,0 +1,7 @@
+    rbx = OSObject::operator new(0xe8);
+    IOUserClient::IOUserClient(rbx, STECUserClient::gMetaClass);
+    *rbx = 0x18e30;
+    OSMetaClass::instanceConstructed(STECUserClient::gMetaClass);
+    rax = rbx;
+    return rax;
+

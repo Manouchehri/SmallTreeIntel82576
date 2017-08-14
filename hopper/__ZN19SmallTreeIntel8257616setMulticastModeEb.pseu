@@ -1,0 +1,45 @@
+    r14 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rsi = rbx + 0x38b;
+            rcx = "false";
+            if (r14 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Entered with active=%s\n", rsi, "setMulticastMode", rcx);
+    }
+    if (*(int32_t *)(*(rbx + 0x7f0) + 0x8) != 0xffffffff) {
+            *(int8_t *)(rbx + 0x156) = r14;
+            var_30 = rbx + 0x38b;
+            r13 = 0x0;
+            r12 = 0x0;
+            r15 = 0x0;
+            do {
+                    rax = *(int32_t *)(*(rbx + 0x7f0) + r13 + 0x5200);
+                    if (r14 != 0x0) {
+                            r15 = *(int32_t *)(rbx + r13 + 0x15c);
+                    }
+                    if (r15 != rax) {
+                            if ((*(int8_t *)(rbx + 0x787) & 0x40) != 0x0) {
+                                    _IOLog("%s %s: Setting mta[0x%02x] to 0x%08lx\n", var_30, "setMulticastMode", r12, r15);
+                            }
+                            *(int32_t *)(*(rbx + 0x7f0) + r13 + 0x5200) = r15;
+                    }
+                    r12 = r12 + 0x1;
+                    r13 = r13 + 0x4;
+            } while (r12 != 0x80);
+            r14 = 0x0;
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    r14 = 0x0;
+                    _IOLog("%s %s: Returning with ret=0x%08lx\n", var_30, "setMulticastMode", 0x0);
+            }
+    }
+    else {
+            r14 = 0xe00002bc;
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "setMulticastMode");
+            }
+    }
+    rax = r14;
+    return rax;
+

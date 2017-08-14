@@ -1,0 +1,39 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "freeResources");
+    }
+    rdi = *(rbx + 0x3e0);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x3e0) = 0x0;
+    }
+    rdi = *(rbx + 0x400);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x400) = 0x0;
+    }
+    rdi = *(rbx + 0x408);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x408) = 0x0;
+    }
+    rdi = *(rbx + 0x750);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x750) = 0x0;
+    }
+    rdi = *(rbx + 0x3c8);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x3c8) = 0x0;
+    }
+    rdi = *(rbx + 0x748);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x748) = 0x0;
+    }
+    SmallTreeIntel82576::freeRing(rbx, rbx + 0x418);
+    SmallTreeIntel82576::freeRing(rbx, rbx + 0x458);
+    rax = SmallTreeIntel82576::sharedFreeDevSpecStruct();
+    return rax;
+

@@ -1,0 +1,3 @@
+    rax = *(int32_t *)(*(arg0 + 0x8) + 0x40f4);
+    return rax;
+

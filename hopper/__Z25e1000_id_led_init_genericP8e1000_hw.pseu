@@ -1,0 +1,70 @@
+    r14 = arg0;
+    rax = (*(r14 + 0x4c0))(arg0, &var_1A);
+    if (rax != 0x0) goto .l1;
+
+loc_cfe0:
+    r15 = *(int32_t *)(*(r14 + 0x8) + 0xe00);
+    *(int32_t *)(r14 + 0x124) = r15;
+    *(int32_t *)(r14 + 0x128) = r15;
+    *(int32_t *)(r14 + 0x12c) = r15;
+    rsi = 0x0;
+    r11 = var_1A & 0xffff;
+    rdx = 0x0;
+    rdi = r15;
+    goto loc_d01f;
+
+loc_d01f:
+    rax = r11 >> rsi & 0xf;
+    rcx = rax + 0xfffffffffffffffe;
+    if (rcx > 0x7) goto loc_d0b9;
+
+loc_d036:
+    goto *0xd0d8[sign_extend_64(*(int32_t *)(switch_table + rcx * 0x4)) + switch_table];
+
+loc_d07d:
+    r15 = r15 & !(0xff << rdx);
+    rax = 0xe;
+    goto loc_d0ab;
+
+loc_d0ab:
+    r15 = r15 | rax << rdx;
+    *(int32_t *)(r14 + 0x12c) = r15;
+    goto loc_d0b9;
+
+loc_d0b9:
+    rdx = rdx + 0x8;
+    rsi = rsi + 0x4;
+    rax = 0x0;
+    if (rsi != 0x10) goto loc_d01f;
+
+.l1:
+    return rax;
+
+loc_d098:
+    r15 = r15 & !(0xff << rdx);
+    rax = 0xf;
+    goto loc_d0ab;
+
+loc_d03f:
+    rdi = rdi & !(0xff << rdx);
+    rbx = 0xe;
+    goto loc_d065;
+
+loc_d065:
+    rdi = rdi | rbx << rdx;
+    *(int32_t *)(r14 + 0x128) = rdi;
+    if (rax > 0x9) goto loc_d0b9;
+
+loc_d077:
+    if (BIT_TEST(0x124, rax)) goto loc_d092;
+    goto loc_d07d;
+
+loc_d092:
+    if (BIT_TEST(0x248, rax)) goto loc_d0b9;
+    goto loc_d098;
+
+loc_d053:
+    rdi = rdi & !(0xff << rdx);
+    rbx = 0xf;
+    goto loc_d065;
+

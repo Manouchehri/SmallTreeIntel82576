@@ -1,0 +1,15 @@
+    rbx = arg0;
+    var_14 = *(int32_t *)(*(rbx + 0x8) + 0x102c);
+    rcx = e1000_set_i2c_data(arg0, &var_14, arg1 & 0xff);
+    rax = 0x13;
+    if (rcx == 0x0) {
+            *(int32_t *)(*(rbx + 0x8) + 0x102c) = var_14 & 0xffffddff | 0x200;
+            _IODelay(0x1);
+            _IODelay(0x4);
+            *(int32_t *)(*(rbx + 0x8) + 0x102c) = 0xffffddff & (var_14 & 0xffffddff | 0x200);
+            _IODelay(0x1);
+            _IODelay(0x5);
+            rax = 0x0;
+    }
+    return rax;
+

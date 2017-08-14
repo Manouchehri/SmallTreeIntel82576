@@ -1,0 +1,39 @@
+    rdx = arg2;
+    rsi = arg1;
+    rdi = arg0;
+    r8 = arg3;
+    *(int32_t *)(*(rdi + 0x8) + r8 * 0x4 + 0xc00) = 0x8;
+    r9 = *(rdi + 0x8);
+    rcx = *(int32_t *)(r9 + r8 * 0x4 + 0xc00) & 0x8;
+    rax = 0xfffffff1;
+    if (rcx != 0x0) {
+            rax = 0x0;
+    }
+    if (rcx != 0x0) {
+            rcx = r8 & 0xffff;
+            r10 = 0x1 << rcx;
+            if (!(BIT_TEST(*(int32_t *)(r9 + 0xc80), rcx))) {
+                    *(int32_t *)(r9 + 0xc80) = r10;
+                    *(int32_t *)(rdi + 0x554) = *(int32_t *)(rdi + 0x554) + 0x1;
+            }
+            r9 = 0x10000 << rcx;
+            rcx = *(rdi + 0x8);
+            if ((*(int32_t *)(rcx + 0xc80) & r9) != 0x0) {
+                    *(int32_t *)(rcx + 0xc80) = r9;
+                    *(int32_t *)(rdi + 0x550) = *(int32_t *)(rdi + 0x550) + 0x1;
+            }
+            r9 = *(rdi + 0x8);
+            if (rdx != 0x0) {
+                    r11 = 0x0;
+                    r10 = r9 + (r8 << 0x6) + 0x800;
+                    do {
+                            *(int32_t *)(r11 + r10) = *(int32_t *)(rsi + r11);
+                            r11 = r11 + 0x4;
+                            rdx = rdx - 0x1;
+                    } while (rdx != 0x0);
+            }
+            *(int32_t *)(r9 + r8 * 0x4 + 0xc00) = 0x1;
+            *(int32_t *)(rdi + 0x548) = *(int32_t *)(rdi + 0x548) + 0x1;
+    }
+    return rax;
+

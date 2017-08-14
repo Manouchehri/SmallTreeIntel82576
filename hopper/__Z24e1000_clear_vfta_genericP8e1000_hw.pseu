@@ -1,0 +1,8 @@
+    rax = *(arg0 + 0x8);
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rcx + rax + 0x5600) = 0x0;
+            rcx = rcx + 0x4;
+    } while (rcx != 0x200);
+    return rax;
+

@@ -1,0 +1,38 @@
+    rdx = arg2;
+    rsi = arg1;
+    r8 = *(arg0 + 0x8);
+    rcx = 0x0;
+    goto loc_14dfa;
+
+loc_14dfa:
+    r9 = *(int32_t *)(r8 + (rcx & 0xffff) * 0x4 + 0x12120);
+    rax = 0xffffffec;
+    rdi = r9 & 0x7;
+    if (rdi == 0x0) goto .l3;
+
+loc_14e12:
+    if (rdi != 0x2) goto loc_14e1f;
+
+loc_14e17:
+    r10 = rcx + 0x1;
+    goto loc_14e3d;
+
+loc_14e3d:
+    rcx = r10 + 0x1;
+    if ((r10 + 0x1 & 0xffff) < 0x40) goto loc_14dfa;
+
+.l3:
+    return rax;
+
+loc_14e1f:
+    r10 = rcx + 0x8;
+    if (rdi != 0x4) {
+            r10 = rcx;
+    }
+    if ((rdi != 0x1) || ((r9 >> 0x9 & 0x7f) != rsi)) goto loc_14e3d;
+
+loc_14e4f:
+    *(int16_t *)rdx = r9 >> 0x10;
+    rax = 0x0;
+    return rax;
+

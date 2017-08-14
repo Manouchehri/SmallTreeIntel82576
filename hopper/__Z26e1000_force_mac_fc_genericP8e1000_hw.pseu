@@ -1,0 +1,28 @@
+    rdi = arg0;
+    rcx = *(int32_t *)*(rdi + 0x8);
+    rax = 0xfffffffd;
+    rdx = *(int32_t *)(rdi + 0x380);
+    if (rdx > 0x3) goto .l1;
+
+loc_ce10:
+    switch (sign_extend_64(*(int32_t *)(switch_table + rdx * 0x4)) + switch_table) {
+        case 0:
+            rcx = rcx & 0xe7ffffff;
+            break;
+        case 1:
+            rcx = rcx & 0xe7ffffff | 0x8000000;
+            break;
+        case 2:
+            rcx = rcx & 0xe7ffffff | 0x10000000;
+            break;
+        case 3:
+            rcx = rcx | 0x18000000;
+            break;
+    }
+    *(int32_t *)*(rdi + 0x8) = rcx;
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+

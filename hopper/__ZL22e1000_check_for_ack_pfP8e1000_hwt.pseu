@@ -1,0 +1,11 @@
+    rdi = arg0;
+    rdx = 0x10000 << arg1;
+    rcx = *(rdi + 0x8);
+    rax = 0xfffffff1;
+    if ((*(int32_t *)(rcx + 0xc80) & rdx) != 0x0) {
+            *(int32_t *)(rcx + 0xc80) = rdx;
+            *(int32_t *)(rdi + 0x550) = *(int32_t *)(rdi + 0x550) + 0x1;
+            rax = 0x0;
+    }
+    return rax;
+

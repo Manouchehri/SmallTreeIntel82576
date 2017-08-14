@@ -1,0 +1,50 @@
+    r14 = arg3;
+    r13 = arg2;
+    r12 = arg1;
+    r15 = arg0;
+    rbx = 0xd;
+    if ((*(r15 + 0x100))(arg0, 0x2, arg2, arg3) == 0x0) {
+            e1000_i2c_start(r15);
+            rbx = e1000_clock_out_i2c_byte(r15, r13 & 0xff);
+            if (rbx == 0x0) {
+                    rbx = e1000_get_i2c_ack(r15);
+                    if (rbx == 0x0) {
+                            rbx = e1000_clock_out_i2c_byte(r15, r12 & 0xff);
+                            if (rbx == 0x0) {
+                                    rbx = e1000_get_i2c_ack(r15);
+                                    if (rbx == 0x0) {
+                                            rbx = e1000_clock_out_i2c_byte(r15, r14 & 0xff);
+                                            if (rbx == 0x0) {
+                                                    rbx = e1000_get_i2c_ack(r15);
+                                                    if (rbx != 0x0) {
+                                                            e1000_i2c_bus_clear(r15);
+                                                    }
+                                                    else {
+                                                            e1000_i2c_stop(r15);
+                                                            rbx = 0x0;
+                                                    }
+                                            }
+                                            else {
+                                                    e1000_i2c_bus_clear(r15);
+                                            }
+                                    }
+                                    else {
+                                            e1000_i2c_bus_clear(r15);
+                                    }
+                            }
+                            else {
+                                    e1000_i2c_bus_clear(r15);
+                            }
+                    }
+                    else {
+                            e1000_i2c_bus_clear(r15);
+                    }
+            }
+            else {
+                    e1000_i2c_bus_clear(r15);
+            }
+            (*(r15 + 0x108))(r15, 0x2);
+    }
+    rax = rbx;
+    return rax;
+

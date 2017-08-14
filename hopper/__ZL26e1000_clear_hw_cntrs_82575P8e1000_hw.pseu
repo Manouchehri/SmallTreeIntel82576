@@ -1,0 +1,8 @@
+    rbx = arg0;
+    e1000_clear_hw_cntrs_base_generic(arg0);
+    rax = *(int32_t *)(*(rbx + 0x8) + 0x4138);
+    if ((*(int32_t *)(rbx + 0x474) == 0x3) || (*(int8_t *)(rbx + 0x578) != 0x0)) {
+            rax = *(int32_t *)(*(rbx + 0x8) + 0x4228);
+    }
+    return rax;
+

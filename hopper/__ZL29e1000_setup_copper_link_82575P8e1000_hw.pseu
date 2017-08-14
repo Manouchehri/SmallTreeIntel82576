@@ -1,0 +1,61 @@
+    rbx = arg0;
+    *(int32_t *)*(rbx + 0x8) = 0xffffe7bf & *(int32_t *)*(rbx + 0x8) | 0x40;
+    if (*(int32_t *)(rbx + 0x11c) >= 0x3) {
+            *(int32_t *)(*(rbx + 0x8) + 0xe14) = *(int32_t *)(*(rbx + 0x8) + 0xe14) & 0xffffffdf;
+    }
+    rax = e1000_setup_serdes_link_82575(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_b24b:
+    if ((*(int8_t *)(rbx + 0x578) == 0x0) || (*(int8_t *)(rbx + 0x486) != 0x0)) goto loc_b274;
+
+loc_b25d:
+    _IODelay(0x493e0);
+    rax = (*(rbx + 0x3f8))(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_b274:
+    rax = 0xfffffffe;
+    rcx = *(int32_t *)(rbx + 0x448) + 0xfffffffe;
+    if (rcx > 0x8) goto .l1;
+
+loc_b287:
+    goto *0xb304[sign_extend_64(*(int32_t *)(switch_table + rcx * 0x4)) + switch_table];
+
+loc_b297:
+    rax = *(int32_t *)(rbx + 0x468);
+    if (rax <= 0x1410c8f) {
+            if (rax != 0x1410c00) {
+                    rax = e1000_copper_link_setup_m88(rbx);
+            }
+            else {
+                    rax = e1000_copper_link_setup_m88_gen2(rbx);
+            }
+    }
+    else {
+            if (((rax != 0x1410c90) && (rax != 0x1410dc0)) && (rax != 0x1410df0)) {
+                    rax = e1000_copper_link_setup_m88(rbx);
+            }
+            else {
+                    rax = e1000_copper_link_setup_m88_gen2(rbx);
+            }
+    }
+    goto loc_b2e8;
+
+loc_b2e8:
+    if (rax == 0x0) {
+            rax = e1000_setup_copper_link_generic(rbx);
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_b2ad:
+    rax = e1000_copper_link_setup_igp(rbx);
+    goto loc_b2e8;
+
+loc_b2b7:
+    rax = e1000_copper_link_setup_82577(rbx);
+    goto loc_b2e8;
+

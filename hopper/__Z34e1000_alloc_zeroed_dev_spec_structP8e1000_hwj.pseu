@@ -1,0 +1,12 @@
+    rsi = *arg0;
+    rbx = 0xe00002bc;
+    if (rsi != 0x0) {
+            rbx = 0x0;
+            if ((*(int8_t *)(rsi + 0x786) & 0x10) != 0x0) {
+                    rbx = 0x0;
+                    _IOLog("%s %s:  Entered", rsi + 0x38b, "sharedAllocZeroedDevSpecStruct");
+            }
+    }
+    rax = rbx;
+    return rax;
+

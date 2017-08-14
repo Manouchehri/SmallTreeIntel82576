@@ -1,0 +1,13 @@
+    rbx = rdx;
+    r15 = arg1;
+    r12 = arg0;
+    r14 = 0x0;
+    _IOLog("STECUserClient: Entered getTargetAndMethodForIndex index=%u\n", rbx);
+    if (rbx <= 0xa) {
+            *r15 = *(r12 + 0xd8);
+            r14 = externalMethods + (rbx + rbx * 0x2 << 0x4);
+            _IOLog("getTargetAndMethodForIndex: returning &externalMethods=%p\n", r14);
+    }
+    rax = r14;
+    return rax;
+

@@ -1,0 +1,79 @@
+    r15 = arg0;
+    rbx = (*(r15 + 0x4a0))(arg0, 0x3, 0x1, &var_2C);
+    if (rbx != 0x0) goto loc_c581;
+
+loc_c4a4:
+    rbx = 0x0;
+    if (*(int32_t *)(r15 + 0x11c) > 0x2) goto loc_c581;
+
+loc_c4b4:
+    rbx = (*(r15 + 0x4a0))(r15, 0x37, 0x1, &var_2A);
+    if (rbx != 0x0) goto loc_c581;
+
+loc_c4d6:
+    rax = var_2A & 0xffff;
+    rbx = 0x0;
+    if ((rax + 0x1 & 0xffff) < 0x2) goto loc_c581;
+
+loc_c4ee:
+    rcx = *(int16_t *)(r15 + 0x504) & 0xffff;
+    if (rcx == 0x3) goto loc_c508;
+
+loc_c4fb:
+    rcx = rcx & 0xffff;
+    if (rcx != 0x2) goto loc_c50d;
+
+loc_c503:
+    rax = rax + 0x6;
+    goto loc_c515;
+
+loc_c515:
+    var_2A = rax;
+    goto loc_c519;
+
+loc_c519:
+    r12 = 0x2;
+    rcx = 0x0;
+    r14 = &var_2C;
+    goto loc_c532;
+
+loc_c532:
+    r13 = rcx;
+    rbx = (*(r15 + 0x4a0))(r15, rax + rcx & 0xffff, 0x1, r14);
+    if (rbx != 0x0) goto loc_c581;
+
+loc_c552:
+    rcx = r13;
+    *(int8_t *)(rbp + rcx * 0x2 + 0xffffffffffffffce) = var_2C & 0xffff;
+    *(int8_t *)(rbp + rcx * 0x2 + 0xffffffffffffffcf) = HIBYTE(var_2C & 0xffff);
+    if (r12 <= 0x5) goto loc_c527;
+
+loc_c567:
+    rbx = 0x0;
+    if ((var_32 & 0x1) == 0x0) {
+            rbx = 0x0;
+            (*(r15 + 0xd8))(r15, &var_32, 0x0);
+    }
+    goto loc_c581;
+
+loc_c581:
+    rax = rbx;
+    return rax;
+
+loc_c527:
+    rax = var_2A & 0xffff;
+    rcx = rcx + 0x1;
+    r12 = r12 + 0x2;
+    goto loc_c532;
+
+loc_c50d:
+    if (rcx != 0x1) goto loc_c519;
+
+loc_c512:
+    rax = rax + 0x3;
+    goto loc_c515;
+
+loc_c508:
+    rax = rax + 0x9;
+    goto loc_c515;
+

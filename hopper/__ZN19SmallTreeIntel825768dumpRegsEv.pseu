@@ -1,0 +1,636 @@
+    rbx = rdi;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_CTRL", *(int32_t *)*(rbx + 0x7f0));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_STATUS", *(int32_t *)(*(rbx + 0x7f0) + 0x8));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_CTRL_EXT", *(int32_t *)(*(rbx + 0x7f0) + 0x18));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_MDIC", *(int32_t *)(*(rbx + 0x7f0) + 0x20));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_SCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x24));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_CONNSW", *(int32_t *)(*(rbx + 0x7f0) + 0x34));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_VET", *(int32_t *)(*(rbx + 0x7f0) + 0x38));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_LEDCTL", *(int32_t *)(*(rbx + 0x7f0) + 0xe00));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PBA", *(int32_t *)(*(rbx + 0x7f0) + 0x1000));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PBS", *(int32_t *)(*(rbx + 0x7f0) + 0x1008));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FRTIMER", *(int32_t *)(*(rbx + 0x7f0) + 0x1048));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_TCPTIMER", *(int32_t *)(*(rbx + 0x7f0) + 0x104c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EECD", *(int32_t *)(*(rbx + 0x7f0) + 0x10));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EICS", *(int32_t *)(*(rbx + 0x7f0) + 0x1520));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EICR", *(int32_t *)(*(rbx + 0x7f0) + 0x1520));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EIMS", *(int32_t *)(*(rbx + 0x7f0) + 0x1524));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EIMC", *(int32_t *)(*(rbx + 0x7f0) + 0x1528));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EIAC", *(int32_t *)(*(rbx + 0x7f0) + 0x152c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_EIAM", *(int32_t *)(*(rbx + 0x7f0) + 0x1530));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_ICS", *(int32_t *)(*(rbx + 0x7f0) + 0xc8));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_ICR", *(int32_t *)(*(rbx + 0x7f0) + 0xc8));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IMS", *(int32_t *)(*(rbx + 0x7f0) + 0xd0));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IMC", *(int32_t *)(*(rbx + 0x7f0) + 0xd8));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IAC", *(int32_t *)(*(rbx + 0x7f0) + 0x4100));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IAM", *(int32_t *)(*(rbx + 0x7f0) + 0xe0));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IMIRVP", *(int32_t *)(*(rbx + 0x7f0) + 0x5ac0));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCAL", *(int32_t *)(*(rbx + 0x7f0) + 0x28));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCAH", *(int32_t *)(*(rbx + 0x7f0) + 0x2c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCTTV", *(int32_t *)(*(rbx + 0x7f0) + 0x170));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCRTL", *(int32_t *)(*(rbx + 0x7f0) + 0x2160));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCRTH", *(int32_t *)(*(rbx + 0x7f0) + 0x2168));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_FCRTV", *(int32_t *)(*(rbx + 0x7f0) + 0x2460));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_RCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x100));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_RXCSUM", *(int32_t *)(*(rbx + 0x7f0) + 0x5000));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_RLPML", *(int32_t *)(*(rbx + 0x7f0) + 0x5004));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_RFCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x5008));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_MRQC", *(int32_t *)(*(rbx + 0x7f0) + 0x5818));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_VT_CTL", *(int32_t *)(*(rbx + 0x7f0) + 0x581c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_TCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x400));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_TCTL_EXT", *(int32_t *)(*(rbx + 0x7f0) + 0x404));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_TIPG", *(int32_t *)(*(rbx + 0x7f0) + 0x410));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_DTXCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x3590));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_WUC", *(int32_t *)(*(rbx + 0x7f0) + 0x5800));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_WUFC", *(int32_t *)(*(rbx + 0x7f0) + 0x5808));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_WUS", *(int32_t *)(*(rbx + 0x7f0) + 0x5810));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_IPAV", *(int32_t *)(*(rbx + 0x7f0) + 0x5838));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_WUPL", *(int32_t *)(*(rbx + 0x7f0) + 0x5900));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_CFG0", *(int32_t *)(*(rbx + 0x7f0) + 0x4200));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_LCTL", *(int32_t *)(*(rbx + 0x7f0) + 0x4208));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_LSTAT", *(int32_t *)(*(rbx + 0x7f0) + 0x420c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_ANADV", *(int32_t *)(*(rbx + 0x7f0) + 0x4218));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_LPAB", *(int32_t *)(*(rbx + 0x7f0) + 0x421c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx + 0x38b, "dumpRegs", "E1000_PCS_NPTX", *(int32_t *)(*(rbx + 0x7f0) + 0x4220));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    rsi = rbx + 0x38b;
+    r12 = 0x0;
+    r14 = 0x280c;
+    if ((rax & 0x1) != 0x0) {
+            r13 = rbx;
+            r12 = 0x0;
+            var_30 = rsi;
+            _IOLog("%s %s: %22s 0x%08lx\n", rsi, "dumpRegs", "E1000_PCS_LPABNP", *(int32_t *)(*(rbx + 0x7f0) + 0x4224));
+    }
+    else {
+            var_30 = rsi;
+            r13 = rbx;
+    }
+    do {
+            if ((*(int8_t *)(r13 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (r12 >= 0x4) {
+                            rax = (r12 << 0x6) + 0xc00c;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_SRRCTL", r12, *(int32_t *)(*(r13 + 0x7f0) + rax));
+            }
+            r12 = r12 + 0x1;
+            r14 = r14 + 0x100;
+            rbx = 0x0;
+            r15 = 0x5480;
+    } while (r12 != 0x10);
+    do {
+            if ((*(int8_t *)(r13 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_PSRTYPE", rbx, *(int32_t *)(r15 + *(r13 + 0x7f0)));
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x4;
+    } while (rbx != 0x8);
+    rbx = 0x0;
+    r14 = 0x2800;
+    r15 = r13;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xc000;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RDBAL", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x100;
+    } while (rbx != 0x10);
+    rbx = 0x0;
+    r14 = 0x2804;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xc004;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RDBAH", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x100;
+    } while (rbx != 0x10);
+    rbx = 0x0;
+    r14 = 0x2808;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xc008;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RDLEN", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x100;
+    } while (rbx != 0x10);
+    rbx = 0x0;
+    r12 = 0x2810;
+    r14 = var_30;
+    do {
+            rax = *(int32_t *)(r15 + 0x784);
+            if ((rax & 0x1) != 0x0) {
+                    rax = r12;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xc010;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_RDH", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            if ((rax & 0x1) != 0x0) {
+                    if (rbx <= 0x3) {
+                            rax = r12 + 0x8;
+                    }
+                    else {
+                            rax = (rbx << 0x6) + 0xc018;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_RDT", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r12 = r12 + 0x100;
+    } while (rbx != 0x10);
+    r12 = r15;
+    rbx = 0x0;
+    r15 = 0x2828;
+    r14 = 0x0;
+    rcx = 0x1680;
+    do {
+            if ((*(int8_t *)(r12 + 0x784) & 0x1) != 0x0) {
+                    rax = r15;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xc028;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RXDCTL", rbx, *(int32_t *)(*(r12 + 0x7f0) + rax));
+                    rcx = 0x1680;
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x100;
+    } while (rbx != 0x10);
+    r13 = 0x0;
+    r15 = 0x5a80;
+    do {
+            if ((*(int8_t *)(r12 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_EITR", r14, *(int32_t *)(rcx + *(r12 + 0x7f0)));
+                    rcx = rcx;
+            }
+            r14 = r14 + 0x1;
+            rcx = rcx + 0x4;
+    } while (r14 != 0x19);
+    rbx = 0x0;
+    r14 = 0x5aa0;
+    do {
+            if ((*(int8_t *)(r12 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_IMIR", r13, *(int32_t *)(r15 + *(r12 + 0x7f0)));
+            }
+            r13 = r13 + 0x1;
+            r15 = r15 + 0x4;
+    } while (r13 != 0x8);
+    do {
+            if ((*(int8_t *)(r12 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_IMIREXT", rbx, *(int32_t *)(r14 + *(r12 + 0x7f0)));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x4;
+    } while (rbx != 0x8);
+    r14 = r12;
+    r15 = 0x1;
+    rbx = 0x0;
+    r13 = 0x0;
+    do {
+            rax = *(int32_t *)(r14 + 0x784);
+            if ((rax & 0x1) != 0x0) {
+                    rax = 0x5464;
+                    if ((r15 & 0x1) != 0x0) {
+                            rax = 0x5404;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RAH", r13, *(int32_t *)(*(r14 + 0x7f0) + rax + rbx));
+                    rax = *(int32_t *)(r14 + 0x784);
+            }
+            if ((rax & 0x1) != 0x0) {
+                    rax = 0x5460;
+                    if ((r15 & 0x1) != 0x0) {
+                            rax = 0x5400;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RAL", r13, *(int32_t *)(*(r14 + 0x7f0) + rax + rbx));
+            }
+            r13 = r13 + 0x1;
+            rbx = rbx + 0x8;
+            r15 = COND_BYTE_SET(L);
+    } while (r13 != 0x10);
+    rbx = 0x0;
+    r12 = 0x3804;
+    r15 = r14;
+    r14 = var_30;
+    do {
+            rax = *(int32_t *)(r15 + 0x784);
+            if ((rax & 0x1) != 0x0) {
+                    rax = r12;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe004;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDBAH", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            if ((rax & 0x1) != 0x0) {
+                    if (rbx <= 0x3) {
+                            rax = r12 + 0xfffffffffffffffc;
+                    }
+                    else {
+                            rax = (rbx << 0x6) + 0xe000;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDBAL", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r12 = r12 + 0x100;
+    } while (rbx != 0x10);
+    r13 = r14;
+    rbx = 0x0;
+    r14 = 0x3808;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe008;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r13, "dumpRegs", "E1000_TDLEN", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x100;
+    } while (rbx != 0x10);
+    rbx = 0x0;
+    r12 = 0x3810;
+    r14 = r13;
+    do {
+            rax = *(int32_t *)(r15 + 0x784);
+            if ((rax & 0x1) != 0x0) {
+                    rax = r12;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe010;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDH", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            if ((rax & 0x1) != 0x0) {
+                    if (rbx <= 0x3) {
+                            rax = r12 + 0x8;
+                    }
+                    else {
+                            rax = (rbx << 0x6) + 0xe018;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDT", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r12 = r12 + 0x100;
+    } while (rbx != 0x10);
+    r13 = r14;
+    rbx = 0x0;
+    r14 = 0x3828;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    rax = r14;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe028;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r13, "dumpRegs", "E1000_TXDCTL", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r14 = r14 + 0x100;
+    } while (rbx != 0x10);
+    rbx = 0x0;
+    r12 = 0x383c;
+    r14 = r13;
+    do {
+            rax = *(int32_t *)(r15 + 0x784);
+            if ((rax & 0x1) != 0x0) {
+                    rax = r12;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe03c;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDWBAH", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            if ((rax & 0x1) != 0x0) {
+                    if (rbx <= 0x3) {
+                            rax = r12 + 0xfffffffffffffffc;
+                    }
+                    else {
+                            rax = (rbx << 0x6) + 0xe038;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TDWBAL", rbx, *(int32_t *)(*(r15 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r12 = r12 + 0x100;
+    } while (rbx != 0x10);
+    r14 = r15;
+    rbx = 0x0;
+    r15 = 0x3814;
+    r12 = 0x0;
+    r13 = 0x5840;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    rax = r15;
+                    if (rbx >= 0x4) {
+                            rax = (rbx << 0x6) + 0xe014;
+                    }
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_DCA_TXCTRL", rbx, *(int32_t *)(*(r14 + 0x7f0) + rax));
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x100;
+    } while (rbx != 0xf);
+    rbx = 0x0;
+    r15 = 0x5880;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_IP4AT_REG", r12, *(int32_t *)(r13 + *(r14 + 0x7f0)));
+            }
+            r12 = r12 + 0x1;
+            r13 = r13 + 0x8;
+    } while (r12 != 0x4);
+    r12 = 0x0;
+    r13 = 0x5a00;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_IP6AT_REG", rbx, *(int32_t *)(r15 + *(r14 + 0x7f0)));
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x4;
+    } while (rbx != 0x4);
+    rbx = 0x0;
+    r15 = 0x9000;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_WUPM_REG", r12, *(int32_t *)(r13 + *(r14 + 0x7f0)));
+            }
+            r12 = r12 + 0x1;
+            r13 = r13 + 0x4;
+    } while (r12 != 0x20);
+    r12 = 0x0;
+    r13 = 0x9800;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_FFMT_REG", rbx, *(int32_t *)(r15 + *(r14 + 0x7f0)));
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x8;
+    } while (rbx != 0x80);
+    rbx = 0x0;
+    r15 = 0x5f00;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_FFVT_REG", r12, *(int32_t *)(r13 + *(r14 + 0x7f0)));
+            }
+            r12 = r12 + 0x1;
+            r13 = r13 + 0x8;
+    } while (r12 != 0x80);
+    r12 = 0x0;
+    rcx = 0x5c00;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_FFLT_REG", rbx, *(int32_t *)(r15 + *(r14 + 0x7f0)));
+                    rcx = 0x5c00;
+            }
+            rbx = rbx + 0x1;
+            r15 = r15 + 0x8;
+    } while (rbx != 0x4);
+    r13 = 0x0;
+    r15 = 0x5c80;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RETA", r12, *(int32_t *)(rcx + *(r14 + 0x7f0)));
+                    rcx = rcx;
+            }
+            r12 = r12 + 0x1;
+            rcx = rcx + 0x4;
+    } while (r12 != 0x20);
+    rbx = 0x0;
+    r12 = 0x59e0;
+    do {
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", var_30, "dumpRegs", "E1000_RSSRK", r13, *(int32_t *)(r15 + *(r14 + 0x7f0)));
+            }
+            r13 = r13 + 0x1;
+            r15 = r15 + 0x4;
+    } while (r13 != 0xa);
+    r15 = r14;
+    r14 = var_30;
+    do {
+            if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r14, "dumpRegs", "E1000_TTQF", rbx, *(int32_t *)(r12 + *(r15 + 0x7f0)));
+            }
+            rbx = rbx + 0x1;
+            r12 = r12 + 0x4;
+    } while (rbx != 0x8);
+    r13 = r14;
+    rax = *(int32_t *)(r15 + 0x784);
+    rcx = rax & 0x1;
+    rbx = 0x5cb0;
+    r12 = 0x0;
+    do {
+            if ((rcx & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r13, "dumpRegs", "E1000_ETQF", r12, *(int32_t *)(rbx + *(r15 + 0x7f0)));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            r12 = r12 + 0x1;
+            rcx = rax & 0x1;
+            rbx = rbx + 0x4;
+    } while (r12 != 0x8);
+    rbx = r13;
+    if (rcx != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx, "dumpRegs", "E1000_TDFH", *(int32_t *)(*(r15 + 0x7f0) + 0x3410));
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx, "dumpRegs", "E1000_TDFT", *(int32_t *)(*(r15 + 0x7f0) + 0x3418));
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx, "dumpRegs", "E1000_TDFHS", *(int32_t *)(*(r15 + 0x7f0) + 0x3420));
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx, "dumpRegs", "E1000_TDFPC", *(int32_t *)(*(r15 + 0x7f0) + 0x3430));
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    if ((rax & 0x1) != 0x0) {
+            _IOLog("%s %s: %22s 0x%08lx\n", rbx, "dumpRegs", "E1000_GPIE", *(int32_t *)(*(r15 + 0x7f0) + 0x1514));
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    r13 = rbx;
+    rcx = rax & 0x1;
+    rbx = 0x1700;
+    r12 = 0x0;
+    do {
+            if ((rcx & 0x1) != 0x0) {
+                    _IOLog("%s %s: %16s(%4d) 0x%08lx\n", r13, "dumpRegs", "E1000_IVAR", r12, *(int32_t *)(rbx + *(r15 + 0x7f0)));
+                    rax = *(int32_t *)(r15 + 0x784);
+            }
+            r12 = r12 + 0x1;
+            rcx = rax & 0x1;
+            rbx = rbx + 0x4;
+    } while (r12 != 0x8);
+    if (rcx != 0x0) {
+            rax = _IOLog("%s %s: %22s 0x%08lx\n", r13, "dumpRegs", "E1000_IVAR_MISC", *(int32_t *)(*(r15 + 0x7f0) + 0x1740));
+    }
+    return rax;
+

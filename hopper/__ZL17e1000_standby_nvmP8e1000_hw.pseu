@@ -1,0 +1,11 @@
+    rbx = arg0;
+    rax = *(rbx + 0x8);
+    r14 = *(int32_t *)(rax + 0x10);
+    if (*(int32_t *)(rbx + 0x4d8) == 0x2) {
+            *(int32_t *)(rax + 0x10) = r14 | 0x2;
+            _IODelay(*(int16_t *)(rbx + 0x4ea) & 0xffff);
+            *(int32_t *)(*(rbx + 0x8) + 0x10) = r14 & 0xfffffffd;
+            rax = _IODelay(*(int16_t *)(rbx + 0x4ea) & 0xffff);
+    }
+    return rax;
+

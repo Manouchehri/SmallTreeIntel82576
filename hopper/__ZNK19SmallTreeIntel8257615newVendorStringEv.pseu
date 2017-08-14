@@ -1,0 +1,7 @@
+    rcx = rdi;
+    if ((*(int8_t *)(rcx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rcx + 0x38b, "newVendorString");
+    }
+    rax = OSString::withCString("Small Tree");
+    return rax;
+

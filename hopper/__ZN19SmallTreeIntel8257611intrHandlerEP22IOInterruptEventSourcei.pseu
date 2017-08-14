@@ -1,0 +1,30 @@
+    rbx = arg0;
+    rcx = *(int32_t *)(*(rbx + 0x7f0) + 0x1580);
+    r14 = *(int32_t *)(*(rbx + 0x7f0) + 0xc0);
+    rax = r14 | rcx;
+    if (rax != 0x0) {
+            if ((*(int8_t *)(rbx + 0x784) & 0x10) != 0x0) {
+                    rax = _IOLog("%s %s: eicr=0x%08lx icr=0x%08lx\n", rbx + 0x38b, "intrHandler", rcx, r14);
+            }
+            if (*(int8_t *)(rbx + 0x138) != 0x0) {
+                    if (*(int8_t *)(rbx + 0x3c0) != 0x0) {
+                            if ((r14 & 0x4) != 0x0) {
+                                    *(int8_t *)(rbx + 0x4a8) = 0x1;
+                                    *(rbx + 0x6d0) = *(rbx + 0x6d0) + 0x1;
+                            }
+                            SmallTreeIntel82576::txHandler();
+                            rax = SmallTreeIntel82576::rxHandler(rbx);
+                            *(rbx + 0x6c0) = *(rbx + 0x6c0) + 0x1;
+                    }
+                    else {
+                            if ((*(int8_t *)(rbx + 0x784) & 0x10) != 0x0) {
+                                    rax = _IOLog("%s %s: Skipping - Not Enabled\n", rbx + 0x38b, "intrHandler");
+                            }
+                    }
+            }
+    }
+    else {
+            *(rbx + 0x6e8) = *(rbx + 0x6e8) + 0x1;
+    }
+    return rax;
+

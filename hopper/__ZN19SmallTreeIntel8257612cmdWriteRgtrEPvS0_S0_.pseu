@@ -1,0 +1,33 @@
+    rbx = rcx;
+    r12 = arg2;
+    r14 = arg1;
+    r15 = arg0;
+    if ((*(int8_t *)(r15 + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: rgtrType=%d data=0x%lx adrs=0x%lx\n", r15 + 0x38b, "cmdWriteRgtr", r14, r12 & 0xffffffff, rbx & 0xffffffff);
+    }
+    if (((rbx & 0x3) != 0x0) || (rbx > 0x10000)) goto loc_13827;
+
+loc_137de:
+    rax = 0x0;
+    if (r14 == 0x1) goto .l1;
+
+loc_137e6:
+    if (r14 != 0x0) goto loc_137fb;
+
+loc_137eb:
+    *(int32_t *)(*(r15 + 0x7f0) + (rbx & 0xffffffff)) = r12;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_137fb:
+    if ((*(int8_t *)(r15 + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: Ignoring illegal rgtrType=%d\n", r15 + 0x38b, "cmdWriteRgtr", r14);
+    }
+    goto loc_13827;
+
+loc_13827:
+    rax = 0xe00002c2;
+    return rax;
+

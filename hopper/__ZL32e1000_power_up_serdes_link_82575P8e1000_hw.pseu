@@ -1,0 +1,8 @@
+    rdi = arg0;
+    if ((*(int32_t *)(rdi + 0x474) == 0x3) || (*(int8_t *)(rdi + 0x578) != 0x0)) {
+            *(int32_t *)(*(rdi + 0x8) + 0x4200) = *(int32_t *)(*(rdi + 0x8) + 0x4200) | 0x8;
+            *(int32_t *)(*(rdi + 0x8) + 0x18) = *(int32_t *)(*(rdi + 0x8) + 0x18) & 0xffffff7f;
+            rax = _IODelay(0x3e8);
+    }
+    return rax;
+

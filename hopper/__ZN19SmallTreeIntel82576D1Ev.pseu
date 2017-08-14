@@ -1,0 +1,3 @@
+    rax = IOEthernetController::~IOEthernetController();
+    return rax;
+

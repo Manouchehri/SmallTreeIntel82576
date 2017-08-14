@@ -1,0 +1,21 @@
+    r14 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x786) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with powerState=0x%08lx", rbx + 0x38b, "setPowerState", r14);
+    }
+    if (r14 == 0x1) {
+            SmallTreeIntel82576::runCommand(rbx);
+    }
+    else {
+            if (r14 == 0x0) {
+                    SmallTreeIntel82576::runCommand(rbx);
+            }
+            else {
+                    if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+                            _IOLog("%s %s: Invalid power state powerState=%ld\n", rbx + 0x38b, "setPowerState", r14);
+                    }
+            }
+    }
+    *(int32_t *)(rbx + 0x774) = r14;
+    return 0x0;
+

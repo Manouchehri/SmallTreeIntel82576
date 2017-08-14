@@ -1,0 +1,7 @@
+    rbx = OSObject::operator new(0xd88);
+    IOEthernetController::IOEthernetController(rbx, SmallTreeIntel82576::gMetaClass);
+    *rbx = 0x180c0;
+    OSMetaClass::instanceConstructed(SmallTreeIntel82576::gMetaClass);
+    rax = rbx;
+    return rax;
+

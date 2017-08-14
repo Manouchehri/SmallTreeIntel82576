@@ -1,0 +1,7 @@
+    rbx = arg0;
+    rax = e1000_check_alt_mac_addr_generic(arg0);
+    if (rax == 0x0) {
+            rax = e1000_read_mac_addr_generic(rbx);
+    }
+    return rax;
+

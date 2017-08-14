@@ -1,0 +1,16 @@
+    r15 = rdx;
+    r14 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x786) & 0x10) != 0x0) {
+            _IOLog("%s %s:  Entered", rbx + 0x38b, "sharedReadPcieCapReg");
+    }
+    (*(**(rbx + 0x748) + 0x8e0))(*(rbx + 0x748), 0x10, &var_19);
+    rsi = var_19 & 0xff;
+    if (rsi != 0x0) {
+            *(int16_t *)r15 = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), rsi + r14);
+    }
+    if ((*(int8_t *)(rbx + 0x786) & 0x10) != 0x0) {
+            _IOLog("%s %s: Read PCIe capability:  reg 0x%x value 0x%x ptr 0x%x", rbx + 0x38b, "sharedReadPcieCapReg", r14, *(int16_t *)r15 & 0xffff, var_19 & 0xff);
+    }
+    return 0x0;
+

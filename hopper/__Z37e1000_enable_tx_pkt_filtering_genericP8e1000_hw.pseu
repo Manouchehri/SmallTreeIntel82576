@@ -1,0 +1,38 @@
+    rbx = arg0;
+    *(int8_t *)(rbx + 0x35d) = 0x1;
+    if (((*(rbx + 0x38))(arg0) != 0x0) && (e1000_mng_enable_host_if_generic(rbx) == 0x0)) {
+            rax = 0x6f0;
+            do {
+                    *(int32_t *)(rbx + rax + 0xfffffffffffffe78) = *(int32_t *)(*(rbx + 0x8) + rax + 0x8800);
+                    rax = rax + 0x4;
+            } while (rax != 0x700);
+            rax = *(int8_t *)(rbx + 0x577);
+            *(int8_t *)(rbx + 0x577) = 0x0;
+            rcx = 0x0;
+            rsi = 0x0;
+            do {
+                    rdx = *(int8_t *)(rbx + rcx + 0x568) & 0xff;
+                    rdx = rdx + rsi;
+                    rcx = rcx + 0x1;
+                    rsi = rdx & 0xff;
+            } while (rcx != 0x10);
+            if (((rax & 0xff) == (-rdx & 0xff)) && (*(int32_t *)(rbx + 0x568) == 0x544d4149)) {
+                    if ((*(int8_t *)(rbx + 0x56c) & 0x1) != 0x0) {
+                            rax = *(int8_t *)(rbx + 0x35d) != 0x0 ? 0x1 : 0x0;
+                    }
+                    else {
+                            *(int8_t *)(rbx + 0x35d) = 0x0;
+                            rax = 0x0;
+                    }
+            }
+            else {
+                    *(int8_t *)(rbx + 0x35d) = 0x1;
+                    rax = 0x1;
+            }
+    }
+    else {
+            *(int8_t *)(rbx + 0x35d) = 0x0;
+            rax = 0x0;
+    }
+    return rax;
+

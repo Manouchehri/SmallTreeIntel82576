@@ -1,0 +1,19 @@
+    rdi = arg0;
+    rcx = *(int16_t *)(rdi + 0x504) & 0xffff;
+    rax = 0x4;
+    if (rcx != 0x1) {
+            rax = rcx & 0xffff;
+            if (rax == 0x2) {
+                    rax = 0x20;
+            }
+            else {
+                    COND = rax == 0x3;
+                    rax = 0x2;
+                    if (COND) {
+                            rax = 0x40;
+                    }
+            }
+    }
+    rax = (*(rdi + 0x108))();
+    return rax;
+

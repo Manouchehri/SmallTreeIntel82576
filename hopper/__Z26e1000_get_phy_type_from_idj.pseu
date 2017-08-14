@@ -1,0 +1,119 @@
+    rdi = arg0;
+    if (rdi <= 0x1410c1f) {
+            if (rdi == 0x1410c00) {
+                    rax = 0xa;
+            }
+            else {
+                    rax = 0x0;
+            }
+    }
+    else {
+            rax = 0x2;
+            if (rdi <= 0x1410c2f) {
+                    if (rdi != 0x1410c20) {
+                            rax = 0x0;
+                    }
+            }
+            else {
+                    if (rdi <= 0x1410c4f) {
+                            if (rdi != 0x1410c30) {
+                                    rax = 0x0;
+                            }
+                    }
+                    else {
+                            if (rdi <= 0x1410c8f) {
+                                    if (rdi != 0x1410c50) {
+                                            rax = 0x0;
+                                    }
+                            }
+                            else {
+                                    if (rdi <= 0x1410c9f) {
+                                            if (rdi != 0x1410c90) {
+                                                    rax = 0x0;
+                                            }
+                                    }
+                                    else {
+                                            if (rdi <= 0x1410cbf) {
+                                                    if (rdi == 0x1410ca0) {
+                                                            rax = 0x5;
+                                                    }
+                                                    else {
+                                                            rax = 0x0;
+                                                    }
+                                            }
+                                            else {
+                                                    if (rdi <= 0x1410dbf) {
+                                                            if (rdi != 0x1410cc0) {
+                                                                    rax = 0x0;
+                                                            }
+                                                    }
+                                                    else {
+                                                            if (rdi <= 0x1410def) {
+                                                                    if (rdi != 0x1410dc0) {
+                                                                            rax = 0x0;
+                                                                    }
+                                                            }
+                                                            else {
+                                                                    if (rdi <= 0x154039f) {
+                                                                            if (rdi != 0x1410df0) {
+                                                                                    rax = 0x0;
+                                                                            }
+                                                                    }
+                                                                    else {
+                                                                            if (rdi <= 0x2a8030f) {
+                                                                                    if (rdi == 0x15403a0) {
+                                                                                            rax = 0x8;
+                                                                                    }
+                                                                                    else {
+                                                                                            rax = 0x0;
+                                                                                    }
+                                                                            }
+                                                                            else {
+                                                                                    if (rdi <= 0x2a8031f) {
+                                                                                            if (rdi != 0x2a80310) {
+                                                                                                    rax = 0x0;
+                                                                                            }
+                                                                                            else {
+                                                                                                    rax = 0x7;
+                                                                                            }
+                                                                                    }
+                                                                                    else {
+                                                                                            if (rdi <= 0x2a8032f) {
+                                                                                                    if (rdi == 0x2a80320) {
+                                                                                                            rax = 0x7;
+                                                                                                    }
+                                                                                                    else {
+                                                                                                            rax = 0x0;
+                                                                                                    }
+                                                                                            }
+                                                                                            else {
+                                                                                                    if (rdi != 0x2a80330) {
+                                                                                                            if (rdi == 0x2a80390) {
+                                                                                                                    rax = 0x6;
+                                                                                                            }
+                                                                                                            else {
+                                                                                                                    if (rdi == 0x2a80380) {
+                                                                                                                            rax = 0x4;
+                                                                                                                    }
+                                                                                                                    else {
+                                                                                                                            rax = 0x0;
+                                                                                                                    }
+                                                                                                            }
+                                                                                                    }
+                                                                                                    else {
+                                                                                                            rax = 0x7;
+                                                                                                    }
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+

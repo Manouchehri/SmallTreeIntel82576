@@ -1,0 +1,57 @@
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with activationLevel=0x%08lx enabledCount=%lu\n", rbx + 0x38b, "down", rsi, *(int32_t *)(rbx + 0x4b8));
+    }
+    *(int8_t *)(rbx + 0x138) = 0x0;
+    r15 = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    if (r15 != 0xffffffff) {
+            SmallTreeIntel82576::disableIntrs();
+    }
+    else {
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "down");
+            }
+    }
+    (*(*rbx + 0x980))(rbx, 0x1, 0x0, 0x0, 0x0);
+    *(int32_t *)(rbx + 0x3d0) = 0xffffffff;
+    r14 = rbx + 0x38b;
+    _IOLog("%s Link down\n", r14);
+    SmallTreeIntel82576::disableIntrs();
+    rdi = *(rbx + 0x3f0);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x218))();
+    }
+    rdi = *(rbx + 0x410);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x138))();
+            (*(**(rbx + 0x410) + 0x150))(*(rbx + 0x410), 0x0);
+            (*(**(rbx + 0x410) + 0x148))(*(rbx + 0x410));
+    }
+    SmallTreeIntel82576::freeMbufs(rbx);
+    SmallTreeIntel82576::freeMbufs(rbx);
+    rax = *(int32_t *)(rbx + 0x4b8);
+    if (rax != 0x0) {
+            rax = rax - 0x1;
+            *(int32_t *)(rbx + 0x4b8) = rax;
+            if (rax == 0x0) {
+                    if (r15 != 0xffffffff) {
+                            SmallTreeIntel82576::resetHW();
+                            _IODelay(0x2710);
+                            e1000_power_down_phy(rbx + 0x7e8);
+                            _IODelay(0x2710);
+                    }
+                    *(int16_t *)(rbx + 0x426) = 0x0;
+                    *(int16_t *)(rbx + 0x424) = 0x0;
+                    *(int32_t *)(rbx + 0x464) = 0x0;
+            }
+    }
+    else {
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: disable() called when not enabled - ignoring.\n", r14, "down");
+            }
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%08lx with enabledCount=%lu\n", r14, "down", 0x0, *(int32_t *)(rbx + 0x4b8));
+    }
+    return 0x0;
+

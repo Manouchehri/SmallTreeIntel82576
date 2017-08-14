@@ -1,0 +1,73 @@
+    r12 = rdx;
+    rbx = arg1;
+    r14 = arg0;
+    if ((*(int8_t *)(r14 + 0x785) & 0x10) != 0x0) {
+            rsi = r14 + 0x38b;
+            r9 = 0x0;
+            if (r12 != 0x0) {
+                    r9 = *(int32_t *)r12;
+            }
+            _IOLog("%s %s: pOut=%p pOutSize=%p *pOutSize=0x%lx\n", rsi, "cmdGetState", rbx, r12, r9);
+    }
+    rax = 0xe00002c2;
+    if ((rbx == 0x0) || (r12 == 0x0)) goto .l1;
+
+loc_138a5:
+    rsi = *(int32_t *)r12;
+    if (rsi < 0x7d0) goto .l1;
+
+loc_138b6:
+    r13 = sign_extend_64(_snprintf(rbx, rsi, "\n********* %s State ****************\n", r14 + 0x38b));
+    rdi = rbx + r13;
+    rcx = *(int32_t *)(r14 + 0xb68);
+    if (rcx <= 0x3) goto loc_138f6;
+
+loc_138e2:
+    rax = _snprintf(rdi, *(int32_t *)r12, "flow control state %d unknown\n", rcx);
+    goto loc_1393f;
+
+loc_1393f:
+    r15 = rbx + sign_extend_64(rax) + r13;
+    if (*(int8_t *)(r14 + 0x3d9) != 0x0) {
+            var_38 = rbx;
+            r15 = r15 + sign_extend_32(_snprintf(r15, *(int32_t *)r12, "txQueueStall\n"));
+    }
+    else {
+            var_38 = rbx;
+    }
+    rax = _snprintf(r15, *(int32_t *)r12, "%-20s 0x%04x\n", "TxRing.size", *(int32_t *)(r14 + 0x420));
+    rcx = r14;
+    r13 = sign_extend_64(_snprintf(r15 + sign_extend_64(rax), *(int32_t *)r12, "%-20s 0x%04x\n", "TxRing.head", *(int16_t *)(rcx + 0x424) & 0xffff)) + sign_extend_64(rax);
+    rbx = sign_extend_64(_snprintf(r15 + r13, *(int32_t *)r12, "%-20s 0x%04x\n", "TxRing.tail", *(int16_t *)(rcx + 0x426) & 0xffff)) + r13;
+    r14 = sign_extend_64(_snprintf(r15 + rbx, *(int32_t *)r12, "%-20s 0x%04x\n", "RxRing.size", *(int32_t *)(rcx + 0x460))) + rbx;
+    rbx = sign_extend_64(_snprintf(r15 + r14, *(int32_t *)r12, "%-20s 0x%04x\n", "RxRing.head", *(int16_t *)(rcx + 0x464) & 0xffff)) + r14;
+    r15 = r15 + rbx + _snprintf(r15 + rbx, *(int32_t *)r12, "%-20s 0x%04x\n", "RxRing.tail", *(int16_t *)(rcx + 0x466) & 0xffff) - var_38;
+    rax = 0x0;
+    *(int32_t *)r12 = r15;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_138f6:
+    switch (sign_extend_64(*(int32_t *)(switch_table + rcx * 0x4)) + switch_table) {
+        case 0:
+            rsi = *(int32_t *)r12;
+            rdx = "flow control disabled\n";
+            break;
+        case 1:
+            rsi = *(int32_t *)r12;
+            rdx = "flow control rx pause\n";
+            break;
+        case 2:
+            rsi = *(int32_t *)r12;
+            rdx = "flow control tx pause\n";
+            break;
+        case 3:
+            rsi = *(int32_t *)r12;
+            rdx = "flow control full, rx and tx pause\n";
+            break;
+    }
+    rax = _snprintf(rdi, rsi, rdx);
+    goto loc_1393f;
+

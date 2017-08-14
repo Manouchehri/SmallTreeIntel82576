@@ -1,0 +1,15 @@
+    r14 = arg0;
+    rbx = 0x0;
+    do {
+            if ((HIBYTE(*(int32_t *)(*(r14 + 0x8) + 0x10)) & 0x2) != 0x0) {
+                break;
+            }
+            _IODelay(0x3e8);
+            rbx = rbx + 0x1;
+    } while (rbx < 0xa);
+    rax = 0xfffffff7;
+    if (rbx != 0xa) {
+            rax = 0x0;
+    }
+    return rax;
+

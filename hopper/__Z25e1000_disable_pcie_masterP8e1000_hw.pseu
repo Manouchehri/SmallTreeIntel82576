@@ -1,0 +1,3 @@
+    rax = e1000_disable_pcie_master_generic(arg0);
+    return rax;
+

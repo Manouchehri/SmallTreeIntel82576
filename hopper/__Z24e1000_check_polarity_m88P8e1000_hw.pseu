@@ -1,0 +1,7 @@
+    rbx = arg0;
+    rax = (*(rbx + 0x3d8))(arg0, 0x11, &var_A);
+    if (rax == 0x0) {
+            *(int32_t *)(rbx + 0x45c) = (var_A & 0xffff) >> 0x1 & 0x1;
+    }
+    return rax;
+

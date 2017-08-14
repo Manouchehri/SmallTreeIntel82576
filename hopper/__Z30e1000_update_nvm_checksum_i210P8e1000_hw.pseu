@@ -1,0 +1,40 @@
+    r14 = arg0;
+    r12 = e1000_read_nvm_eerd(arg0, 0x0, 0x1, &var_2C);
+    if (r12 != 0x0) goto loc_14975;
+
+loc_148da:
+    r12 = 0xd;
+    if ((*(r14 + 0x498))(r14) != 0x0) goto loc_14975;
+
+loc_148f2:
+    r13 = 0x0;
+    r15 = &var_2C;
+    rbx = 0x0;
+    goto loc_148fb;
+
+loc_148fb:
+    r12 = e1000_read_nvm_eerd(r14, rbx & 0xffff, 0x1, r15);
+    if (r12 != 0x0) goto loc_1496b;
+
+loc_14916:
+    r13 = r13 + var_2C;
+    rbx = rbx + 0x1;
+    if ((rbx & 0xffff) < 0x3f) goto loc_148fb;
+
+loc_1492a:
+    var_2A = 0xffffbaba - r13;
+    r12 = e1000_write_nvm_srwr(r14, 0x3f, 0x1, &var_2A);
+    (*(r14 + 0x4a8))(r14);
+    if (r12 == 0x0) {
+            r12 = e1000_update_flash_i210(r14);
+    }
+    goto loc_14975;
+
+loc_14975:
+    rax = r12;
+    return rax;
+
+loc_1496b:
+    (*(r14 + 0x4a8))(r14);
+    goto loc_14975;
+

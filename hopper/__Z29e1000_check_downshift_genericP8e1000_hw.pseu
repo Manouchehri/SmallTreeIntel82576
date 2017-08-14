@@ -1,0 +1,24 @@
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x448) + 0xfffffffe;
+    if ((rax >= 0x9) || ((BIT_TEST(0x11d, rax)))) goto loc_1041a;
+
+loc_103e3:
+    r14 = sign_extend_64(rax);
+    rax = (*(rbx + 0x3d8))(rbx, *(int32_t *)(0x17f80 + r14 * 0x4), &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_10402:
+    *(int8_t *)(rbx + 0x487) = (*(int32_t *)(0x17fb0 + r14 * 0x4) & var_12 & 0xffff) != 0x0 ? 0x1 : 0x0;
+    goto loc_10421;
+
+loc_10421:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_1041a:
+    *(int8_t *)(rbx + 0x487) = 0x0;
+    goto loc_10421;
+

@@ -1,0 +1,12 @@
+    rbx = arg0;
+    rax = 0x0;
+    if (*(int8_t *)(rbx + 0x486) == 0x0) {
+            rax = (*(rbx + 0x3f8))(rbx);
+            if (rax == 0x0) {
+                    _IODelay(0x186a0);
+                    rax = *(rbx + 0x400);
+                    rax = (rax)(rbx, 0x0);
+            }
+    }
+    return rax;
+

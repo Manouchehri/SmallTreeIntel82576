@@ -1,0 +1,17 @@
+    r12 = rcx;
+    r14 = arg2;
+    r15 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with mcAddr=0x%012llx mtaWord=0x%08lx mtaBit=0x%08lx\n", rbx + 0x38b, "hashMulticastAddress", *r15 >> 0x10, *(int32_t *)r14, *(int32_t *)r12);
+    }
+    rcx = *(int8_t *)(r15 + 0x4) & 0xff;
+    rdx = *(int8_t *)(r15 + 0x5) & 0xff;
+    *(int32_t *)r14 = rdx >> 0x1;
+    rax = rdx << 0x4 & 0x10 | rcx >> 0x4;
+    *(int32_t *)r12 = rax;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Returning with mcAddr=0x%012llx mtaWord=0x%08lx mtaBit=0x%08lx\n", rbx + 0x38b, "hashMulticastAddress", *r15 >> 0x10, *(int32_t *)r14, rax);
+    }
+    return rax;
+

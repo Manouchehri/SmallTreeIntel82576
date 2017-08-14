@@ -1,0 +1,6 @@
+    rax = OSMetaClassBase::safeMetaCast(arg0, SmallTreeIntel82576::gMetaClass);
+    if (rax != 0x0) {
+            SmallTreeIntel82576::setPowerStateOnGated();
+    }
+    return 0x0;
+

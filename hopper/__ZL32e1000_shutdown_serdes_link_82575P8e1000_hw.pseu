@@ -1,0 +1,11 @@
+    rbx = arg0;
+    if ((*(int32_t *)(rbx + 0x474) == 0x3) || (*(int8_t *)(rbx + 0x578) != 0x0)) {
+            rax = e1000_enable_mng_pass_thru(rbx);
+            if (rax == 0x0) {
+                    *(int32_t *)(*(rbx + 0x8) + 0x4200) = *(int32_t *)(*(rbx + 0x8) + 0x4200) & 0xfffffff7;
+                    *(int32_t *)(*(rbx + 0x8) + 0x18) = *(int32_t *)(*(rbx + 0x8) + 0x18) | 0x80;
+                    rax = _IODelay(0x3e8);
+            }
+    }
+    return rax;
+

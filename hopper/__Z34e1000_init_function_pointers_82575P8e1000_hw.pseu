@@ -1,0 +1,6 @@
+    *(arg0 + 0x20) = e1000_init_mac_params_82575(e1000_hw*);
+    *(arg0 + 0x490) = e1000_init_nvm_params_82575(e1000_hw*);
+    *(arg0 + 0x388) = e1000_init_phy_params_82575(e1000_hw*);
+    *(arg0 + 0x508) = e1000_init_mbx_params_pf(e1000_hw*);
+    return e1000_init_mbx_params_pf(e1000_hw*);
+

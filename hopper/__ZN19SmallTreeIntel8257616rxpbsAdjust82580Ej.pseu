@@ -1,0 +1,6 @@
+    rax = 0x0;
+    if (rsi <= 0xa) {
+            rax = *(int16_t *)(e1000_82580_rxpbs_table + rsi * 0x2) & 0xffff;
+    }
+    return rax;
+

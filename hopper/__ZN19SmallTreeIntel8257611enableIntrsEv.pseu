@@ -1,0 +1,52 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Entered\n", rbx + 0x38b, "enableIntrs");
+    }
+    if (*(int8_t *)(rbx + 0x3c0) == 0x0) goto loc_11b33;
+
+loc_11b13:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0) goto .l1;
+
+loc_11b20:
+    rbx = rbx + 0x38b;
+    rdi = "%s %s: Interrupts already enabled??? - returning\n";
+    goto loc_11c7d;
+
+loc_11c7d:
+    rax = _IOLog(rdi);
+    return rax;
+
+.l1:
+    return rax;
+
+loc_11b33:
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1528) = 0xffffffff;
+    *(int32_t *)(*(rbx + 0x7f0) + 0xd8) = 0xffffffff;
+    *(int8_t *)(rbx + 0x3c0) = 0x1;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1514) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1514) = 0x1;
+    rax = *(int32_t *)(rbx + 0x904);
+    if ((rax < 0x6) || (rax == 0x2)) {
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1700) = 0x8080;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1704) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1708) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x170c) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1710) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1714) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x1718) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x171c) = 0x0;
+            rax = *(int32_t *)(rbx + 0x904);
+    }
+    if ((rax < 0x6) || (rax == 0x2)) {
+            SmallTreeIntel82576::setIntrThrottle();
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1524) = 0x8000ffff;
+    *(int32_t *)(*(rbx + 0x7f0) + 0xd0) = *(int32_t *)(rbx + 0x4b0);
+    rax = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0) goto .l1;
+
+loc_11c6f:
+    rbx = rbx + 0x38b;
+    rdi = "%s %s: Returning\n";
+    goto loc_11c7d;
+

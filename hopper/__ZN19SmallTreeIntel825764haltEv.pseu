@@ -1,0 +1,23 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "halt");
+    }
+    *(int8_t *)(rbx + 0x138) = 0x0;
+    SmallTreeIntel82576::disableIntrs();
+    rdi = *(rbx + 0x3f0);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x218))();
+    }
+    rdi = *(rbx + 0x410);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x138))();
+    }
+    rax = *(rbx + 0x7f0);
+    if (rax != 0x0) {
+            *(int32_t *)(rax + 0x400) = 0x0;
+            rax = *(rbx + 0x7f0);
+            *(int32_t *)(rax + 0x100) = 0x0;
+    }
+    *(int8_t *)(rbx + 0x3c1) = 0x1;
+    return rax;
+

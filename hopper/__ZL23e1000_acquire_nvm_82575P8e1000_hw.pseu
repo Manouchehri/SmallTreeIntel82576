@@ -1,0 +1,28 @@
+    rbx = arg0;
+    rax = e1000_acquire_swfw_sync_82575(arg0, 0x1);
+    if (rax == 0x0) {
+            rax = *(int32_t *)(rbx + 0x11c);
+            if (rax == 0x4) {
+                    rax = *(rbx + 0x8);
+                    rcx = *(int32_t *)(rax + 0x10);
+                    if ((rcx & 0x38000) != 0x0) {
+                            *(int32_t *)(rax + 0x10) = rcx | 0x40000;
+                    }
+                    rax = *(int32_t *)(rbx + 0x11c);
+            }
+            if (rax == 0x3) {
+                    rax = *(rbx + 0x8);
+                    rcx = *(int32_t *)(rax + 0x10);
+                    if ((HIBYTE(rcx) & 0x80) != 0x0) {
+                            *(int32_t *)(rax + 0x10) = rcx | 0x8000;
+                    }
+            }
+            r14 = e1000_acquire_nvm_generic(rbx);
+            rax = 0x0;
+            if (r14 != 0x0) {
+                    e1000_release_swfw_sync_82575(rbx, 0x1);
+                    rax = r14;
+            }
+    }
+    return rax;
+

@@ -1,0 +1,4 @@
+    OSMetaClass::OSMetaClass(STECUserClient::gMetaClass, "STECUserClient", IOUserClient::gMetaClass, 0xe8);
+    *STECUserClient::gMetaClass = 0x197b0;
+    return 0x197b0;
+

@@ -1,0 +1,3 @@
+    rax = _bzero(rdi + 0x4d8, 0x268);
+    return rax;
+

@@ -1,0 +1,100 @@
+    r15 = rdx;
+    r12 = arg1;
+    r14 = arg0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with count=%lu\n", r14 + 0x38b, "setMulticastList", r15);
+    }
+    rax = *(r14 + 0x7f0);
+    if (*(int32_t *)(rax + 0x8) == 0xffffffff) goto loc_80d5;
+
+loc_7ee9:
+    rdx = *(int32_t *)(rax + 0x5400);
+    rcx = *(int32_t *)(rax + 0x5404);
+    *(int32_t *)(r14 + 0x158) = r15;
+    rax = *(int32_t *)(r14 + 0x128);
+    if ((rdx != rax) || (rcx != *(int32_t *)(r14 + 0x12c))) {
+            *(int32_t *)(*(r14 + 0x7f0) + 0x5400) = rax;
+            *(int32_t *)(*(r14 + 0x7f0) + 0x5404) = *(int32_t *)(r14 + 0x12c);
+    }
+    CMP(*(int8_t *)(r14 + 0x35c), 0x1);
+    r10 = 0xf + CARRY(RFLAGS(cf));
+    rcx = 0x1;
+    rdx = 0x8;
+    do {
+            if (r15 != 0x0) {
+                    rsi = *(int8_t *)r12 & 0xff;
+                    rdi = *(int8_t *)(r12 + 0x1) & 0xff;
+                    rdi = rdi << 0x8 | rsi;
+                    rsi = *(int8_t *)(r12 + 0x2) & 0xff;
+                    rsi = rsi << 0x10 | rdi;
+                    rdi = *(int8_t *)(r12 + 0x3) & 0xff;
+                    rdi = rdi << 0x18 | rsi;
+                    rsi = *(int8_t *)(r12 + 0x4) & 0xff;
+                    rax = *(int8_t *)(r12 + 0x5) & 0xff;
+                    rax = rax << 0x8 | rsi | 0x80000000;
+                    r11 = *(r14 + 0x7f0);
+                    rsi = 0x5460;
+                    if (rcx < 0x10) {
+                            rsi = 0x5400;
+                    }
+                    rbx = 0x5464;
+                    if (CPU_FLAGS & L) {
+                            rbx = 0x5404;
+                    }
+                    *(int32_t *)(r11 + sign_extend_64(rsi + rdx)) = rdi;
+                    *(int32_t *)(*(r14 + 0x7f0) + sign_extend_64(rbx + rdx)) = rax;
+                    r15 = r15 - 0x1;
+                    r12 = r12 + 0x6;
+            }
+            else {
+                    rax = *(r14 + 0x7f0);
+                    rsi = 0x5460;
+                    if (rcx < 0x10) {
+                            rsi = 0x5400;
+                    }
+                    rdi = 0x5464;
+                    if (CPU_FLAGS & L) {
+                            rdi = 0x5404;
+                    }
+                    *(int32_t *)(rax + sign_extend_64(rsi + rdx)) = 0x0;
+                    *(int32_t *)(*(r14 + 0x7f0) + sign_extend_64(rdi + rdx)) = 0x0;
+                    r15 = 0x0;
+            }
+            rcx = rcx + 0x1;
+            rdx = rdx + 0x8;
+    } while (rcx < r10);
+    if (*(int8_t *)(r14 + 0x156) != 0x0) {
+            rax = *(r14 + 0x7f0);
+            rcx = 0x0;
+            do {
+                    *(int32_t *)(rcx + rax + 0x5200) = 0x0;
+                    rcx = rcx + 0x4;
+            } while (rcx != 0x200);
+    }
+    *(int8_t *)(r14 + 0x156) = COND_BYTE_SET(NE);
+    if (r15 == 0x0) goto loc_80a4;
+
+loc_805b:
+    SmallTreeIntel82576::hashMulticastAddress(r14, r12, &var_2C);
+    rax = loc_8081();
+    return rax;
+
+loc_80a4:
+    rbx = 0x0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rbx = 0x0;
+            _IOLog("%s %s: Returning ret=0x%08lx\n", r14 + 0x38b, "setMulticastList", 0x0);
+    }
+    goto loc_8103;
+
+loc_8103:
+    rax = rbx;
+    return rax;
+
+loc_80d5:
+    rbx = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Hot unplug detected\n", r14 + 0x38b, "setMulticastList");
+    }
+    goto loc_8103;
+

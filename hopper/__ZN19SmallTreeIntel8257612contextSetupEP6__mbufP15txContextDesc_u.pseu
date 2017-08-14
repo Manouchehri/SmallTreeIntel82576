@@ -1,0 +1,90 @@
+    r14 = rdx;
+    r15 = arg1;
+    r12 = arg0;
+    (*(*r12 + 0x968))(arg0, arg1, 0x1, &var_30, 0x0, 0x0);
+    if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: contextSetup cksumDemand=-0x%08x\n", r12 + 0x38b, "contextSetup", var_30);
+    }
+    var_2C = 0x0;
+    r13 = var_30;
+    if ((*(*r12 + 0xb50))(r12, r15, &var_2C) != 0x0) {
+            if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Setting VLAN\n", r12 + 0x38b, "contextSetup");
+            }
+            rbx = 0x0 & 0xffff;
+            if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Setting VLAN tag to 0x%x\n", r12 + 0x38b, "contextSetup", rbx);
+            }
+            rbx = rbx << 0x10;
+            rcx = ROL(*(int16_t *)(_mbuf_data(r15) + 0xc), 0x8) & 0xffff;
+            rax = 0x20200000;
+            if (rcx == 0x86dd) {
+                    rbx = rbx | 0x1c28;
+                    rax = 0x20200000;
+            }
+            else {
+                    if (rcx == 0x800) {
+                            rbx = rbx | 0x1c14;
+                            rax = 0x20200400;
+                    }
+                    else {
+                            rbx = rbx | 0x1c00;
+                    }
+            }
+            rcx = rbx;
+            rbx = (var_30 & 0x2) << 0xa | rax;
+            *r14 = rcx;
+            *(r14 + 0x8) = rbx;
+            rax = *(int32_t *)(r12 + 0x784);
+            if ((HIBYTE(rax) & 0x1) != 0x0) {
+                    _IOLog("%s %s: tx context 0x%016llx \n", r12 + 0x38b, "contextSetup", rcx);
+                    rax = *(int32_t *)(r12 + 0x784);
+            }
+            r13 = 0x1;
+            if ((HIBYTE(rax) & 0x1) != 0x0) {
+                    _IOLog("%s %s: tx context 0x%016llx \n", r12 + 0x38b, "contextSetup", rbx);
+            }
+    }
+    else {
+            rbx = 0x0;
+            r13 = r13 & 0x6;
+            COND = r13 == 0x0;
+            r13 = COND_BYTE_SET(NE);
+            if (!COND) {
+                    if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+                            _IOLog("%s %s: Setting VLAN tag to 0x%x\n", r12 + 0x38b, "contextSetup", rbx);
+                    }
+                    rbx = rbx << 0x10;
+                    rcx = ROL(*(int16_t *)(_mbuf_data(r15) + 0xc), 0x8) & 0xffff;
+                    rax = 0x20200000;
+                    if (rcx == 0x86dd) {
+                            rbx = rbx | 0x1c28;
+                            rax = 0x20200000;
+                    }
+                    else {
+                            if (rcx == 0x800) {
+                                    rbx = rbx | 0x1c14;
+                                    rax = 0x20200400;
+                            }
+                            else {
+                                    rbx = rbx | 0x1c00;
+                            }
+                    }
+                    rcx = rbx;
+                    rbx = (var_30 & 0x2) << 0xa | rax;
+                    *r14 = rcx;
+                    *(r14 + 0x8) = rbx;
+                    rax = *(int32_t *)(r12 + 0x784);
+                    if ((HIBYTE(rax) & 0x1) != 0x0) {
+                            _IOLog("%s %s: tx context 0x%016llx \n", r12 + 0x38b, "contextSetup", rcx);
+                            rax = *(int32_t *)(r12 + 0x784);
+                    }
+                    r13 = 0x1;
+                    if ((HIBYTE(rax) & 0x1) != 0x0) {
+                            _IOLog("%s %s: tx context 0x%016llx \n", r12 + 0x38b, "contextSetup", rbx);
+                    }
+            }
+    }
+    rax = r13;
+    return rax;
+

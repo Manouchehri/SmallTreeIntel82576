@@ -1,0 +1,149 @@
+    rcx = arg3;
+    r14 = arg2;
+    r13 = arg1;
+    rbx = arg0;
+    var_50 = rbx;
+    if (r8 == 0x0) goto loc_727c;
+
+loc_7245:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+            r15 = 0x0;
+            _IOLog("%s %s: Invalid ring %d - returning\n", rbx + 0x38b, "rxFrame", r8);
+    }
+    else {
+            r15 = 0x0;
+    }
+    goto loc_7416;
+
+loc_7416:
+    rax = r15;
+    return rax;
+
+loc_727c:
+    r15 = 0x1;
+    if (rcx == 0x0) goto loc_7416;
+
+loc_7288:
+    var_64 = 0xffff + *(int32_t *)(rbx + 0x460);
+    var_60 = rcx & 0xffff;
+    var_70 = rbx + 0x38b;
+    r13 = r13 + 0xe;
+    r8 = 0x0;
+    var_40 = 0x0;
+    var_30 = 0x0;
+    rcx = 0x0;
+    goto loc_72bd;
+
+loc_72bd:
+    var_38 = r8;
+    var_48 = rcx;
+    r9 = *(int32_t *)(r13 + 0xfffffffffffffffa);
+    r8 = *(int16_t *)(r13 + 0xfffffffffffffffe) & 0xffff;
+    r14 = r14 & 0xffff;
+    rax = *(rbx + 0x478);
+    r15 = *(rax + r14 * 0x8);
+    if ((*(int8_t *)(rbx + 0x785) & 0x4) != 0x0) {
+            _IOLog("%s %s: mbuf %p len %d status 0x%0x  vlan 0x%0x\n", var_70, "rxFrame", var_40, r8, r9, *(int16_t *)r13 & 0xffff);
+            r8 = r8;
+            r9 = r9;
+            r13 = r13;
+            rax = *(rbx + 0x478);
+    }
+    *(rax + r14 * 0x8) = 0x0;
+    if (r15 == 0x0) goto loc_73ea;
+
+loc_7337:
+    r12 = r9;
+    rbx = r8;
+    _mbuf_setlen(r15, r8);
+    rax = _mbuf_flags(r15);
+    if (var_30 != 0x0) {
+            if ((rax & 0x2) != 0x0) {
+                    _mbuf_setflags(r15, rax & 0xfffffffd);
+            }
+            _mbuf_setnext(var_30, r15);
+            rcx = rbx + var_48;
+    }
+    else {
+            if ((rax & 0x2) == 0x0) {
+                    _mbuf_setflags(r15, rax | 0x2);
+                    _bzero(*(var_50 + 0x498) + r15, *(var_50 + 0x4a0));
+            }
+            rcx = rbx;
+            var_40 = r15;
+    }
+    r9 = r12;
+    r8 = var_38;
+    if ((r9 & 0x2) != 0x0) goto loc_7428;
+
+loc_73bf:
+    r14 = r14 + 0x1 & var_64;
+    r13 = r13 + 0x10;
+    r8 = r8 + 0x1;
+    var_30 = r15;
+    rbx = var_50;
+    if ((r8 & 0xffff) < var_60) goto loc_72bd;
+
+loc_73e5:
+    r15 = 0x1;
+    goto loc_7416;
+
+loc_7428:
+    rbx = var_50;
+    if (var_60 + 0xffffffffffffffff == r8) {
+            var_48 = rcx;
+            r14 = *(int32_t *)(r13 + 0xfffffffffffffffa);
+            r15 = 0x1;
+            if (r14 < 0x0) {
+                    *(int32_t *)(*(rbx + 0x140) + 0x4) = *(int32_t *)(*(rbx + 0x140) + 0x4) + 0x1;
+                    if ((*(int8_t *)(rbx + 0x785) & 0x4) != 0x0) {
+                            _IOLog("%s %s: Found errors in RxDesc, 0x%x\n", var_70, "rxFrame", r14);
+                            r9 = r9;
+                            rbx = rbx;
+                    }
+                    *(rbx + 0x6e0) = *(rbx + 0x6e0) + 0x1;
+            }
+            if ((r9 & 0x60) == 0x60) {
+                    (*(*rbx + 0x960))(rbx, var_40, 0x1, !(r14 >> 0x1c) & 0x2, !(r14 >> 0x1c) & 0x2, 0x0, 0x0);
+                    r9 = r9;
+                    rbx = rbx;
+            }
+            r12 = var_40;
+            if ((r9 & 0x8) != 0x0) {
+                    r14 = *(int16_t *)r13 & 0xffff;
+                    (*(*rbx + 0xb58))(rbx, r12, r14);
+                    if ((*(int8_t *)(rbx + 0x785) & 0x4) != 0x0) {
+                            _IOLog("%s %s: set VLAN Tag %p 0x%lx\n", var_70, "rxFrame", r12, r14);
+                    }
+            }
+            rdi = *(rbx + 0x3e0);
+            r14 = rbx;
+            rbx = var_48;
+            (*(*rdi + 0x878))(rdi, r12, rbx, 0x1, 0x0);
+            if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+                    _IOLog("%s %s: pkt up %p %ld\n", var_70, "rxFrame", r12, rbx);
+            }
+    }
+    else {
+            *(int32_t *)(*(rbx + 0x140) + 0x4) = *(int32_t *)(*(rbx + 0x140) + 0x4) + 0x1;
+            rsi = var_40;
+            if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Unexpected EOP: segCount=%d status[%d]=0x%02x pktLen=0x%lx\n", var_70, "rxFrame", var_60, r8, r9, rcx);
+            }
+            r15 = 0x0;
+            (*(*rbx + 0x948))(rbx);
+    }
+    goto loc_7416;
+
+loc_73ea:
+    rcx = var_40;
+    if (rcx != 0x0) {
+            r15 = 0x0;
+            (*(*rbx + 0x948))(rbx, rcx, 0x0);
+            *(int32_t *)(*(rbx + 0x140) + 0x4) = *(int32_t *)(*(rbx + 0x140) + 0x4) + 0x1;
+    }
+    else {
+            r15 = 0x0;
+    }
+    goto loc_7416;
+

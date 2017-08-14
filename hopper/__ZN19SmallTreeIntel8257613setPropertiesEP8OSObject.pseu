@@ -1,0 +1,48 @@
+    r14 = rsi;
+    r13 = arg0;
+    r15 = (*0x2f1a8)(arg0);
+    if ((*(int8_t *)(r13 + 0x785) & 0x20) != 0x0) {
+            _IOLog("%s %s: Entered ret=0x%0x\n", r13 + 0x38b, "setProperties", r15);
+    }
+    if (r15 == 0xe00002c7) {
+            rax = (*(*r13 + 0x2b8))(r13, "Configuration Parameters");
+            rax = OSMetaClassBase::safeMetaCast(rax, *OSDictionary::metaClass);
+            rbx = (*(*rax + 0x168))(rax, 0x0);
+            r15 = 0xe00002bc;
+            if ((*(*rbx + 0x1f0))(rbx, r14) != 0x0) {
+                    r15 = 0x0;
+            }
+            (*(*r13 + 0x268))(r13, "Configuration Parameters", rbx);
+            rax = (*(*r14 + 0x208))(r14, "traceMask");
+            rax = OSMetaClassBase::safeMetaCast(rax, *OSNumber::metaClass);
+            if (rax != 0x0) {
+                    rax = (*(*rax + 0x148))(rax);
+                    *(int32_t *)(r13 + 0x784) = rax;
+                    if ((HIBYTE(rax) & 0x20) != 0x0) {
+                            _IOLog("%s %s: Setting tracemask=0x%08lx\n", r13 + 0x38b, "setProperties", rax);
+                    }
+            }
+            rax = (*(*r14 + 0x208))(r14, "timerMsecs");
+            rax = OSMetaClassBase::safeMetaCast(rax, *OSNumber::metaClass);
+            if (rax != 0x0) {
+                    rax = (*(*rax + 0x148))(rax);
+                    if (rax <= 0x2710) {
+                            *(int32_t *)(r13 + 0x4ac) = rax;
+                            if ((*(int8_t *)(r13 + 0x785) & 0x20) != 0x0) {
+                                    _IOLog("%s %s: Setting timerMsecs=0x%08lx\n", r13 + 0x38b, "setProperties", rax);
+                            }
+                    }
+                    else {
+                            *(int32_t *)(r13 + 0x4ac) = 0x3e8;
+                            if ((*(int8_t *)(r13 + 0x784) & 0x1) != 0x0) {
+                                    _IOLog("%s %s: timerMsecs=%ld is out of range %u-%u.  Using default (%ld)\n", r13 + 0x38b, "setProperties", rax, 0x32, 0x2710, 0x3e8);
+                            }
+                    }
+            }
+            if (OSMetaClassBase::safeMetaCast((*(*r14 + 0x208))(r14, "intrMaxPerSec"), *OSNumber::metaClass) != 0x0) {
+                    SmallTreeIntel82576::setIntrThrottle();
+            }
+    }
+    rax = r15;
+    return rax;
+

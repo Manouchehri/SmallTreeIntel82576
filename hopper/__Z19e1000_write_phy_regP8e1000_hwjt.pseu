@@ -1,0 +1,12 @@
+    rdx = arg2;
+    rsi = arg1;
+    rdi = arg0;
+    rax = *(rdi + 0x410);
+    if (rax != 0x0) {
+            rax = (rax)(rdi, rsi, rdx & 0xffff);
+    }
+    else {
+            rax = 0x0;
+    }
+    return rax;
+

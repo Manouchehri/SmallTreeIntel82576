@@ -1,0 +1,63 @@
+    rbx = arg0;
+    rax = 0x0;
+    if (*(int8_t *)(rbx + 0x486) == 0x0) {
+            if (*(int32_t *)(rbx + 0x448) == 0x8) {
+                    rax = (*(rbx + 0x3f8))(rbx);
+                    if (rax == 0x0) {
+                            rax = (*(rbx + 0x3d8))(rbx, 0x16, &var_A);
+                            if (rax == 0x0) {
+                                    rdx = var_A & 0xffff | 0x8c00;
+                                    var_A = rdx;
+                                    rax = (*(rbx + 0x410))(rbx, 0x16, rdx);
+                                    if (rax == 0x0) {
+                                            rax = (*(rbx + 0x3d8))(rbx, 0x12, &var_A);
+                                            if (rax == 0x0) {
+                                                    rax = var_A & 0xffff & 0xf9ff;
+                                                    rcx = *(int8_t *)(rbx + 0x482) & 0xff;
+                                                    if (rcx != 0x1) {
+                                                            if (rcx == 0x2) {
+                                                                    rax = rax | 0x200;
+                                                            }
+                                                            else {
+                                                                    rax = rax | 0x400;
+                                                            }
+                                                    }
+                                                    rax = (*(rbx + 0x410))(rbx, 0x12, rax & 0xffff);
+                                                    if (rax == 0x0) {
+                                                            rax = e1000_set_master_slave_mode(rbx);
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    rax = (*(rbx + 0x3d8))(rbx, 0x16, &var_A);
+                    if (rax == 0x0) {
+                            rdx = var_A & 0xffff | 0x8c00;
+                            var_A = rdx;
+                            rax = (*(rbx + 0x410))(rbx, 0x16, rdx);
+                            if (rax == 0x0) {
+                                    rax = (*(rbx + 0x3d8))(rbx, 0x12, &var_A);
+                                    if (rax == 0x0) {
+                                            rax = var_A & 0xffff & 0xf9ff;
+                                            rcx = *(int8_t *)(rbx + 0x482) & 0xff;
+                                            if (rcx != 0x1) {
+                                                    if (rcx == 0x2) {
+                                                            rax = rax | 0x200;
+                                                    }
+                                                    else {
+                                                            rax = rax | 0x400;
+                                                    }
+                                            }
+                                            rax = (*(rbx + 0x410))(rbx, 0x12, rax & 0xffff);
+                                            if (rax == 0x0) {
+                                                    rax = e1000_set_master_slave_mode(rbx);
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+

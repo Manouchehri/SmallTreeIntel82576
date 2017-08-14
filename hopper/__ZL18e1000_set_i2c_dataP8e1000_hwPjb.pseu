@@ -1,0 +1,21 @@
+    r14 = arg2;
+    r15 = arg1;
+    rbx = arg0;
+    rcx = *(int32_t *)r15 & 0xffffd3ff;
+    rax = *(int32_t *)r15 | 0x400;
+    if (r14 == 0x0) {
+            rax = rcx;
+    }
+    *(int32_t *)r15 = rax & 0xffffd7ff | 0x2000;
+    *(int32_t *)(*(rbx + 0x8) + 0x102c) = rax & 0xffffd7ff | 0x2000;
+    _IODelay(0x3);
+    *(int32_t *)r15 = *(int32_t *)(*(rbx + 0x8) + 0x102c);
+    rax = *(int32_t *)(*(rbx + 0x8) + 0x102c) & 0x1000;
+    rax = rax >> 0xc ^ r14;
+    COND = rax == 0x0;
+    rax = 0x13;
+    if (COND) {
+            rax = 0x0;
+    }
+    return rax;
+

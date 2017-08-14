@@ -1,0 +1,26 @@
+    rbx = arg1;
+    r14 = arg0;
+    r12 = rbx + 0x40;
+    r13 = 0x0;
+    r15 = &var_2A;
+    goto loc_a815;
+
+loc_a815:
+    rax = (*(r14 + 0x4a0))(r14, rbx & 0xffff, 0x1, r15);
+    if (rax != 0x0) goto .l3;
+
+loc_a82e:
+    rbx = rbx + 0x1;
+    r13 = (var_2A & 0xffff) + r13 & 0xffff;
+    if ((rbx & 0xffff) < r12) goto loc_a815;
+
+loc_a843:
+    rax = 0xffffffff;
+    if (r13 == 0xbaba) {
+            rax = 0x0;
+    }
+    return rax;
+
+.l3:
+    return rax;
+

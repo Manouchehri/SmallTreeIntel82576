@@ -1,0 +1,14 @@
+    r14 = arg2;
+    r15 = arg1;
+    rbx = arg0;
+    rax = 0xfffffffc;
+    if (r15 <= 0xff) {
+            rax = (*(rbx + 0x390))(rbx);
+            if (rax == 0x0) {
+                    r14 = e1000_read_phy_reg_i2c(rbx, r15, r14);
+                    (*(rbx + 0x3f0))(rbx);
+                    rax = r14;
+            }
+    }
+    return rax;
+

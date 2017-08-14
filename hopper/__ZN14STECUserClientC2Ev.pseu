@@ -1,0 +1,5 @@
+    IOUserClient::IOUserClient();
+    *rdi = 0x18e30;
+    rax = OSMetaClass::instanceConstructed(STECUserClient::gMetaClass);
+    return rax;
+

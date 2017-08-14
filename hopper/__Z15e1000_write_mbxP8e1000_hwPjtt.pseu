@@ -1,0 +1,13 @@
+    rcx = arg3;
+    rdx = arg2;
+    rdi = arg0;
+    rax = 0xfffffff1;
+    if ((*(int16_t *)(rdi + 0x564) & 0xffff) >= rdx) {
+            r8 = *(rdi + 0x518);
+            rax = 0x0;
+            if (r8 != 0x0) {
+                    rax = (r8)();
+            }
+    }
+    return rax;
+

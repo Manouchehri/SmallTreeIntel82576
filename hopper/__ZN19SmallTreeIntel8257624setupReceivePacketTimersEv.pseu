@@ -1,0 +1,11 @@
+    rbx = rdi;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "setupReceivePacketTimers");
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Returning\n", rbx + 0x38b, "setupReceivePacketTimers");
+    }
+    return rax;
+

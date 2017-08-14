@@ -1,0 +1,56 @@
+    rdi = arg0;
+    r13 = 0x0;
+    rbx = 0x70;
+    r14 = e1000_get_cable_length_igp_2(e1000_hw*)::agc_reg_array;
+    r15 = 0x0;
+    rdx = 0x0;
+    goto loc_107ef;
+
+loc_107ef:
+    var_30 = rdx;
+    rax = (*(rdi + 0x3d8))();
+    rdi = rdi;
+    if (rax != 0x0) goto .l5;
+
+loc_10810:
+    rcx = var_2A & 0xffff;
+    rax = 0xfffffffe;
+    if (rcx > 0xe1ff) goto .l5;
+
+loc_10825:
+    rcx = rcx >> 0x9;
+    if (rcx == 0x0) goto .l5;
+
+loc_10831:
+    rbx = rbx & 0xffff;
+    rsi = e1000_igp_2_cable_length_table;
+    rdx = *(int16_t *)(rsi + rbx * 0x2) & 0xffff;
+    rax = *(int16_t *)(rsi + (rcx & 0xffff) * 0x2) & 0xffff;
+    CMP(rdx, rax);
+    asm { cmova      bx, cx };
+    r15 = r15 & 0xffff;
+    if ((*(int16_t *)(rsi + r15 * 0x2) & 0xffff) < rax) {
+            r15 = rcx;
+    }
+    rcx = var_30 + rax;
+    rdx = rcx & 0xffff;
+    r14 = r14 + 0x2;
+    r13 = r13 + 0x1;
+    if ((r13 & 0xffff) < 0x4) goto loc_107ef;
+
+loc_1087b:
+    rcx = rcx - (*(int16_t *)(e1000_igp_2_cable_length_table + (rbx & 0xffff) * 0x2) & 0xffff) - (*(int16_t *)(e1000_igp_2_cable_length_table + (r15 & 0xffff) * 0x2) & 0xffff) >> 0x1 & 0x7fff;
+    rdx = rcx + 0xfffffffffffffff1;
+    rax = 0x0;
+    if (rdx <= 0x0) {
+            rax = 0x0;
+            rdx = rax;
+    }
+    *(int16_t *)(rdi + 0x480) = rdx;
+    *(int16_t *)(rdi + 0x47e) = rcx + 0xf;
+    *(int16_t *)(rdi + 0x47c) = (rcx + 0xf & 0xffff) + (rdx & 0xffff) >> 0x1;
+    return rax;
+
+.l5:
+    return rax;
+

@@ -1,0 +1,23 @@
+    rdi = arg0;
+    rax = *(int32_t *)(*(rdi + 0x8) + 0xe14);
+    if (arg1 != 0x0) {
+            rcx = *(int16_t *)(rdi + 0x478) & 0xffff;
+            if ((rcx <= 0x2f) && (!(BIT_TEST(0x800000008008, rcx)))) {
+                    rax = rax & 0xfffffffa | 0x4;
+            }
+    }
+    else {
+            rcx = *(int32_t *)(rdi + 0x460);
+            if (rcx == 0x2) {
+                    rax = rax & 0xfffffffa;
+            }
+            else {
+                    rax = rax & 0xfffffffb;
+                    if (rcx == 0x1) {
+                            rax = rax | 0x1;
+                    }
+            }
+    }
+    *(int32_t *)(*(rdi + 0x8) + 0xe14) = rax;
+    return 0x0;
+

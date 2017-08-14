@@ -1,0 +1,3 @@
+    rax = e1000_hash_mc_addr_generic(arg0, arg1);
+    return rax;
+

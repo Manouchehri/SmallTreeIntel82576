@@ -1,0 +1,26 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "configureInterfaceGated");
+    }
+    r14 = 0xe00002bc;
+    if ((*0x2f880)(rbx, *(rbx + 0x130)) != 0x0) {
+            r15 = IONetworkInterface::getParameter(*(rbx + 0x130), "IONetworkStatsKey");
+            if (r15 != 0x0) {
+                    rax = (*(*r15 + 0x148))(r15);
+                    *(rbx + 0x140) = rax;
+                    if (rax != 0x0) {
+                            rax = (*(*r15 + 0x148))(r15);
+                            *(rbx + 0x148) = rax;
+                            r14 = 0xe00002bc;
+                            if (rax != 0x0) {
+                                    r14 = 0x0;
+                            }
+                    }
+            }
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning 0x%08lx\n", rbx + 0x38b, "configureInterfaceGated", sign_extend_64(r14));
+    }
+    rax = r14;
+    return rax;
+

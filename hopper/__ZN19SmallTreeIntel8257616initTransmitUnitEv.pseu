@@ -1,0 +1,23 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "initTransmitUnit");
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x400) = *(int32_t *)(*(rbx + 0x7f0) + 0x400) & 0xfffffffd;
+    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    _IODelay(0x2710);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x3800) = *(int32_t *)(rbx + 0x428);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x3804) = *(int32_t *)(rbx + 0x42c);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x3808) = *(int32_t *)(rbx + 0x444);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x3828) = 0x2100108;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x410) = 0x601008;
+    if ((*(int32_t *)(rbx + 0x904) <= 0x5) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: Shared mac type test passed\n", rbx + 0x38b, "initTransmitUnit");
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x400) = 0xa503f0fa;
+    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    _IODelay(0x2710);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with ret=0x%08lx\n", rbx + 0x38b, "initTransmitUnit", 0x0);
+    }
+    return 0x0;
+

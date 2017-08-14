@@ -1,0 +1,91 @@
+    rsi = arg1;
+    r14 = arg3;
+    rbx = arg0;
+    if (rsi > 0x1b) goto loc_14cbc;
+
+loc_14c56:
+    if (rsi > 0x13) goto loc_14d04;
+
+loc_14c5f:
+    goto *0x14da0[sign_extend_64(*(int32_t *)(switch_table + rsi * 0x4)) + switch_table];
+
+loc_14c6f:
+    r13 = e1000_read_invm_word_i210(rbx, (rsi & 0xff) + 0x1 & 0xff, r14 + 0x2) | e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = e1000_read_invm_word_i210(rbx, (rsi & 0xff) + 0x2 & 0xff, r14 + 0x4);
+    rax = rax | r13;
+    return rax;
+
+loc_14d04:
+    *(int16_t *)r14 = 0xffff;
+    goto loc_14d51;
+
+loc_14d51:
+    rax = 0x0;
+    return rax;
+
+loc_14d0c:
+    rcx = e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            *(int16_t *)r14 = 0xffff;
+    }
+    return rax;
+
+loc_14d2b:
+    rax = *(int16_t *)(rbx + 0x58c);
+    goto loc_14d4d;
+
+loc_14d4d:
+    *(int16_t *)r14 = rax;
+    goto loc_14d51;
+
+loc_14d34:
+    rax = *(int16_t *)(rbx + 0x58a);
+    goto loc_14d4d;
+
+loc_14d3d:
+    rax = *(int16_t *)(rbx + 0x588);
+    goto loc_14d4d;
+
+loc_14d46:
+    rax = *(int16_t *)(rbx + 0x58e);
+    goto loc_14d4d;
+
+loc_14d62:
+    rcx = e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            *(int16_t *)r14 = 0x7243;
+    }
+    return rax;
+
+loc_14d81:
+    rcx = e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            *(int16_t *)r14 = 0xc1;
+    }
+    return rax;
+
+loc_14cbc:
+    if (rsi != 0x1c) goto loc_14ce0;
+
+loc_14cc1:
+    rcx = e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            *(int16_t *)r14 = 0x184;
+    }
+    return rax;
+
+loc_14ce0:
+    if (rsi != 0x1f) goto loc_14d04;
+
+loc_14ce5:
+    rcx = e1000_read_invm_word_i210(rbx, rsi & 0xff, r14);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            *(int16_t *)r14 = 0x200c;
+    }
+    return rax;
+

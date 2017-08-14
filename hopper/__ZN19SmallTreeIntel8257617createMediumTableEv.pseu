@@ -1,0 +1,61 @@
+    r15 = rdi;
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Creating medium table with size %d\n", r15 + 0x38b, "createMediumTable", 0xd);
+    }
+    rax = OSDictionary::withCapacity(0xd);
+    *(r15 + 0x3c8) = rax;
+    r14 = 0xe00002bc;
+    rbx = 0x0;
+    if (rax == 0x0) goto loc_31c0;
+
+loc_30b1:
+    do {
+            r12 = IONetworkMedium::medium(*(int32_t *)(_gMediumTable + rbx * 0x8), *(int32_t *)(0x19aa4 + rbx * 0x8), 0x0, rbx, 0x0);
+            if (r12 != 0x0) {
+                    IONetworkMedium::addMedium(*(r15 + 0x3c8), r12);
+                    (*(*r12 + 0x28))(r12);
+            }
+            rbx = rbx + 0x1;
+    } while (rbx != 0xd);
+    if ((*(*r15 + 0x970))(r15, *(r15 + 0x3c8)) == 0x0) goto loc_316a;
+
+loc_3108:
+    r14 = 0x0;
+    rbx = IONetworkMedium::getMediumWithType(*(r15 + 0x3c8), 0x20, 0x0);
+    if (rbx == 0x0) goto loc_3197;
+
+loc_3126:
+    IONetworkController::setCurrentMedium(r15, rbx);
+    *(int32_t *)(r15 + 0x3d4) = (*(*rbx + 0x138))(rbx);
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) == 0x0) goto loc_31c0;
+
+loc_3150:
+    rdi = "%s %s: index=%d\n";
+    r14 = 0x0;
+    goto loc_318e;
+
+loc_318e:
+    _IOLog(rdi);
+    goto loc_31c0;
+
+loc_31c0:
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning 0x%08lx\n", r15 + 0x38b, "createMediumTable", sign_extend_64(r14));
+    }
+    rax = r14;
+    return rax;
+
+loc_3197:
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) != 0x0) {
+            r14 = 0x0;
+            _IOLog("%s %s: getMediumWithType failed\n", r15 + 0x38b, "createMediumTable");
+    }
+    goto loc_31c0;
+
+loc_316a:
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) == 0x0) goto loc_31c0;
+
+loc_3174:
+    rdi = "%s %s: publishMediumDictionary failed %d\n";
+    goto loc_318e;
+

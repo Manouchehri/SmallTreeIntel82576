@@ -1,0 +1,24 @@
+    r14 = arg2;
+    r15 = arg1;
+    r12 = arg0;
+    rax = 0xfffffffc;
+    if (r15 <= 0x1f) {
+            *(int32_t *)(*(r12 + 0x8) + 0x20) = *(int32_t *)(r12 + 0x464) << 0x15 | r15 << 0x10 | 0x8000000;
+            rbx = 0x1;
+            do {
+                    _IODelay(0x32);
+                    rcx = *(int32_t *)(*(r12 + 0x8) + 0x20);
+                    if ((rcx & 0x10000000) != 0x0) {
+                        break;
+                    }
+                    COND = rbx < 0x780;
+                    rbx = rbx + 0x1;
+            } while (COND);
+            rax = 0xfffffffe;
+            if (((rcx & 0x50000000) == 0x10000000) && ((rcx >> 0x10 & 0x1f) == r15)) {
+                    *(int16_t *)r14 = rcx;
+                    rax = 0x0;
+            }
+    }
+    return rax;
+

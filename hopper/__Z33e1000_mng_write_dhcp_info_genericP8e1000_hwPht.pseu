@@ -1,0 +1,16 @@
+    rbx = arg2;
+    r14 = arg1;
+    r15 = arg0;
+    rax = e1000_mng_enable_host_if_generic(arg0);
+    if (rax == 0x0) {
+            var_1F = 0x0;
+            rax = e1000_mng_host_if_write_generic(r15, r14, rbx & 0xffff, 0x8, &var_1F);
+            if (rax == 0x0) {
+                    var_20 = 0x40;
+                    e1000_mng_write_cmd_header_generic(r15, &var_20);
+                    *(int32_t *)(*(r15 + 0x8) + 0x8f00) = *(int32_t *)(*(r15 + 0x8) + 0x8f00) | 0x2;
+                    rax = 0x0;
+            }
+    }
+    return rax;
+

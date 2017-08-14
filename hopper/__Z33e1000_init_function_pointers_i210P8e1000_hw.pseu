@@ -1,0 +1,4 @@
+    e1000_init_function_pointers_82575(arg0);
+    *(arg0 + 0x490) = e1000_init_nvm_params_i210(e1000_hw*);
+    return e1000_init_nvm_params_i210(e1000_hw*);
+

@@ -1,0 +1,65 @@
+    rcx = arg3;
+    rdx = arg2;
+    r12 = arg0;
+    rbx = *(r12 + 0x518);
+    rax = 0xfffffff1;
+    if ((rbx == 0x0) || (*(int32_t *)(r12 + 0x55c) == 0x0)) goto .l3;
+
+loc_dc95:
+    r14 = rcx & 0xffff;
+    rax = (rbx)(r12);
+    if (rax != 0x0) goto .l3;
+
+loc_dca8:
+    rbx = *(int32_t *)(r12 + 0x55c);
+    rax = 0x0;
+    if (rbx == 0x0) goto loc_dd13;
+
+loc_dcbc:
+    rcx = *(r12 + 0x538);
+    if (rcx == 0x0) goto loc_dcfb;
+
+loc_dcc9:
+    rax = (rcx)(r12, r14);
+    goto loc_dcf0;
+
+loc_dcf0:
+    if (rax == 0x0) goto loc_dcff;
+
+loc_dcf4:
+    if (rbx != 0x1) goto loc_dcd3;
+
+loc_dd05:
+    *(int32_t *)(r12 + 0x55c) = 0x0;
+    rax = 0x0;
+    goto loc_dd13;
+
+loc_dd13:
+    COND = rax != 0x0;
+    rax = 0xfffffff1;
+    if (COND) {
+            rax = 0x0;
+    }
+    return rax;
+
+.l3:
+    return rax;
+
+loc_dcd3:
+    rbx = rbx - 0x1;
+    _IODelay(*(int32_t *)(r12 + 0x560));
+    rax = (*(r12 + 0x538))(r12, r14);
+    goto loc_dcf0;
+
+loc_dcff:
+    rax = rbx;
+    if (rbx == 0x0) {
+            *(int32_t *)(r12 + 0x55c) = 0x0;
+            rax = 0x0;
+    }
+    goto loc_dd13;
+
+loc_dcfb:
+    rax = rbx;
+    goto loc_dd13;
+

@@ -1,0 +1,15 @@
+    rbx = arg0;
+    var_A = 0x0;
+    (*(rbx + 0x3d8))(arg0, 0x0, &var_A);
+    rax = var_A & 0xffff | 0x800;
+    var_A = rax;
+    if (*(int32_t *)(rbx + 0x448) == 0xa) {
+            var_C = 0x0;
+            (*(rbx + 0x3d8))(rbx, 0x10, &var_C);
+            (*(rbx + 0x410))(rbx, 0x10, var_C & 0xffff | 0x2);
+            rax = var_A & 0xffff;
+    }
+    (*(rbx + 0x410))(rbx, 0x0, rax & 0xffff);
+    rax = _IODelay(0x3e8);
+    return rax;
+

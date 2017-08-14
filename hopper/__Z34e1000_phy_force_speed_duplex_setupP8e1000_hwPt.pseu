@@ -1,0 +1,13 @@
+    *(int32_t *)(arg0 + 0x380) = 0x0;
+    rax = *(int16_t *)arg1 & 0xffff;
+    rdx = rax & 0xefff;
+    *(int16_t *)arg1 = rdx;
+    rbx = *(int32_t *)*(arg0 + 0x8) & 0xffffe4de;
+    if ((*(int8_t *)(arg0 + 0x34e) & 0x5) != 0x0) {
+            rax = loc_ff82();
+    }
+    else {
+            rax = loc_ff7f();
+    }
+    return rax;
+

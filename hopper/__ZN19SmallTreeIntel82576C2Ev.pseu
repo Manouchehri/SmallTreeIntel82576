@@ -1,0 +1,5 @@
+    IOEthernetController::IOEthernetController();
+    *rdi = 0x180c0;
+    rax = OSMetaClass::instanceConstructed(SmallTreeIntel82576::gMetaClass);
+    return rax;
+

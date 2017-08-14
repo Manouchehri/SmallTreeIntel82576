@@ -1,0 +1,53 @@
+    rbx = rsi;
+    r14 = arg0;
+    r15 = 0xe00002c2;
+    if (rbx == 0x0) goto loc_7cda;
+
+loc_7be1:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with mac address=0x%012llx\n", r14 + 0x38b, "setHardwareAddress", *rbx >> 0x10);
+    }
+    if (*(int32_t *)(*(r14 + 0x7f0) + 0x8) == 0xffffffff) goto loc_7d08;
+
+loc_7c21:
+    *(int8_t *)(r14 + 0x385) = *(int8_t *)rbx;
+    *(int8_t *)(r14 + 0x386) = *(int8_t *)(rbx + 0x1);
+    *(int8_t *)(r14 + 0x387) = *(int8_t *)(rbx + 0x2);
+    *(int8_t *)(r14 + 0x388) = *(int8_t *)(rbx + 0x3);
+    *(int8_t *)(r14 + 0x389) = *(int8_t *)(rbx + 0x4);
+    *(int8_t *)(r14 + 0x38a) = *(int8_t *)(rbx + 0x5);
+    rax = *(int8_t *)rbx & 0xff;
+    rcx = *(int8_t *)(rbx + 0x1) & 0xff;
+    rcx = rcx << 0x8 | rax;
+    rax = *(int8_t *)(rbx + 0x2) & 0xff;
+    rax = rax << 0x10 | rcx;
+    rcx = *(int8_t *)(rbx + 0x3) & 0xff;
+    rcx = rcx << 0x18 | rax;
+    rax = *(int8_t *)(rbx + 0x4) & 0xff;
+    rdx = *(int8_t *)(rbx + 0x5) & 0xff;
+    *(int32_t *)(r14 + 0x128) = rcx;
+    *(int32_t *)(r14 + 0x12c) = rdx << 0x8 | rax | 0x80000000;
+    *(int32_t *)(*(r14 + 0x7f0) + 0x5400) = rcx;
+    *(int32_t *)(r14 + 0x7e0) = *(int32_t *)(*(r14 + 0x7f0) + 0x8);
+    *(int32_t *)(*(r14 + 0x7f0) + 0x5404) = rdx << 0x8 | rax | 0x80000000;
+    *(int32_t *)(r14 + 0x7e0) = *(int32_t *)(*(r14 + 0x7f0) + 0x8);
+    r15 = 0x0;
+    goto loc_7cda;
+
+loc_7cda:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%08lx\n", r14 + 0x38b, "setHardwareAddress", sign_extend_64(r15));
+    }
+    goto loc_7d37;
+
+loc_7d37:
+    rax = r15;
+    return rax;
+
+loc_7d08:
+    r15 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Hot unplug detected\n", r14 + 0x38b, "setHardwareAddress");
+    }
+    goto loc_7d37;
+

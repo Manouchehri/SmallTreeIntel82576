@@ -1,0 +1,4 @@
+    IOEthernetController::~IOEthernetController();
+    rax = OSObject::operator delete(rdi, 0xd88);
+    return rax;
+

@@ -1,0 +1,40 @@
+    r14 = arg0;
+    e1000_disable_pcie_master_generic(arg0);
+    rbx = *(int32_t *)(*(r14 + 0x8) + 0x5b00);
+    if ((HIBYTE(rbx) & 0xf0) == 0x0) {
+            if ((rbx & 0x40000) != 0x0) {
+                    if (e1000_read_pcie_cap_reg(r14, 0x28, &var_12) == 0x0) {
+                            var_12 = var_12 | 0x5;
+                            e1000_write_pcie_cap_reg(r14, 0x28, &var_12);
+                    }
+            }
+            else {
+                    rbx = rbx | 0x1000;
+            }
+    }
+    *(int32_t *)(*(r14 + 0x8) + 0x5b00) = rbx & 0xfffeffff;
+    *(int32_t *)(*(r14 + 0x8) + 0xd8) = 0xffffffff;
+    *(int32_t *)(*(r14 + 0x8) + 0x100) = 0x0;
+    *(int32_t *)(*(r14 + 0x8) + 0x400) = 0x8;
+    _IODelay(0x2710);
+    *(int32_t *)*(r14 + 0x8) = *(int32_t *)*(r14 + 0x8) | 0x4000000;
+    e1000_get_auto_rd_done_generic(r14);
+    if (((HIBYTE(*(int32_t *)(*(r14 + 0x8) + 0x10)) & 0x1) == 0x0) && (*(int32_t *)(r14 + 0x11c) == 0x1)) {
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x24, 0x0, 0xc);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x24, 0x1, 0x78);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x24, 0x1b, 0x23);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x24, 0x23, 0x15);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b48, 0x14, 0x0);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b48, 0x10, 0x0);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b44, 0x0, 0xec);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b44, 0x61, 0xdf);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b44, 0x34, 0x5);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b44, 0x2f, 0x81);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b4c, 0x2, 0x47);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b4c, 0x14, 0x0);
+            e1000_write_8bit_ctrl_reg_generic(r14, 0x5b4c, 0x10, 0x0);
+    }
+    *(int32_t *)(*(r14 + 0x8) + 0xd8) = 0xffffffff;
+    rax = e1000_check_alt_mac_addr_generic(r14);
+    return rax;
+

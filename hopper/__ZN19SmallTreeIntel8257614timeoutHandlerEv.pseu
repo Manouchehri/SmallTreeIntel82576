@@ -1,0 +1,55 @@
+    rbx = rdi;
+    rax = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    if (rax == 0xffffffff) goto loc_1da1;
+
+loc_1cd4:
+    (*(**(rbx + 0x3f0) + 0x1d0))(*(rbx + 0x3f0), *(int32_t *)(rbx + 0x4ac));
+    *(rbx + 0x6c8) = *(rbx + 0x6c8) + 0x1;
+    if (*(int8_t *)(rbx + 0x4a8) == 0x0) goto loc_1e44;
+
+loc_1cfe:
+    *(int8_t *)(rbx + 0x4a8) = 0x0;
+    r14 = SmallTreeIntel82576::getCurrentMedium();
+    rax = *(int32_t *)(rbx + 0x784) & 0x20;
+    if (r14 == 0xffffffff) goto loc_1dd7;
+
+loc_1d23:
+    if (rax != 0x0) {
+            _IOLog("%s %s: setting current medium offset=%d\n", rbx + 0x38b, "timeoutHandler", r14);
+    }
+    (*(*rbx + 0x980))(rbx, 0x3, IONetworkMedium::getMediumWithIndex(*(rbx + 0x3c8), r14, 0x0), 0x0, 0x0);
+    if ((r14 == *(int32_t *)(rbx + 0x3d0)) || ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0)) goto loc_1e3d;
+
+loc_1d8e:
+    rdi = "%s %s: Link Up\n";
+    goto loc_1e2f;
+
+loc_1e2f:
+    _IOLog(rdi);
+    goto loc_1e3d;
+
+loc_1e3d:
+    *(int32_t *)(rbx + 0x3d0) = r14;
+    goto loc_1e44;
+
+loc_1e44:
+    rax = SmallTreeIntel82576::txHandler();
+    return rax;
+
+loc_1dd7:
+    if (rax != 0x0) {
+            _IOLog("%s %s: current medium NULL\n", rbx + 0x38b, "timeoutHandler");
+    }
+    (*(*rbx + 0x980))(rbx, 0x1, 0x0, 0x0, 0x0);
+    if ((*(int32_t *)(rbx + 0x3d0) == 0xffffffff) || ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0)) goto loc_1e3d;
+
+loc_1e21:
+    rdi = "%s %s: Link Down\n";
+    goto loc_1e2f;
+
+loc_1da1:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "timeoutHandler");
+    }
+    return rax;
+

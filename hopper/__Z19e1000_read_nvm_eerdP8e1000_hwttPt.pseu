@@ -1,0 +1,27 @@
+    rdx = arg2;
+    rsi = arg1;
+    r14 = arg3;
+    r12 = arg0;
+    rcx = *(int16_t *)(r12 + 0x4e8) & 0xffff;
+    rax = 0xffffffff;
+    rcx = rcx - rsi;
+    if (rcx > 0x0) {
+            r15 = rdx & 0xffff;
+            if ((r15 <= rcx) && (rdx != 0x0)) {
+                    r13 = (rsi & 0xffff) * 0x4 + 0x1;
+                    rbx = 0x0;
+                    do {
+                            *(int32_t *)(*(r12 + 0x8) + 0x14) = r13;
+                            rax = e1000_poll_eerd_eewr_done(r12, 0x0);
+                            if (rax != 0x0) {
+                                break;
+                            }
+                            *(int16_t *)(r14 + rbx * 0x2) = *(int32_t *)(*(r12 + 0x8) + 0x14) >> 0x10;
+                            rbx = rbx + 0x1;
+                            r13 = r13 + 0x4;
+                            rax = 0x0;
+                    } while (rbx < r15);
+            }
+    }
+    return rax;
+

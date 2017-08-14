@@ -1,0 +1,17 @@
+    rdi = arg0;
+    rax = 0xfffffffd;
+    if (*(rdi + 0xc0) == e1000_setup_led_generic(e1000_hw*)) {
+            rcx = *(int32_t *)(rdi + 0x474);
+            rax = 0x0;
+            if (rcx == 0x1) {
+                    *(int32_t *)(*(rdi + 0x8) + 0xe00) = *(int32_t *)(rdi + 0x128);
+            }
+            else {
+                    if (rcx == 0x2) {
+                            *(int32_t *)(rdi + 0x124) = *(int32_t *)(*(rdi + 0x8) + 0xe00);
+                            *(int32_t *)(*(rdi + 0x8) + 0xe00) = *(int32_t *)(*(rdi + 0x8) + 0xe00) & 0xffffff30 | 0xf;
+                    }
+            }
+    }
+    return rax;
+

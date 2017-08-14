@@ -1,0 +1,113 @@
+    r15 = arg0;
+    *(int32_t *)(r15 + 0x468) = 0x0;
+    r14 = 0x0;
+    goto loc_11072;
+
+loc_11072:
+    *(int32_t *)(r15 + 0x464) = r14;
+    rbx = 0x0;
+    goto loc_1107b;
+
+loc_1107b:
+    e1000_get_phy_id(r15);
+    rcx = *(int32_t *)(r15 + 0x468);
+    rax = 0x0;
+    if (rcx > 0x1410c1f) goto loc_110a5;
+
+loc_11094:
+    if (rcx != 0x1410c00) goto loc_111ac;
+
+.l1:
+    return rax;
+
+loc_111ac:
+    _IODelay(0x3e8);
+    rbx = rbx + 0x1;
+    if (rbx < 0xa) goto loc_1107b;
+
+loc_111c1:
+    r14 = r14 + 0x1;
+    rax = 0xfffffffa;
+    if (r14 < 0x8) goto loc_11072;
+    goto .l1;
+
+loc_110a5:
+    if (rcx > 0x1410c2f) goto loc_110be;
+
+loc_110ad:
+    if (rcx != 0x1410c20) goto loc_111ac;
+    goto .l1;
+
+loc_110be:
+    if (rcx > 0x1410c4f) goto loc_110d7;
+
+loc_110c6:
+    if (rcx != 0x1410c30) goto loc_111ac;
+    goto .l1;
+
+loc_110d7:
+    if (rcx > 0x1410c8f) goto loc_110f0;
+
+loc_110df:
+    if (rcx != 0x1410c50) goto loc_111ac;
+    goto .l1;
+
+loc_110f0:
+    if (rcx > 0x1410c9f) goto loc_11109;
+
+loc_110f8:
+    if (rcx != 0x1410c90) goto loc_111ac;
+    goto .l1;
+
+loc_11109:
+    if (rcx > 0x1410cbf) goto loc_11122;
+
+loc_11111:
+    if (rcx != 0x1410ca0) goto loc_111ac;
+    goto .l1;
+
+loc_11122:
+    if (rcx > 0x1410dbf) goto loc_11137;
+
+loc_1112a:
+    if (rcx != 0x1410cc0) goto loc_111ac;
+    goto .l1;
+
+loc_11137:
+    if (rcx > 0x1410def) goto loc_1114c;
+
+loc_1113f:
+    if (rcx != 0x1410dc0) goto loc_111ac;
+    goto .l1;
+
+loc_1114c:
+    if (rcx > 0x154039f) goto loc_1115e;
+
+loc_11154:
+    if (rcx != 0x1410df0) goto loc_111ac;
+    goto .l1;
+
+loc_1115e:
+    if (rcx > 0x2a8030f) goto loc_11170;
+
+loc_11166:
+    if (rcx != 0x15403a0) goto loc_111ac;
+    goto .l1;
+
+loc_11170:
+    if (rcx > 0x2a8031f) goto loc_11182;
+
+loc_11178:
+    if (rcx != 0x2a80310) goto loc_111ac;
+    goto .l1;
+
+loc_11182:
+    if (rcx > 0x2a8032f) goto loc_11194;
+
+loc_1118a:
+    if (rcx != 0x2a80320) goto loc_111ac;
+    goto .l1;
+
+loc_11194:
+    if (((rcx == 0x2a80330) || (rcx == 0x2a80380)) || (rcx == 0x2a80390)) goto .l1;
+

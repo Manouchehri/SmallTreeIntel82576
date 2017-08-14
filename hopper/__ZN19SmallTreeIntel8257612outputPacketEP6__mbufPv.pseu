@@ -1,0 +1,227 @@
+    r13 = arg1;
+    r15 = arg0;
+    var_30 = *___stack_chk_guard;
+    var_548 = r13;
+    rbx = 0xffff + *(int32_t *)(r15 + 0x420);
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Entered\n", r15 + 0x38b, "outputPacket");
+    }
+    if (*(int8_t *)(r15 + 0x138) == 0x0) goto loc_6ac8;
+
+loc_6a53:
+    if (*(int32_t *)(r15 + 0x4b8) == 0x0) goto loc_6ae2;
+
+loc_6a61:
+    r14 = *(int16_t *)(r15 + 0x426);
+    r8 = r14 & 0xffff;
+    rcx = *(int16_t *)(r15 + 0x424) & 0xffff;
+    rdx = rcx + 0xffff;
+    rax = rdx - r8 & rbx;
+    var_568 = rbx;
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            var_56C = rdx;
+            r12 = rax & 0xffff;
+            var_578 = r8;
+            _IOLog("%s %s: txHead=0x%04x txTail=0x%04x openSlots=%d\n", r15 + 0x38b, "outputPacket", rcx, r8, r12);
+    }
+    else {
+            var_578 = r8;
+            var_56C = rdx;
+            r12 = rax & 0xffff;
+    }
+    if (r12 > 0x31) goto loc_6b97;
+
+loc_6b4b:
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Intel82574::outputPacket - stalling with openSlots=%d", r15 + 0x38b, "outputPacket", r12);
+    }
+    *(r15 + 0x700) = *(r15 + 0x700) + 0x1;
+    *(int8_t *)(r15 + 0x3d9) = 0x1;
+    rbx = 0x102;
+    goto loc_7021;
+
+loc_7021:
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Returning 0x%08lx\n", r15 + 0x38b, "outputPacket", rbx);
+    }
+    if (*___stack_chk_guard == var_30) {
+            rax = rbx;
+    }
+    else {
+            rax = ___stack_chk_fail();
+    }
+    return rax;
+
+loc_6b97:
+    *(int8_t *)(r15 + 0x3d9) = 0x0;
+    rax = (*(*r15 + 0xb50))(r15, r13, &var_560);
+    rcx = 0x22300000;
+    if (rax != 0x0) {
+            rcx = 0x62300000;
+            if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+                    _IOLog("%s %s: VLAN tag 0x%04x \n", r15 + 0x38b, "outputPacket", var_560);
+                    rcx = 0x62300000;
+            }
+    }
+    var_580 = rcx;
+    r12 = 0x0;
+    (*(*r15 + 0x968))(r15, var_548, 0x1, &var_55C, 0x0, 0x0);
+    rdx = var_55C;
+    if ((rdx & 0x7) == 0x0) goto loc_6d43;
+
+loc_6c48:
+    SmallTreeIntel82576::getPacketHeaderInfo(r15, var_548, (rdx & 0x2) >> 0x1, &var_562);
+    if ((*(int16_t *)(_mbuf_data(var_548) + 0xc) & 0xffff) != 0x800) goto loc_6d31;
+
+loc_6c85:
+    rax = _mbuf_len(var_548);
+    rdx = var_564 & 0xffff;
+    CMP(var_562 & 0xffff, rdx);
+    asm { cmova      dx, cx };
+    if (rax >= (rdx & 0xffff)) goto loc_6d31;
+
+loc_6cb1:
+    if (_mbuf_pullup(&var_548) == 0x0) goto loc_6cfd;
+
+loc_6cc1:
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+            _IOLog("%s %s: mbuf_pullup failed\n", r15 + 0x38b, "outputPacket");
+    }
+    *(r15 + 0x730) = *(r15 + 0x730) + 0x1;
+    goto loc_6b08;
+
+loc_6b08:
+    if (var_548 != 0x0) {
+            _mbuf_freem();
+    }
+    *(int32_t *)(*(r15 + 0x140) + 0xc) = *(int32_t *)(*(r15 + 0x140) + 0xc) + 0x1;
+    *(r15 + 0x6f8) = *(r15 + 0x6f8) + 0x1;
+    rbx = 0x1;
+    goto loc_7021;
+
+loc_6cfd:
+    *(r15 + 0x738) = *(r15 + 0x738) + 0x1;
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: pkt=%p after mbuf_pullup\n", r15 + 0x38b, "outputPacket", var_548);
+    }
+    goto loc_6d31;
+
+loc_6d31:
+    r12 = (((var_55C & 0x6) != 0x0 ? 0x1 : 0x0) & 0xff) << 0x9;
+    goto loc_6d43;
+
+loc_6d43:
+    rbx = _mbuf_data(var_548);
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: mbuf len %lu, ethertype 0x%04x \n", r15 + 0x38b, "outputPacket", _mbuf_len(var_548), *(int16_t *)(rbx + 0xc) & 0xffff);
+    }
+    r13 = IOMbufNaturalMemoryCursor::getPhysicalSegmentsWithCoalesce(*(r15 + 0x408), var_548, &var_2C0, 0x28);
+    if (r13 == 0x0) goto loc_6ecf;
+
+loc_6dba:
+    var_590 = r12;
+    rax = SmallTreeIntel82576::contextSetup(r15, var_548);
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: needContext = %d\n", r15 + 0x38b, "outputPacket", rax & 0xff);
+            rax = rax;
+    }
+    var_581 = rax;
+    r12 = 0x0;
+    rbx = var_590;
+    if (rax == 0x0) {
+            r12 = 0x0;
+            rbx = r12;
+    }
+    rax = _mbuf_pkthdr_len(var_548);
+    r9 = rax << 0xe | rbx;
+    r8 = r13 - 0x1;
+    rsi = &var_534;
+    rdi = &var_2B8;
+    rbx = r13;
+    r10 = var_580;
+    do {
+            r12 = r12 + *rdi;
+            *(rsi + 0xfffffffffffffff4) = *(rdi + 0xfffffffffffffff8);
+            *(int32_t *)(rsi + 0xfffffffffffffffc) = *rdi | r10;
+            *(int32_t *)rsi = r9;
+            rsi = rsi + 0x10;
+            rdi = rdi + 0x10;
+            rbx = rbx - 0x1;
+    } while (rbx != 0x0);
+    *(int32_t *)(rbp + (r8 << 0x4) + 0xfffffffffffffac8) = *(int32_t *)(rbp + (r8 << 0x4) + 0xfffffffffffffac8) | 0x9000000;
+    if (var_581 != 0x0) {
+            rax = 0x0;
+            if (*(r15 + 0x4c0) == rax) {
+                    rcx = 0x0;
+                    rbx = var_568;
+                    r8 = var_56C;
+                    if (*(r15 + 0x4c8) != rcx) {
+                            *(r15 + 0x4c0) = rax;
+                            *(r15 + 0x4c8) = rcx;
+                            *(*(r15 + 0x418) + (var_578 << 0x4)) = rax;
+                            *(*(r15 + 0x418) + (var_578 << 0x4) + 0x8) = 0x0;
+                            *(r15 + 0x6f0) = *(r15 + 0x6f0) + 0x1;
+                            r14 = var_578 + 0x1 & rbx;
+                    }
+            }
+            else {
+                    rcx = 0x0;
+                    rbx = var_568;
+                    r8 = var_56C;
+                    *(r15 + 0x4c0) = rax;
+                    *(r15 + 0x4c8) = rcx;
+                    *(*(r15 + 0x418) + (var_578 << 0x4)) = rax;
+                    *(*(r15 + 0x418) + (var_578 << 0x4) + 0x8) = 0x0;
+                    *(r15 + 0x6f0) = *(r15 + 0x6f0) + 0x1;
+                    r14 = var_578 + 0x1 & rbx;
+            }
+    }
+    else {
+            rbx = var_568;
+            r8 = var_56C;
+    }
+    rax = *(r15 + 0x418);
+    rcx = &var_538;
+    do {
+            rdx = r14 & 0xffff;
+            *(rax + (rdx << 0x4)) = *(rcx + 0xfffffffffffffff8);
+            *(rax + (rdx << 0x4) + 0x8) = *rcx;
+            r14 = rdx + 0x1 & rbx;
+            rcx = rcx + 0x10;
+            r13 = r13 - 0x1;
+    } while (r13 != 0x0);
+    *(*(r15 + 0x438) + rdx * 0x8) = var_548;
+    *(int32_t *)(*(r15 + 0x7f0) + 0x3818) = r14 & 0xffff;
+    *(int16_t *)(r15 + 0x426) = r14;
+    rax = *(int32_t *)(r15 + 0x420) - (rbx & r8 - (r14 & 0xffff) & 0xffff);
+    if (rax > *(r15 + 0x718)) {
+            *(r15 + 0x718) = rax;
+    }
+    *(int32_t *)(*(r15 + 0x140) + 0x8) = *(int32_t *)(*(r15 + 0x140) + 0x8) + 0x1;
+    rbx = 0x0;
+    goto loc_7021;
+
+loc_6ecf:
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+            _IOLog("%s %s: Could not get physical segments for pkt=0x%p\n", r15 + 0x38b, "outputPacket", var_548);
+    }
+    goto loc_6b08;
+
+loc_6ae2:
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) == 0x0) goto loc_6b08;
+
+loc_6aec:
+    rdi = "%s %s: interface not enabled\n";
+    goto loc_6afa;
+
+loc_6afa:
+    _IOLog(rdi);
+    goto loc_6b08;
+
+loc_6ac8:
+    if ((*(int8_t *)(r15 + 0x785) & 0x1) == 0x0) goto loc_6b08;
+
+loc_6ad2:
+    rdi = "%s %s: hardware not ready\n";
+    goto loc_6afa;
+

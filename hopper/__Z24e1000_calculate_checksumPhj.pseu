@@ -1,0 +1,16 @@
+    rsi = arg1;
+    rdi = arg0;
+    rax = 0x0;
+    if (rdi != 0x0) {
+            if (rsi != 0x0) {
+                    do {
+                            rax = (*(int8_t *)rdi & 0xff) + rax & 0xff;
+                            rdi = rdi + 0x1;
+                            rsi = rsi - 0x1;
+                    } while (rsi != 0x0);
+            }
+            rax = -rax;
+    }
+    rax = rax & 0xff;
+    return rax;
+

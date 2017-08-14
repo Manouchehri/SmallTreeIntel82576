@@ -1,0 +1,35 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x785) & 0x4) != 0x0) {
+            rax = _IOLog("%s %s: Entered\n", rbx + 0x38b, "disableIntrs");
+    }
+    if (*(int8_t *)(rbx + 0x3c0) == 0x0) goto loc_11aa7;
+
+loc_11a43:
+    *(int32_t *)(*(rbx + 0x7f0) + 0x152c) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0xe0) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1528) = 0xffffffff;
+    rax = *(rbx + 0x7f0);
+    *(int32_t *)(rax + 0xd8) = 0xffffffff;
+    *(int8_t *)(rbx + 0x3c0) = 0x0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0) goto .l1;
+
+loc_11a97:
+    rbx = rbx + 0x38b;
+    rdi = "%s %s: Returning\n";
+    goto loc_11abe;
+
+loc_11abe:
+    rax = _IOLog(rdi);
+    return rax;
+
+.l1:
+    return rax;
+
+loc_11aa7:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) == 0x0) goto .l1;
+
+loc_11ab0:
+    rbx = rbx + 0x38b;
+    rdi = "%s %s: Interrupts not enabled??? - returning\n";
+    goto loc_11abe;
+

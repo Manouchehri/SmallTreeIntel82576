@@ -1,0 +1,40 @@
+    r14 = arg1;
+    rbx = arg0;
+    rax = 0xfffffff0;
+    if (r14 == 0x0) goto .l1;
+
+loc_e94b:
+    rax = (*(rbx + 0x4a0))(rbx, 0x8, 0x1, &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_e966:
+    rax = (*(rbx + 0x4a0))(rbx, 0x9, 0x1, &var_14);
+    if (rax != 0x0) goto .l1;
+
+loc_e981:
+    if ((var_12 & 0xffff) != 0xfafa) goto loc_e9c3;
+
+loc_e98c:
+    rax = (*(rbx + 0x4a0))(rbx, var_14 & 0xffff, 0x1, &var_16);
+    if (rax != 0x0) goto .l1;
+
+loc_e9a6:
+    rax = 0xffffffee;
+    rcx = var_16 & 0xffff;
+    if ((rcx + 0x1 & 0xffff) < 0x2) goto .l1;
+
+loc_e9ba:
+    *(int32_t *)r14 = rcx + rcx + 0xffffffffffffffff;
+    goto loc_e9ca;
+
+loc_e9ca:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_e9c3:
+    *(int32_t *)r14 = 0xb;
+    goto loc_e9ca;
+

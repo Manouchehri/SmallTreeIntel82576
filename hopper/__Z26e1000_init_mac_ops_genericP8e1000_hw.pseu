@@ -1,0 +1,25 @@
+    *(arg0 + 0x20) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x98) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x90) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0xb8) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x60) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x68) = e1000_set_lan_id_multi_port_pcie(e1000_hw*);
+    *(arg0 + 0xe0) = e1000_read_mac_addr_generic(e1000_hw*);
+    *(arg0 + 0xd0) = e1000_config_collision_dist_generic(e1000_hw*);
+    *(arg0 + 0x50) = e1000_null_mac_generic(e1000_hw*);
+    *(arg0 + 0x48) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0xc0) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x30) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x78) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x80) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0xb0) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x70) = e1000_null_link_info(e1000_hw*, unsigned short*, unsigned short*);
+    *(arg0 + 0x40) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x38) = e1000_null_mng_mode(e1000_hw*);
+    *(arg0 + 0x88) = e1000_null_update_mc(e1000_hw*, unsigned char*, unsigned int);
+    *(arg0 + 0x58) = e1000_null_mac_generic(e1000_hw*);
+    *(arg0 + 0xc8) = e1000_null_write_vfta(e1000_hw*, unsigned int, unsigned int);
+    *(arg0 + 0xd8) = e1000_rar_set_generic(e1000_hw*, unsigned char*, unsigned int);
+    *(arg0 + 0xe8) = e1000_validate_mdi_setting_generic(e1000_hw*);
+    return e1000_validate_mdi_setting_generic(e1000_hw*);
+

@@ -1,0 +1,6 @@
+    rsi = rdi;
+    if ((*(int8_t *)(rsi + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Return only with result=0x%08lx\n", rsi + 0x38b, "getFeatures", 0x2);
+    }
+    return 0x2;
+

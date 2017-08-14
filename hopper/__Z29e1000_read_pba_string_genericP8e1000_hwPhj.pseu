@@ -1,0 +1,127 @@
+    rsi = arg1;
+    r14 = arg2;
+    r13 = arg0;
+    rax = 0xfffffff0;
+    if (rsi == 0x0) goto .l1;
+
+loc_e761:
+    rax = (*(r13 + 0x4a0))(r13, 0x8, 0x1, &var_2A);
+    rdx = rsi;
+    if (rax != 0x0) goto .l1;
+
+loc_e787:
+    rax = (*(r13 + 0x4a0))(r13, 0x9, 0x1, &var_2C);
+    rsi = rdx;
+    if (rax != 0x0) goto .l1;
+
+loc_e7ad:
+    rcx = var_2A & 0xffff;
+    if (rcx != 0xfafa) goto loc_e833;
+
+loc_e7b9:
+    rax = (*(r13 + 0x4a0))(r13, var_2C & 0xffff, 0x1, &var_2E);
+    rsi = rsi;
+    if (rax != 0x0) goto .l1;
+
+loc_e7de:
+    rax = 0xffffffee;
+    rcx = var_2E & 0xffff;
+    if ((rcx + 0x1 & 0xffff) < 0x2) goto .l1;
+
+loc_e7f6:
+    rax = 0xffffffef;
+    if (rcx + rcx + 0xffffffffffffffff > r14) goto .l1;
+
+loc_e808:
+    rax = (var_2C & 0xffff) + 0x1;
+    var_2C = rax;
+    r15 = 0x0;
+    rcx = rcx - 0x1;
+    var_2E = rcx;
+    if (rcx == 0x0) goto loc_e916;
+
+loc_e822:
+    rbx = rsi;
+    r12 = 0x1;
+    r14 = &var_2A;
+    goto loc_e8d3;
+
+loc_e8d3:
+    rax = (*(r13 + 0x4a0))(r13, r12 + rax + 0xffffffffffffffff & 0xffff, 0x1, r14);
+    rsi = rbx;
+    if (rax != 0x0) goto .l1;
+
+loc_e8f4:
+    *(int8_t *)(rsi + r15) = HIBYTE(var_2A & 0xffff);
+    *(int8_t *)(rsi + (r15 | 0x1)) = var_2A & 0xffff;
+    r15 = r12 & 0xffff;
+    if (r15 < (var_2E & 0xffff)) goto loc_e8c6;
+
+loc_e913:
+    r15 = r15 + r15;
+    goto loc_e916;
+
+loc_e916:
+    *(int8_t *)(rsi + r15) = 0x0;
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_e8c6:
+    rbx = rsi;
+    rax = var_2C & 0xffff;
+    r15 = r15 + r15;
+    r12 = r12 + 0x1;
+    goto loc_e8d3;
+
+loc_e833:
+    rax = 0x11;
+    if (r14 < 0xb) goto .l1;
+
+loc_e842:
+    rax = (rcx & 0xf000) >> 0xc;
+    *(int8_t *)rsi = rax;
+    *(int8_t *)(rsi + 0x1) = rcx >> 0x8 & 0xf;
+    *(int8_t *)(rsi + 0x2) = rcx >> 0x4;
+    *(int8_t *)(rsi + 0x3) = rcx & 0xf;
+    *(int8_t *)(rsi + 0x4) = (var_2C & 0xffff) >> 0xc;
+    *(int8_t *)(rsi + 0x5) = (var_2C & 0xffff) >> 0x8 & 0xf;
+    *(int8_t *)(rsi + 0x6) = 0x2d;
+    *(int8_t *)(rsi + 0x7) = 0x0;
+    *(int8_t *)(rsi + 0x8) = (var_2C & 0xffff) >> 0x4;
+    *(int8_t *)(rsi + 0x9) = var_2C & 0xffff & 0xf;
+    *(int8_t *)(rsi + 0xa) = 0x0;
+    rcx = 0x1;
+    goto loc_e8a5;
+
+loc_e8a5:
+    rdx = rax & 0xff;
+    if (rdx > 0x9) goto loc_e8b1;
+
+loc_e8ad:
+    rax = rax + 0x30;
+    goto loc_e8b8;
+
+loc_e8b8:
+    *(int8_t *)(rsi + rcx + 0xffffffffffffffff) = rax;
+    goto loc_e8bc;
+
+loc_e8bc:
+    rax = 0x0;
+    if (rcx != 0xa) goto loc_e89f;
+    goto .l1;
+
+loc_e89f:
+    rax = *(int8_t *)(rsi + rcx);
+    rcx = rcx + 0x1;
+    goto loc_e8a5;
+
+loc_e8b1:
+    if (rdx > 0xf) goto loc_e8bc;
+
+loc_e8b6:
+    rax = rax + 0x37;
+    goto loc_e8b8;
+

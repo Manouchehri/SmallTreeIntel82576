@@ -1,0 +1,13 @@
+    r14 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x786) & 0x2) != 0x0) {
+            rsi = rbx + 0x38b;
+            rcx = "false";
+            if (r14 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Entered with active=%s\n", rsi, "setWakeOnMagicPacket", rcx);
+    }
+    *(int8_t *)(rbx + 0x780) = r14;
+    return 0x0;
+

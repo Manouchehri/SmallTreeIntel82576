@@ -1,0 +1,42 @@
+    r14 = arg3;
+    r15 = arg2;
+    r13 = arg1;
+    r12 = arg0;
+    if (r14 == 0x0) {
+            rax = *(r12 + 0x390);
+            rbx = 0x0;
+            if (rax != 0x0) {
+                    rbx = (rax)(r12);
+                    if (rbx == 0x0) {
+                            if (r13 >= 0x10) {
+                                    rbx = e1000_write_phy_reg_mdic(r12, 0x1f, r13 & 0xffff);
+                                    if (rbx == 0x0) {
+                                            rbx = e1000_read_phy_reg_mdic(r12, r13 & 0x1f, r15);
+                                    }
+                            }
+                            else {
+                                    rbx = e1000_read_phy_reg_mdic(r12, r13 & 0x1f, r15);
+                            }
+                            if (r14 == 0x0) {
+                                    (*(r12 + 0x3f0))(r12);
+                            }
+                    }
+            }
+    }
+    else {
+            if (r13 >= 0x10) {
+                    rbx = e1000_write_phy_reg_mdic(r12, 0x1f, r13 & 0xffff);
+                    if (rbx == 0x0) {
+                            rbx = e1000_read_phy_reg_mdic(r12, r13 & 0x1f, r15);
+                    }
+            }
+            else {
+                    rbx = e1000_read_phy_reg_mdic(r12, r13 & 0x1f, r15);
+            }
+            if (r14 == 0x0) {
+                    (*(r12 + 0x3f0))(r12);
+            }
+    }
+    rax = rbx;
+    return rax;
+

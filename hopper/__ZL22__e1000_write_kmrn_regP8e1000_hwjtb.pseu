@@ -1,0 +1,32 @@
+    r15 = arg2;
+    rbx = arg1;
+    r14 = arg0;
+    if (arg3 == 0x0) goto loc_f5ba;
+
+loc_f594:
+    *(int32_t *)(*(r14 + 0x8) + 0x34) = r15 & 0xffff | (rbx & 0x1f) << 0x10;
+    _IODelay(0x2);
+    goto loc_f5ff;
+
+loc_f5ff:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_f5ba:
+    rcx = *(r14 + 0x390);
+    rax = 0x0;
+    if (rcx == 0x0) goto .l1;
+
+loc_f5c8:
+    rax = (rcx)(r14);
+    if (rax != 0x0) goto .l1;
+
+loc_f5d1:
+    *(int32_t *)(*(r14 + 0x8) + 0x34) = r15 & 0xffff | (rbx & 0x1f) << 0x10;
+    _IODelay(0x2);
+    (*(r14 + 0x3f0))(r14);
+    goto loc_f5ff;
+

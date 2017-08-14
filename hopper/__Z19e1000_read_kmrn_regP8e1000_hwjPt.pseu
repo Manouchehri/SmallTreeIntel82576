@@ -1,0 +1,3 @@
+    rax = e1000_read_kmrn_reg_generic(arg0, arg1, arg2);
+    return rax;
+

@@ -1,0 +1,282 @@
+    r15 = arg0;
+    *(r15 + 0x438) = e1000_read_i2c_byte_generic(e1000_hw*, unsigned char, unsigned char, unsigned char*);
+    *(r15 + 0x440) = e1000_write_i2c_byte_generic(e1000_hw*, unsigned char, unsigned char, unsigned char);
+    if (*(int32_t *)(r15 + 0x474) != 0x1) goto loc_9619;
+
+loc_957c:
+    *(r15 + 0x428) = e1000_power_up_phy_copper(e1000_hw*);
+    *(r15 + 0x430) = e1000_power_down_phy_copper_82575(e1000_hw*);
+    *(int16_t *)(r15 + 0x47a) = 0x2f;
+    *(int32_t *)(r15 + 0x46c) = 0x64;
+    *(r15 + 0x390) = e1000_acquire_phy_82575(e1000_hw*);
+    *(r15 + 0x3a0) = e1000_check_reset_block_generic(e1000_hw*);
+    *(r15 + 0x3a8) = e1000_phy_sw_reset_generic(e1000_hw*);
+    *(r15 + 0x3b8) = e1000_get_cfg_done_82575(e1000_hw*);
+    *(r15 + 0x3f0) = e1000_release_phy_82575(e1000_hw*);
+    rax = *(int32_t *)(*(r15 + 0x8) + 0x18);
+    if (*(int8_t *)(r15 + 0x578) != 0x0) {
+            *(r15 + 0x3f8) = e1000_phy_hw_reset_sgmii_82575(e1000_hw*);
+            rax = rax | 0x2000000;
+    }
+    else {
+            *(r15 + 0x3f8) = e1000_phy_hw_reset_generic(e1000_hw*);
+            rax = rax & 0xfdffffff;
+    }
+    *(int32_t *)(*(r15 + 0x8) + 0x18) = rax;
+    e1000_reset_mdicnfg_82580(r15);
+    if (*(int8_t *)(r15 + 0x578) == 0x0) goto loc_969c;
+
+loc_9657:
+    rax = *(int32_t *)(r15 + 0x11c);
+    if (rax >= 0x7) goto loc_9671;
+
+loc_9666:
+    rax = 0xe04 + *(r15 + 0x8);
+    goto loc_9680;
+
+loc_9680:
+    if (*(int32_t *)rax >= 0x0) {
+            *(r15 + 0x3d8) = e1000_read_phy_reg_sgmii_82575(e1000_hw*, unsigned int, unsigned short*);
+            rax = e1000_write_phy_reg_sgmii_82575(e1000_hw*, unsigned int, unsigned short);
+    }
+    else {
+            rax = *(int32_t *)(r15 + 0x11c);
+            if (rax < 0x7) {
+                    *(r15 + 0x3d8) = e1000_read_phy_reg_gs40g(e1000_hw*, unsigned int, unsigned short*);
+                    rax = e1000_write_phy_reg_gs40g(e1000_hw*, unsigned int, unsigned short);
+            }
+            else {
+                    if (rax <= 0x4) {
+                            *(r15 + 0x3d8) = e1000_read_phy_reg_82580(e1000_hw*, unsigned int, unsigned short*);
+                            rax = e1000_write_phy_reg_82580(e1000_hw*, unsigned int, unsigned short);
+                    }
+                    else {
+                            *(r15 + 0x3d8) = e1000_read_phy_reg_igp(e1000_hw*, unsigned int, unsigned short*);
+                            rax = e1000_write_phy_reg_igp(e1000_hw*, unsigned int, unsigned short);
+                    }
+            }
+    }
+    goto loc_96f6;
+
+loc_96f6:
+    *(r15 + 0x410) = rax;
+    if (*(int8_t *)(r15 + 0x578) == 0x0) goto loc_9721;
+
+loc_9707:
+    rax = *(int32_t *)(r15 + 0x11c);
+    if (rax >= 0x7) goto loc_9731;
+
+loc_9716:
+    rax = 0xe04 + *(r15 + 0x8);
+    goto loc_9740;
+
+loc_9740:
+    if (*(int32_t *)rax < 0x0) goto loc_97d0;
+
+loc_9749:
+    r12 = *(int32_t *)(*(r15 + 0x8) + 0x18);
+    *(int32_t *)(*(r15 + 0x8) + 0x18) = r12 & 0xffffff7f;
+    _IODelay(0x493e0);
+    *(int32_t *)(r15 + 0x464) = 0x1;
+    r14 = &var_22;
+    goto loc_977d;
+
+loc_977d:
+    if ((*(r15 + 0x390))(r15) != 0x0) goto loc_97b9;
+
+loc_978b:
+    rbx = e1000_read_phy_reg_i2c(r15, 0x2, r14);
+    (*(r15 + 0x3f0))(r15);
+    if ((rbx != 0x0) || ((var_22 & 0xffff & 0xffff) != 0x141)) goto loc_97b9;
+
+loc_97eb:
+    rax = *(int32_t *)(r15 + 0x464);
+    goto loc_97f2;
+
+loc_97f2:
+    if (rax == 0x8) {
+            *(int32_t *)(r15 + 0x464) = 0x0;
+            rax = 0xfffffffe;
+    }
+    else {
+            rax = e1000_get_phy_id(r15);
+    }
+    *(int32_t *)(*(r15 + 0x8) + 0x18) = r12;
+    goto loc_9843;
+
+loc_9843:
+    rdx = *(int32_t *)(r15 + 0x468);
+    rcx = 0xfffffffe;
+    if (rdx > 0x2a8038f) goto loc_98c5;
+
+loc_9857:
+    if (rdx > 0x1410c8f) goto loc_9938;
+
+loc_9863:
+    if (rdx != 0x1410c00) goto loc_9a5f;
+
+loc_986f:
+    *(int32_t *)(r15 + 0x448) = 0xa;
+    *(r15 + 0x398) = e1000_check_polarity_m88(e1000_hw*);
+    *(r15 + 0x3c8) = e1000_get_phy_info_m88(e1000_hw*);
+    *(r15 + 0x3c0) = e1000_get_cable_length_m88_gen2(e1000_hw*);
+    *(r15 + 0x400) = e1000_set_d0_lplu_state_82580(e1000_hw*, bool);
+    *(r15 + 0x408) = e1000_set_d3_lplu_state_82580(e1000_hw*, bool);
+    goto loc_9a4f;
+
+loc_9a4f:
+    *(r15 + 0x3b0) = e1000_phy_force_speed_duplex_m88(e1000_hw*);
+    goto loc_9a5d;
+
+loc_9a5d:
+    rcx = rax;
+    goto loc_9a5f;
+
+loc_9a5f:
+    rax = rcx;
+    return rax;
+
+loc_9938:
+    if (rdx > 0x1410cbf) goto loc_9951;
+
+loc_9940:
+    if (rdx == 0x1410c90) goto loc_99f9;
+    goto loc_9a5f;
+
+loc_99f9:
+    *(int32_t *)(r15 + 0x448) = 0x2;
+    *(r15 + 0x398) = e1000_check_polarity_m88(e1000_hw*);
+    *(r15 + 0x3c8) = e1000_get_phy_info_m88(e1000_hw*);
+    if (((rdx != 0x1410c90) && (rdx != 0x1410dc0)) && (rdx != 0x1410df0)) {
+            rcx = e1000_get_cable_length_m88(e1000_hw*);
+    }
+    else {
+            rcx = e1000_get_cable_length_m88_gen2(e1000_hw*);
+    }
+    *(r15 + 0x3c0) = rcx;
+    goto loc_9a4f;
+
+loc_9951:
+    if (rdx > 0x1410dbf) goto loc_996a;
+
+loc_9959:
+    if (rdx == 0x1410cc0) goto loc_99f9;
+    goto loc_9a5f;
+
+loc_996a:
+    if (rdx > 0x1410def) goto loc_9980;
+
+loc_9972:
+    if (rdx != 0x1410dc0) goto loc_9a5f;
+    goto loc_99f9;
+
+loc_9980:
+    if (rdx == 0x1410df0) goto loc_99f9;
+
+loc_9988:
+    if ((rdx == 0x15403a0) || (rdx == 0x15403b0)) goto loc_999c;
+    goto loc_9a5f;
+
+loc_999c:
+    *(int32_t *)(r15 + 0x448) = 0x8;
+    *(r15 + 0x398) = e1000_check_polarity_82577(e1000_hw*);
+    *(r15 + 0x3b0) = e1000_phy_force_speed_duplex_82577(e1000_hw*);
+    *(r15 + 0x3c0) = e1000_get_cable_length_82577(e1000_hw*);
+    *(r15 + 0x3c8) = e1000_get_phy_info_82577(e1000_hw*);
+    *(r15 + 0x400) = e1000_set_d0_lplu_state_82580(e1000_hw*, bool);
+    rcx = e1000_set_d3_lplu_state_82580(e1000_hw*, bool);
+    goto loc_992c;
+
+loc_992c:
+    *(r15 + 0x408) = rcx;
+    goto loc_9a5d;
+
+loc_98c5:
+    if (rdx >= 0x2a80392) goto loc_9a5f;
+
+loc_98d4:
+    *(int32_t *)(r15 + 0x448) = 0x6;
+    *(r15 + 0x398) = e1000_check_polarity_igp(e1000_hw*);
+    *(r15 + 0x3c8) = e1000_get_phy_info_igp(e1000_hw*);
+    *(r15 + 0x3c0) = e1000_get_cable_length_igp_2(e1000_hw*);
+    *(r15 + 0x3b0) = e1000_phy_force_speed_duplex_igp(e1000_hw*);
+    *(r15 + 0x400) = e1000_set_d0_lplu_state_82575(e1000_hw*, bool);
+    rcx = e1000_set_d3_lplu_state_generic(e1000_hw*, bool);
+    goto loc_992c;
+
+loc_97b9:
+    rax = *(int32_t *)(r15 + 0x464) + 0x1;
+    *(int32_t *)(r15 + 0x464) = rax;
+    if (rax < 0x8) goto loc_977d;
+    goto loc_97f2;
+
+loc_97d0:
+    rcx = *(int32_t *)(r15 + 0x11c);
+    if (rcx >= 0x7) goto loc_981b;
+
+loc_97df:
+    rax = *(int32_t *)(*(r15 + 0x8) + 0xe04);
+    goto loc_982e;
+
+loc_982e:
+    *(int32_t *)(r15 + 0x464) = rax >> 0x15 & 0x1f;
+    goto loc_983b;
+
+loc_983b:
+    rax = e1000_get_phy_id(r15);
+    goto loc_9843;
+
+loc_981b:
+    rax = 0xfffffffe;
+    if (rcx > 0x2) goto loc_9843;
+
+loc_9827:
+    rax = *(int32_t *)(*(r15 + 0x8) + 0x20);
+    goto loc_982e;
+
+loc_9731:
+    if (rax > 0x2) goto loc_9749;
+
+loc_9738:
+    rax = *(r15 + 0x8) + 0x20;
+    goto loc_9740;
+
+loc_9721:
+    *(int32_t *)(r15 + 0x464) = 0x1;
+    goto loc_983b;
+
+loc_9671:
+    if (rax > 0x2) goto loc_9685;
+
+loc_9678:
+    rax = *(r15 + 0x8) + 0x20;
+    goto loc_9680;
+
+loc_9685:
+    *(r15 + 0x3d8) = e1000_read_phy_reg_sgmii_82575(e1000_hw*, unsigned int, unsigned short*);
+    rax = e1000_write_phy_reg_sgmii_82575(e1000_hw*, unsigned int, unsigned short);
+    goto loc_96f6;
+
+loc_969c:
+    rax = *(int32_t *)(r15 + 0x11c);
+    if (rax < 0x7) {
+            *(r15 + 0x3d8) = e1000_read_phy_reg_gs40g(e1000_hw*, unsigned int, unsigned short*);
+            rax = e1000_write_phy_reg_gs40g(e1000_hw*, unsigned int, unsigned short);
+    }
+    else {
+            if (rax <= 0x4) {
+                    *(r15 + 0x3d8) = e1000_read_phy_reg_82580(e1000_hw*, unsigned int, unsigned short*);
+                    rax = e1000_write_phy_reg_82580(e1000_hw*, unsigned int, unsigned short);
+            }
+            else {
+                    *(r15 + 0x3d8) = e1000_read_phy_reg_igp(e1000_hw*, unsigned int, unsigned short*);
+                    rax = e1000_write_phy_reg_igp(e1000_hw*, unsigned int, unsigned short);
+            }
+    }
+    goto loc_96f6;
+
+loc_9619:
+    *(int32_t *)(r15 + 0x448) = 0x1;
+    rcx = 0x0;
+    goto loc_9a5f;
+

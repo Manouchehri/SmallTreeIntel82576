@@ -1,0 +1,16 @@
+    r14 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with maxSize_p=%lu\n", rbx + 0x38b, "getMaxPacketSize", *(int32_t *)r14);
+    }
+    rcx = *(int32_t *)(rbx + 0x904);
+    rax = 0x0;
+    if ((rcx <= 0x5) && (!(BIT_TEST(0x34, rcx)))) {
+            rax = *(int32_t *)(rbx + 0x4d4);
+    }
+    *(int32_t *)r14 = rax;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with maxSize_p=%lu\n", rbx + 0x38b, "getMaxPacketSize", rax);
+    }
+    return 0x0;
+

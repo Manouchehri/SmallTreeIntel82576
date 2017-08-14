@@ -1,0 +1,10 @@
+    rdi = arg0;
+    if (rdi <= 0xa) {
+            rax = *(int16_t *)(e1000_82580_rxpbs_table + rdi * 0x2) & 0xffff;
+    }
+    else {
+            rax = 0x0;
+    }
+    rax = rax & 0xffff;
+    return rax;
+

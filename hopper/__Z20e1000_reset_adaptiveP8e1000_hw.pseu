@@ -1,0 +1,3 @@
+    rax = e1000_reset_adaptive_generic(arg0);
+    return rax;
+

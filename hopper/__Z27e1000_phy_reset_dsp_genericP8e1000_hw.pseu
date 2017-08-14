@@ -1,0 +1,11 @@
+    rbx = arg0;
+    rcx = *(rbx + 0x410);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            rax = (rcx)(rbx, 0x1e, 0xc1, rcx);
+            if (rax == 0x0) {
+                    rax = (*(rbx + 0x410))(rbx, 0x1e, 0x0);
+            }
+    }
+    return rax;
+

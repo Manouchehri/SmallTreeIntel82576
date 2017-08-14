@@ -1,0 +1,93 @@
+    rbx = arg0;
+    rax = 0x0;
+    if (*(int8_t *)(rbx + 0x486) != 0x0) goto .l1;
+
+loc_f7a9:
+    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_f7c3:
+    rdx = var_A & 0xffff;
+    rax = rdx & 0xf79f;
+    rcx = rax + 0x800;
+    rsi = *(int8_t *)(rbx + 0x482) & 0xff;
+    if (rsi == 0x1) goto loc_f810;
+
+loc_f7e4:
+    if (rsi != 0x3) goto loc_f7f0;
+
+loc_f7e9:
+    rax = rax | 0x840;
+    goto loc_f7fa;
+
+loc_f7fa:
+    rcx = rax;
+    goto loc_f810;
+
+loc_f810:
+    rax = rcx & 0xfffd;
+    var_A = rax;
+    if (*(int8_t *)(rbx + 0x483) != 0x0) {
+            var_A = rcx | 0x2;
+            rax = rcx | 0x2;
+    }
+    rax = (*(rbx + 0x410))(rbx, 0x10, rax & 0xffff);
+    if (rax == 0x0) {
+            if (*(int32_t *)(rbx + 0x470) <= 0x3) {
+                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                    if (rax == 0x0) {
+                            rax = var_A & 0xffff | 0x70;
+                            if ((*(int32_t *)(rbx + 0x470) == 0x2) && (*(int32_t *)(rbx + 0x468) == 0x1410cc0)) {
+                                    rax = rax & 0xfffff1ff | 0x800;
+                            }
+                            else {
+                                    rax = rax & 0xfffff0ff | 0x100;
+                            }
+                            rax = (*(rbx + 0x410))(rbx, 0x14, rax & 0xffff);
+                            if (rax == 0x0) {
+                                    rax = (*(rbx + 0x3a8))(rbx);
+                                    if (rax == 0x0) {
+                                            if (*(int32_t *)(rbx + 0x448) == 0xa) {
+                                                    rax = e1000_set_master_slave_mode(rbx);
+                                                    if (rax == 0x0) {
+                                                            rax = 0x0;
+                                                    }
+                                            }
+                                            else {
+                                                    rax = 0x0;
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    rax = (*(rbx + 0x3a8))(rbx);
+                    if (rax == 0x0) {
+                            if (*(int32_t *)(rbx + 0x448) == 0xa) {
+                                    rax = e1000_set_master_slave_mode(rbx);
+                                    if (rax == 0x0) {
+                                            rax = 0x0;
+                                    }
+                            }
+                            else {
+                                    rax = 0x0;
+                            }
+                    }
+            }
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_f7f0:
+    if (rsi != 0x2) goto loc_f803;
+
+loc_f7f5:
+    rax = rax | 0x820;
+    goto loc_f7fa;
+
+loc_f803:
+    rcx = rdx | 0x860;
+    goto loc_f810;
+

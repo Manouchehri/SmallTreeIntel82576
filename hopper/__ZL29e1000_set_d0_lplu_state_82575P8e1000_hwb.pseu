@@ -1,0 +1,57 @@
+    rbx = arg1;
+    r14 = arg0;
+    rcx = *(r14 + 0x3d8);
+    rax = 0x0;
+    if (rcx == 0x0) goto .l1;
+
+loc_ac8e:
+    rax = (rcx)(r14, 0x19, &var_12, rcx);
+    if (rax != 0x0) goto .l1;
+
+loc_aca4:
+    rdx = var_12 & 0xffff;
+    if (rbx == 0x0) goto loc_ace2;
+
+loc_acac:
+    var_12 = rdx | 0x2;
+    rax = (*(r14 + 0x410))(r14, 0x19, (rdx | 0x2) & 0xffff);
+    if (rax != 0x0) goto .l1;
+
+loc_accd:
+    (*(r14 + 0x3d8))(r14, 0x10, &var_12);
+    goto loc_ad1e;
+
+loc_ad1e:
+    rdx = var_12 & 0xffff & 0xff7f;
+    goto loc_ad28;
+
+loc_ad28:
+    rax = (*(r14 + 0x410))(r14, 0x10);
+    return rax;
+
+.l1:
+    return rax;
+
+loc_ace2:
+    var_12 = rdx & 0xfffd;
+    rax = (*(r14 + 0x410))(r14, 0x19, rdx & 0xfffd);
+    rcx = *(int32_t *)(r14 + 0x460);
+    if (rcx != 0x2) goto loc_ad3d;
+
+loc_ad07:
+    rax = (*(r14 + 0x3d8))(r14, 0x10, &var_12);
+    if (rax != 0x0) goto .l1;
+    goto loc_ad1e;
+
+loc_ad3d:
+    if (rcx != 0x1) goto .l1;
+
+loc_ad42:
+    rax = (*(r14 + 0x3d8))(r14, 0x10, &var_12);
+    if (rax == 0x0) goto loc_ad62;
+    goto .l1;
+
+loc_ad62:
+    rdx = var_12 & 0xffff | 0x80;
+    goto loc_ad28;
+

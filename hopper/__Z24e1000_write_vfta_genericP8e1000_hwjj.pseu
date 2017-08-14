@@ -1,0 +1,4 @@
+    *(int32_t *)(*(arg0 + 0x8) + (arg1 << 0x2) + 0x5600) = arg2;
+    rax = *(int32_t *)(*(arg0 + 0x8) + 0x8);
+    return rax;
+

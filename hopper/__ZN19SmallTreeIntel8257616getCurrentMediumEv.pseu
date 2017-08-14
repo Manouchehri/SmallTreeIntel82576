@@ -1,0 +1,117 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "getCurrentMedium");
+    }
+    if (*(int32_t *)(*(rbx + 0x7f0) + 0x8) == 0xffffffff) goto loc_57a8;
+
+loc_5645:
+    r15 = rbx + 0x7e8;
+    if ((e1000_check_for_link(r15) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_check_for_link returned %d\n", rbx + 0x38b, "getCurrentMedium", rcx);
+    }
+    r14 = 0xffffffff;
+    if ((*(int32_t *)(*(rbx + 0x7f0) + 0x8) & 0x2) == 0x0) goto loc_593e;
+
+loc_5697:
+    var_1C = 0x0;
+    var_1A = 0x0;
+    if ((e1000_get_speed_and_duplex(r15, &var_1A, &var_1C) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_get_speed_and_duplex returned %d\n", rbx + 0x38b, "getCurrentMedium", rcx);
+    }
+    if ((*(int8_t *)(rbx + 0x154) != 0x0) && (*(int32_t *)(rbx + 0xb68) != 0x3)) {
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Forcing Flow Control\n", rbx + 0x38b, "getCurrentMedium");
+            }
+            *(int32_t *)(rbx + 0xb68) = 0x3;
+            if ((e1000_force_mac_fc(r15) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+                    _IOLog("%s %s: e1000_force_mac_fc returned %d\n", rbx + 0x38b, "getCurrentMedium", rcx);
+            }
+    }
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: speed=%u ; duplex=0x%08lx ; media type %u\n", rbx + 0x38b, "getCurrentMedium", 0x0 & 0xffff, 0x0 & 0xffff, *(int32_t *)(rbx + 0xc5c));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    rax = rax & 0x2;
+    if ((0x0 & 0xffff) != 0x2) goto loc_57dc;
+
+loc_578e:
+    r15 = 0x100000;
+    if (rax == 0x0) goto loc_5802;
+
+loc_5798:
+    rdi = "%s %s: Full Duplex\n";
+    goto loc_57f4;
+
+loc_57f4:
+    _IOLog(rdi);
+    goto loc_5802;
+
+loc_5802:
+    rax = *(int32_t *)(rbx + 0x784) & 0x2;
+    if (*(int32_t *)(rbx + 0xb68) != 0x0) {
+            if (rax != 0x0) {
+                    _IOLog("%s %s: Flow Control\n", rbx + 0x38b, "getCurrentMedium");
+            }
+            r15 = r15 | 0x400000;
+    }
+    else {
+            if (rax != 0x0) {
+                    _IOLog("%s %s: No Flow Control\n", rbx + 0x38b, "getCurrentMedium");
+            }
+    }
+    rax = 0x0 & 0xffff;
+    if (rax != 0xa) {
+            if (rax == 0x64) {
+                    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                            _IOLog("%s %s: 100Mbps\n", rbx + 0x38b, "getCurrentMedium");
+                    }
+                    r15 = r15 | 0x26;
+            }
+            else {
+                    if (rax == 0x3e8) {
+                            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                                    _IOLog("%s %s: 1000Mbps\n", rbx + 0x38b, "getCurrentMedium");
+                            }
+                            r15 = r15 | 0x30;
+                    }
+            }
+    }
+    else {
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: 10Mbps\n", rbx + 0x38b, "getCurrentMedium");
+            }
+            r15 = r15 | 0x23;
+    }
+    rax = IONetworkMedium::getMediumWithType(*(rbx + 0x3c8), r15, 0x0);
+    if (rax != 0x0) {
+            r14 = (*(*rax + 0x138))(rax);
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: got index=%d\n", rbx + 0x38b, "getCurrentMedium", r14);
+            }
+    }
+    goto loc_593e;
+
+loc_593e:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning %d\n", rbx + 0x38b, "getCurrentMedium", r14);
+    }
+    rax = r14;
+    return rax;
+
+loc_57dc:
+    r15 = 0x200000;
+    if (rax == 0x0) goto loc_5802;
+
+loc_57e6:
+    rdi = "%s %s: Half Duplex\n";
+    goto loc_57f4;
+
+loc_57a8:
+    r14 = 0x0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            r14 = 0x0;
+            _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "getCurrentMedium");
+    }
+    goto loc_593e;
+

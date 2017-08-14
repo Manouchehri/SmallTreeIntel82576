@@ -1,0 +1,9 @@
+    rax = OSMetaClassBase::safeMetaCast(arg0, SmallTreeIntel82576::gMetaClass);
+    if (rax != 0x0) {
+            rax = SmallTreeIntel82576::configureInterfaceGated();
+    }
+    else {
+            rax = 0xe00002bc;
+    }
+    return rax;
+

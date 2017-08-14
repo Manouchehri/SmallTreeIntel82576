@@ -1,0 +1,129 @@
+    r14 = arg0;
+    var_30 = *___stack_chk_guard;
+    if (rsi == 0x0) goto loc_11d02;
+
+loc_11cc2:
+    r15 = 0xe00002bc;
+    r12 = 0x0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+            r12 = 0x0;
+            _IOLog("%s %s: Invalid ring %d - returning\n", r14 + 0x38b, "stockRxRing", rsi);
+    }
+    goto loc_11f94;
+
+loc_11f94:
+    rax = sign_extend_64(r12);
+    if (rax > *(r14 + 0x720)) {
+            *(r14 + 0x720) = rax;
+    }
+    if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+            _IOLog("%s %s: Returning with ret=0x%08lx\n", r14 + 0x38b, "stockRxRing", sign_extend_64(r15));
+    }
+    if (*___stack_chk_guard == var_30) {
+            rax = r15;
+    }
+    else {
+            rax = ___stack_chk_fail();
+    }
+    return rax;
+
+loc_11d02:
+    rbx = *(int16_t *)(r14 + 0x466);
+    r12 = rbx & 0xffff;
+    rax = *(int32_t *)(r14 + 0x460);
+    var_58 = rax + 0xffff;
+    rcx = *(int16_t *)(r14 + 0x464) & 0xffff;
+    r9 = rax + 0xffff & 0xffff;
+    r13 = rcx + 0xfff8 & rax + 0xffff;
+    if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+            var_54 = r13 & 0xffff;
+            _IOLog("%s %s: Entered with head=0x%04x tail=0x%04x newTail=0x%04x size=%ld--------------------\n", r14 + 0x38b, "stockRxRing", rcx, r12, r13 & 0xffff, rax);
+            r9 = r9;
+            rax = *(int32_t *)(r14 + 0x460);
+    }
+    else {
+            var_54 = r13 & 0xffff;
+    }
+    r13 = r13 - r12 & r9;
+    if (r13 >= rax >> 0x2) goto loc_11ddd;
+
+loc_11d90:
+    r12 = 0x0;
+    r15 = 0x0;
+    if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+            r12 = 0x0;
+            _IOLog("%s %s: Deferring restock offset=%d count=%d mask=%u\n", r14 + 0x38b, "stockRxRing", 0x0, r13, r9);
+            r15 = 0x0;
+    }
+    goto loc_11f94;
+
+loc_11ddd:
+    r13 = 0x0;
+    rax = var_54;
+    if (r12 != rax) goto loc_11df3;
+
+loc_11de8:
+    r12 = rax;
+    r15 = 0x0;
+    goto loc_11f39;
+
+loc_11f39:
+    if ((rbx & 0xffff) != (*(int16_t *)(r14 + 0x466) & 0xffff)) {
+            if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+                    _IOLog("%s %s: Setting RDT Rgtr and rxRing.tail=0x%04x\n", r14 + 0x38b, "stockRxRing", r12);
+            }
+            *(int32_t *)(*(r14 + 0x7f0) + 0x2818) = r12;
+            *(int16_t *)(r14 + 0x466) = rbx;
+    }
+    r12 = r13;
+    goto loc_11f94;
+
+loc_11df3:
+    r13 = 0x0;
+    goto loc_11df6;
+
+loc_11df6:
+    var_5A = rbx;
+    r15 = rbx & 0xffff;
+    if (*(*(r14 + 0x478) + r15 * 0x8) != 0x0) {
+            (*(*r14 + 0x948))(r14);
+    }
+    rbx = (*(*r14 + 0x928))(r14, *(int32_t *)(r14 + 0x3bc));
+    *(*(r14 + 0x478) + r15 * 0x8) = rbx;
+    if (rbx == 0x0) goto loc_11eb4;
+
+loc_11e42:
+    if (IOMbufNaturalMemoryCursor::getPhysicalSegments(*(r14 + 0x400), rbx, &var_50, 0x1) != 0x1) goto loc_11eed;
+
+loc_11e63:
+    *(*(r14 + 0x458) + (r15 << 0x4)) = var_50;
+    *(*(r14 + 0x458) + (r15 << 0x4) + 0x8) = 0xaaaaaaaaaaaaaaaa;
+    r13 = r13 + 0x1;
+    rbx = r12 + 0x1 & var_58;
+    r12 = rbx & 0xffff;
+    r15 = 0x0;
+    if (r12 != var_54) goto loc_11df6;
+
+loc_11eab:
+    r12 = var_54;
+    goto loc_11f39;
+
+loc_11eed:
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+            _IOLog("%s %s: getPhysicalSegments failed --------------------------------------------------------------\n", r14 + 0x38b, "stockRxRing");
+    }
+    (*(*r14 + 0x948))(r14, rbx, 0x0);
+    *(*(r14 + 0x478) + r15 * 0x8) = rbx;
+    r15 = 0xe00002c8;
+    rbx = var_5A;
+    goto loc_11f39;
+
+loc_11eb4:
+    rbx = var_5A;
+    if ((*(int8_t *)(r14 + 0x785) & 0x4) != 0x0) {
+            _IOLog("%s %s: allocatePacket failed\n", r14 + 0x38b, "stockRxRing");
+    }
+    *(r14 + 0x728) = *(r14 + 0x728) + 0x1;
+    r15 = 0xe00002be;
+    goto loc_11f39;
+

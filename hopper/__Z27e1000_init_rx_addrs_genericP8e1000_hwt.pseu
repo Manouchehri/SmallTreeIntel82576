@@ -1,0 +1,15 @@
+    r14 = arg1;
+    r15 = arg0;
+    rax = (*(r15 + 0xd8))(arg0, r15 + 0x110, 0x0);
+    if (r14 >= 0x2) {
+            var_28 = 0x0;
+            r12 = r14 & 0xffff;
+            rbx = 0x1;
+            r14 = &var_28;
+            do {
+                    rax = (*(r15 + 0xd8))(r15, r14, rbx);
+                    rbx = rbx + 0x1;
+            } while (r12 != rbx);
+    }
+    return rax;
+

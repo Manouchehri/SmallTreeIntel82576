@@ -1,0 +1,53 @@
+    rsi = arg1;
+    r15 = arg3;
+    r12 = arg2;
+    rbx = arg0;
+    rax = *(rbx + 0x510);
+    if (rax == 0x0) goto loc_dc4e;
+
+loc_dbc9:
+    r14 = *(int32_t *)(rbx + 0x55c);
+    if (r14 == 0x0) goto loc_dc4e;
+
+loc_dbd5:
+    rcx = *(rbx + 0x530);
+    if (rcx == 0x0) goto loc_dc29;
+
+loc_dbe1:
+    var_30 = rsi;
+    r13 = r15 & 0xffff;
+    rax = (rcx)(rbx, r13);
+    goto loc_dc0d;
+
+loc_dc0d:
+    if (rax == 0x0) goto loc_dc19;
+
+loc_dc11:
+    if (r14 != 0x1) goto loc_dbf3;
+
+loc_dc44:
+    *(int32_t *)(rbx + 0x55c) = 0x0;
+    goto loc_dc4e;
+
+loc_dc4e:
+    rax = 0xfffffff1;
+    return rax;
+
+loc_dbf3:
+    r14 = r14 - 0x1;
+    _IODelay(*(int32_t *)(rbx + 0x560));
+    rax = (*(rbx + 0x530))(rbx, r13);
+    goto loc_dc0d;
+
+loc_dc19:
+    if (r14 == 0x0) goto loc_dc44;
+
+loc_dc1e:
+    rax = *(rbx + 0x510);
+    rsi = var_30;
+    goto loc_dc29;
+
+loc_dc29:
+    rax = (rax)(rbx, rsi);
+    return rax;
+

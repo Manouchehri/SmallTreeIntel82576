@@ -1,0 +1,25 @@
+    r15 = arg4;
+    r14 = arg3;
+    r12 = arg2;
+    r13 = arg1;
+    rbx = arg0;
+    rax = (*(rbx + 0x410))(arg0, 0xd, arg2, arg3, arg4);
+    if (rax == 0x0) {
+            rax = (*(rbx + 0x410))(rbx, 0xe, r13 & 0xffff);
+            if (rax == 0x0) {
+                    rax = (*(rbx + 0x410))(rbx, 0xd, r12 & 0xffff | 0x4000);
+                    if (rax == 0x0) {
+                            if (r15 != 0x0) {
+                                    rax = (*(rbx + 0x3d8))(rbx, 0xe, r14);
+                            }
+                            else {
+                                    rax = (*(rbx + 0x410))(rbx, 0xe, *(int16_t *)r14 & 0xffff);
+                            }
+                            if (rax == 0x0) {
+                                    rax = (*(rbx + 0x410))(rbx, 0xd, 0x0);
+                            }
+                    }
+            }
+    }
+    return rax;
+

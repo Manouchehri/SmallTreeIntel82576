@@ -1,0 +1,15 @@
+    rbx = rsi;
+    r14 = arg0;
+    if ((rbx != 0x0) && ((*0x2f460)(r14, rbx) != 0x0)) {
+            r15 = 0x0;
+            if ((*(*rbx + 0x5d0))(rbx, r14, 0x0, 0x0) != 0x0) {
+                    *(r14 + 0xd8) = rbx;
+                    r15 = 0x1;
+            }
+    }
+    else {
+            r15 = 0x0;
+    }
+    rax = r15;
+    return rax;
+

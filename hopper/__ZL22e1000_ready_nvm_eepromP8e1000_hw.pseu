@@ -1,0 +1,29 @@
+    r14 = arg0;
+    rax = *(r14 + 0x8);
+    rcx = *(int32_t *)(rax + 0x10);
+    if (*(int32_t *)(r14 + 0x4d8) != 0x2) goto loc_e360;
+
+loc_e301:
+    *(int32_t *)(rax + 0x10) = rcx & 0xfffffffc;
+    _IODelay(0x1);
+    rbx = 0xec78;
+    goto loc_e31c;
+
+loc_e31c:
+    e1000_shift_out_eec_bits(r14, 0x5, *(int16_t *)(r14 + 0x4ee) & 0xffff);
+    if ((e1000_shift_in_eec_bits(r14, 0x8) & 0x1) == 0x0) goto loc_e360;
+
+loc_e342:
+    _IODelay(0x5);
+    e1000_standby_nvm(r14);
+    rbx = rbx + 0x1;
+    rax = 0xffffffff;
+    if (rbx != 0x0) goto loc_e31c;
+
+.l1:
+    return rax;
+
+loc_e360:
+    rax = 0x0;
+    return rax;
+

@@ -1,0 +1,9 @@
+    rsi = arg1;
+    rdi = *arg0;
+    rax = 0xe00002bc;
+    if (rdi != 0x0) {
+            SmallTreeIntel82576::sharedReadPcieCapReg(rdi, rsi);
+            rax = 0x0;
+    }
+    return rax;
+

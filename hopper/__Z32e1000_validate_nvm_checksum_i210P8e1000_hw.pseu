@@ -1,0 +1,13 @@
+    rbx = arg0;
+    if ((*(rbx + 0x498))(arg0) != 0x0) {
+            rax = 0xd;
+    }
+    else {
+            *(rbx + 0x4a0) = e1000_read_nvm_eerd(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+            r14 = e1000_validate_nvm_checksum_generic(rbx);
+            *(rbx + 0x4a0) = *(rbx + 0x4a0);
+            (*(rbx + 0x4a8))(rbx);
+            rax = r14;
+    }
+    return rax;
+

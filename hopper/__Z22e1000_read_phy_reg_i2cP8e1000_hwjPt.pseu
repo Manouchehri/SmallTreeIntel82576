@@ -1,0 +1,20 @@
+    r14 = arg2;
+    r15 = arg0;
+    *(int32_t *)(*(r15 + 0x8) + 0x1028) = *(int32_t *)(r15 + 0x464) << 0x18 | arg1 << 0x10 | 0x8000000;
+    rbx = 0x1;
+    do {
+            _IODelay(0x32);
+            rcx = *(int32_t *)(*(r15 + 0x8) + 0x1028);
+            if ((rcx & 0x20000000) != 0x0) {
+                break;
+            }
+            COND = rbx < 0xc8;
+            rbx = rbx + 0x1;
+    } while (COND);
+    rax = 0xfffffffe;
+    if ((rcx & 0xa0000000) == 0x20000000) {
+            *(int16_t *)r14 = rcx << 0x8 | HIBYTE(rcx) & 0xff;
+            rax = 0x0;
+    }
+    return rax;
+

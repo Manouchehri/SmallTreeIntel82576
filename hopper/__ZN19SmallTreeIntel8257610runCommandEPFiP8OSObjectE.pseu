@@ -1,0 +1,25 @@
+    r14 = arg0;
+    rbx = IOCommandGate::commandGate(arg0);
+    if (rbx != 0x0) {
+            r15 = (*(**(r14 + 0x3e8) + 0x140))(*(r14 + 0x3e8), rbx);
+            if (r15 != 0x0) {
+                    if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                            _IOLog("%s %s: Could not add commandGate as event source\n", r14 + 0x38b, "runCommand");
+                    }
+            }
+            else {
+                    r15 = (*(*rbx + 0x1c0))(rbx, 0x0, 0x0, 0x0, 0x0);
+            }
+            (*(**(r14 + 0x3e8) + 0x148))(*(r14 + 0x3e8), rbx);
+            (*(*rbx + 0x28))(rbx);
+    }
+    else {
+            r15 = 0x0;
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    r15 = 0x0;
+                    _IOLog("%s %s: Could not create commandGate\n", r14 + 0x38b, "runCommand");
+            }
+    }
+    rax = r15;
+    return rax;
+

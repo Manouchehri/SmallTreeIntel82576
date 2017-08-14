@@ -1,0 +1,7 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Manually running txHandler()\n", rbx + 0x38b, "cmdRunTxHandler");
+    }
+    SmallTreeIntel82576::txHandlerWrapper();
+    return 0x0;
+

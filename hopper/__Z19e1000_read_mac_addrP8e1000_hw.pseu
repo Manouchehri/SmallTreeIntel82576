@@ -1,0 +1,10 @@
+    rdi = arg0;
+    rax = *(rdi + 0xe0);
+    if (rax != 0x0) {
+            rax = (rax)(rdi);
+    }
+    else {
+            rax = e1000_read_mac_addr_generic(rdi);
+    }
+    return rax;
+

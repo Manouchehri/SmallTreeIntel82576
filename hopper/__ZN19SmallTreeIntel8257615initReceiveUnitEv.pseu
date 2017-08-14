@@ -1,0 +1,99 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    rcx = *(int32_t *)(*(rbx + 0x7f0) + 0x100) & 0xfbfc4f19;
+    rdx = *(int32_t *)(rbx + 0x918) << 0xc;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2828) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x100) = rdx & 0xfbfc7000 | rcx | 0x4008022;
+    e1000_rar_set(rbx + 0x7e8, rbx + 0x385, 0x0);
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: mac address: %02x:%02x:%02x:%02x:%02x:%02x\n", rbx + 0x38b, "initReceiveUnit", *(int8_t *)(rbx + 0x385) & 0xff, *(int8_t *)(rbx + 0x386) & 0xff, *(int8_t *)(rbx + 0x387) & 0xff, *(int8_t *)(rbx + 0x388) & 0xff, *(int8_t *)(rbx + 0x389) & 0xff, *(int8_t *)(rbx + 0x38a) & 0xff);
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: set mac address: ral=0x%08lx rah=0x%08lx\n", rbx + 0x38b, "initReceiveUnit", *(int32_t *)(*(rbx + 0x7f0) + 0x5400), *(int32_t *)(*(rbx + 0x7f0) + 0x5404));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Clearing address tables\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    rax = *(rbx + 0x7f0);
+    rcx = 0xffffffffffffff90;
+    do {
+            *(int32_t *)(rax + rcx + 0x5478) = 0x0;
+            *(int32_t *)(rax + rcx + 0x547c) = 0x0;
+            rcx = rcx + 0x8;
+    } while (rcx != 0x0);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Clearing MTA Tables\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    rax = *(rbx + 0x7f0);
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rcx + rax + 0x5200) = 0x0;
+            rcx = rcx + 0x4;
+    } while (rcx != 0x200);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Clearing PSRTypes\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    rax = *(rbx + 0x7f0);
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rcx + rax + 0x5480) = 0x0;
+            rcx = rcx + 0x4;
+    } while (rcx != 0x20);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Clearing RETA\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    rax = *(rbx + 0x7f0);
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rcx + rax + 0x5c00) = 0x0;
+            rcx = rcx + 0x4;
+    } while (rcx != 0x80);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Setup Rx Desc rings\n", rbx + 0x38b, "initReceiveUnit");
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x280c) = 0x82000400;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2800) = *(int32_t *)(rbx + 0x468);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2804) = *(int32_t *)(rbx + 0x46c);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2808) = *(int32_t *)(rbx + 0x484);
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2828) = 0x2010808;
+    rax = *(int32_t *)(rbx + 0x784);
+    r14 = rbx + 0x38b;
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Setting up RDT/RDH\n", r14, "initReceiveUnit");
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Before initializing, rdh=0x%08lx and rdt=0x%08lx\n", r14, "initReceiveUnit", *(int32_t *)(*(rbx + 0x7f0) + 0x2810), *(int32_t *)(*(rbx + 0x7f0) + 0x2818));
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2810) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x2818) = 0xfe;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Set rdh to 0x%08lx and rdt to 0x%08lx\n", r14, "initReceiveUnit", *(int32_t *)(*(rbx + 0x7f0) + 0x2810), *(int32_t *)(*(rbx + 0x7f0) + 0x2818));
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Setting Rx checksum offload capabilities\n", r14, "initReceiveUnit");
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x5000) = *(int32_t *)(*(rbx + 0x7f0) + 0x5000) | 0x300;
+    SmallTreeIntel82576::setupReceivePacketTimers();
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Setting up reeive Vlan stripping\n", r14, "initReceiveUnit");
+    }
+    *(int32_t *)*(rbx + 0x7f0) = *(int32_t *)*(rbx + 0x7f0) | 0x40000000;
+    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    if (*(int32_t *)(rbx + 0x784) < 0x0) {
+            _IOLog("%s %s: rxBfrSize=%ld rctl_bsize=0x%lx\n", r14, "initReceiveUnit", *(int32_t *)(rbx + 0x3bc), 0x0);
+    }
+    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+    _IODelay(0xc350);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with ret=0x%08lx\n", r14, "initReceiveUnit", 0x0);
+    }
+    return 0x0;
+

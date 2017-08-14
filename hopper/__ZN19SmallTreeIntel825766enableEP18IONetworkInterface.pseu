@@ -1,0 +1,23 @@
+    r14 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rcx = r14;
+            _IOLog("%s %s: Entered with netif=%p\n", rbx + 0x38b, "enable", rcx);
+    }
+    *(int32_t *)(rbx + 0x4b4) = (*(*r14 + 0x8d8))(r14) & 0xffff;
+    r15 = rbx + 0x38b;
+    if (*(int32_t *)(rbx + 0x784) < 0x0) {
+            _IOLog("%s %s: New name en%d\n", r15, "enable", rcx);
+    }
+    _snprintf(r15, 0xa, "%s%d", (*(*r14 + 0x8a0))(r14), *(int32_t *)(rbx + 0x4b4));
+    rax = *(int32_t *)(rbx + 0x784);
+    if (rax < 0x0) {
+            _IOLog("%s %s: ifname=%s\n", r15, "enable", r15);
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with netif=%p by calling up\n", r15, "enable", r14);
+    }
+    rax = SmallTreeIntel82576::up(rbx);
+    return rax;
+

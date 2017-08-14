@@ -1,0 +1,12 @@
+    r14 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "stop");
+    }
+    rdi = *(rbx + 0x748);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x5d8))();
+    }
+    rax = (*0x2f470)(rbx, r14);
+    return rax;
+

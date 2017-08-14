@@ -1,0 +1,2 @@
+    return *(int32_t *)0x19bdc;
+

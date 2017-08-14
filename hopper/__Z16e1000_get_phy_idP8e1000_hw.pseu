@@ -1,0 +1,18 @@
+    rbx = arg0;
+    rcx = *(rbx + 0x3d8);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            rax = (rcx)(rbx, 0x2, &var_A, rcx);
+            if (rax == 0x0) {
+                    *(int32_t *)(rbx + 0x468) = (var_A & 0xffff) << 0x10;
+                    _IODelay(0x14);
+                    rax = (*(rbx + 0x3d8))(rbx, 0x3, &var_A);
+                    if (rax == 0x0) {
+                            *(int32_t *)(rbx + 0x468) = *(int32_t *)(rbx + 0x468) | var_A & 0xffff & 0xfff0;
+                            *(int32_t *)(rbx + 0x470) = var_A & 0xffff & 0xf;
+                            rax = 0x0;
+                    }
+            }
+    }
+    return rax;
+

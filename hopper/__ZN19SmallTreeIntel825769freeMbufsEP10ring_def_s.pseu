@@ -1,0 +1,38 @@
+    r14 = rsi;
+    rsi = arg0;
+    if ((*(int8_t *)(rsi + 0x784) & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Entered for %s\n", rsi + 0x38b, "freeMbufs", r14 + 0x38);
+    }
+    if (r14 != 0x0) {
+            rcx = *(r14 + 0x20);
+            if (rcx != 0x0) {
+                    rax = *(int32_t *)(r14 + 0x8);
+                    rbx = 0x0;
+                    if (rax != 0x0) {
+                            rsi = 0x0;
+                            do {
+                                    rbx = rbx;
+                                    r15 = *(rcx + rbx * 0x8);
+                                    if (r15 != 0x0) {
+                                            *(rcx + rbx * 0x8) = 0x0;
+                                            _mbuf_setnextpkt(r15);
+                                            rax = *(int32_t *)(r14 + 0x8);
+                                    }
+                                    else {
+                                            r15 = rsi;
+                                    }
+                                    rbx = rbx + 0x1;
+                                    if (rbx >= rax) {
+                                        break;
+                                    }
+                                    rcx = *(r14 + 0x20);
+                                    rsi = r15;
+                            } while (true);
+                            if (r15 != 0x0) {
+                                    rax = _mbuf_freem_list(r15);
+                            }
+                    }
+            }
+    }
+    return rax;
+

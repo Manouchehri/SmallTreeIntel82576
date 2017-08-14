@@ -1,0 +1,15 @@
+    r14 = arg1;
+    rbx = arg0;
+    if (arg2 == 0x1) {
+            *(int32_t *)r14 = 0x6;
+            r15 = 0x0;
+    }
+    else {
+            r15 = (*0x2f800)(rbx, r14);
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%x vector=%lu\n", rbx + 0x38b, "getChecksumSupport", r15, *(int32_t *)r14);
+    }
+    rax = r15;
+    return rax;
+

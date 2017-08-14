@@ -1,0 +1,114 @@
+    r14 = arg2;
+    r15 = arg1;
+    r12 = arg0;
+    rax = 0xfffffffd;
+    if (*(int32_t *)(r12 + 0x11c) < 0x5) goto .l3;
+
+loc_d95e:
+    rcx = *(r12 + 0x8);
+    if ((0x201 & *(int32_t *)(rcx + 0x8f00)) != 0x201) goto .l3;
+
+loc_d97a:
+    rax = 0xfffffff0;
+    if (((r14 == 0x0) || ((r14 & 0x3) != 0x0)) || (r14 > 0x10000)) goto .l3;
+
+loc_d99f:
+    *(int32_t *)(rcx + 0x8f00) = *(int32_t *)(rcx + 0x8f00) | 0x40;
+    *(int32_t *)(*(r12 + 0x8) + 0x8f00) = *(int32_t *)(rcx + 0x8f00) | 0xc0;
+    rbx = 0x0;
+    r13 = 0x0;
+    goto loc_d9d3;
+
+loc_d9d3:
+    if ((*(int32_t *)(*(r12 + 0x8) + 0x1500) & 0x40000) != 0x0) goto loc_d9fa;
+
+loc_d9e4:
+    _IODelay(0x3e8);
+    rbx = rbx + 0x1;
+    if (rbx < 0x3e8) goto loc_d9d3;
+
+loc_da0e:
+    do {
+            if ((0x800e & *(int32_t *)(*(r12 + 0x8) + 0x5b54)) == 0x8008) {
+                break;
+            }
+            _IODelay(0x3e8);
+            r13 = r13 + 0x1;
+    } while (r13 < 0x1f4);
+    rax = 0xfffffff5;
+    if (r13 != 0x1f4) {
+            r14 = r14 >> 0x2;
+            if (r14 != 0x0) {
+                    rax = *(r12 + 0x8);
+                    rcx = 0x0;
+                    do {
+                            rdx = rcx & 0xff;
+                            if (rdx == 0x0) {
+                                    *(int32_t *)(*(r12 + 0x8) + 0x8f40) = (rcx & 0x3fffff00) * 0x4 + 0x10000;
+                            }
+                            *(int32_t *)((rdx << 0x2) + rax + 0x8800) = *(int32_t *)(r15 + rcx * 0x4);
+                            rcx = rcx + 0x1;
+                    } while (rcx < r14);
+            }
+            *(int32_t *)(*(r12 + 0x8) + 0x8f00) = *(int32_t *)(*(r12 + 0x8) + 0x8f00) | 0x2;
+            rbx = 0x0;
+            do {
+                    if ((*(int32_t *)(*(r12 + 0x8) + 0x8f00) & 0x2) == 0x0) {
+                        break;
+                    }
+                    _IODelay(0x3e8);
+                    rbx = rbx + 0x1;
+            } while (rbx < 0x1f4);
+            rax = 0xfffffff5;
+            if (rbx != 0x1f4) {
+                    rax = 0x0;
+            }
+    }
+    return rax;
+
+.l3:
+    return rax;
+
+loc_d9fa:
+    r13 = 0x0;
+    rax = 0xfffffff5;
+    if (rbx != 0x1f4) {
+            do {
+                    if ((0x800e & *(int32_t *)(*(r12 + 0x8) + 0x5b54)) == 0x8008) {
+                        break;
+                    }
+                    _IODelay(0x3e8);
+                    r13 = r13 + 0x1;
+            } while (r13 < 0x1f4);
+            rax = 0xfffffff5;
+            if (r13 != 0x1f4) {
+                    r14 = r14 >> 0x2;
+                    if (r14 != 0x0) {
+                            rax = *(r12 + 0x8);
+                            rcx = 0x0;
+                            do {
+                                    rdx = rcx & 0xff;
+                                    if (rdx == 0x0) {
+                                            *(int32_t *)(*(r12 + 0x8) + 0x8f40) = (rcx & 0x3fffff00) * 0x4 + 0x10000;
+                                    }
+                                    *(int32_t *)((rdx << 0x2) + rax + 0x8800) = *(int32_t *)(r15 + rcx * 0x4);
+                                    rcx = rcx + 0x1;
+                            } while (rcx < r14);
+                    }
+                    *(int32_t *)(*(r12 + 0x8) + 0x8f00) = *(int32_t *)(*(r12 + 0x8) + 0x8f00) | 0x2;
+                    rbx = 0x0;
+                    do {
+                            if ((*(int32_t *)(*(r12 + 0x8) + 0x8f00) & 0x2) == 0x0) {
+                                break;
+                            }
+                            _IODelay(0x3e8);
+                            rbx = rbx + 0x1;
+                    } while (rbx < 0x1f4);
+                    rax = 0xfffffff5;
+                    if (rbx != 0x1f4) {
+                            rax = 0x0;
+                    }
+            }
+    }
+    return rax;
+

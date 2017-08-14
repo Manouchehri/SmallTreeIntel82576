@@ -1,0 +1,481 @@
+    rbx = arg0;
+    if (*(int32_t *)(rbx + 0x448) == 0xa) goto loc_1000f;
+
+loc_ffd1:
+    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+    if (rax == 0x0) {
+            rax = loc_ffef();
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_1000f:
+    rax = (*(rbx + 0x3d8))(rbx, 0x0, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_10026:
+    e1000_phy_force_speed_duplex_setup(rbx, &var_A);
+    rax = (*(rbx + 0x410))(rbx, 0x0, var_A & 0xffff);
+    if (rax != 0x0) goto .l1;
+
+loc_10049:
+    rax = (*(rbx + 0x3a8))(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_1005a:
+    if (*(int8_t *)(rbx + 0x488) == 0x0) goto loc_10137;
+
+loc_10067:
+    rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+    if (rax != 0x0) goto .l1;
+
+loc_10085:
+    if (var_B != 0x0) goto loc_10119;
+
+loc_1008f:
+    rax = *(int32_t *)(rbx + 0x468);
+    if (rax <= 0x1410c8f) {
+            if (rax == 0x1410c00) {
+                    rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                    if (rax == 0x0) {
+                            rax = 0x0;
+                            if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                    rcx = *(int32_t *)(rbx + 0x468);
+                                    if (rcx <= 0x1410c8f) {
+                                            if (rcx != 0x1410c00) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rdx = var_A & 0xffff | 0x70;
+                                                            var_A = rdx;
+                                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                            if (rax == 0x0) {
+                                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rdx = var_A & 0xffff | 0x70;
+                                                            var_A = rdx;
+                                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                            if (rax == 0x0) {
+                                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                            rax = (*(rbx + 0x410))(rbx, 0x1d, 0x1d);
+                            if (rax == 0x0) {
+                                    rax = *(rbx + 0x410);
+                                    if (rax != 0x0) {
+                                            rax = (rax)(rbx, 0x1e, 0xc1);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x410))(rbx, 0x1e, 0x0);
+                                                    if (rax == 0x0) {
+                                                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                                            if (rax == 0x0) {
+                                                                    rax = 0x0;
+                                                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                                                            rcx = *(int32_t *)(rbx + 0x468);
+                                                                            if (rcx <= 0x1410c8f) {
+                                                                                    if (rcx != 0x1410c00) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                                    var_A = rdx;
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                                    if (rax == 0x0) {
+                                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                                            if (rax == 0x0) {
+                                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                                            }
+                                                                                                    }
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                            else {
+                                                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                                    var_A = rdx;
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                                    if (rax == 0x0) {
+                                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                                            if (rax == 0x0) {
+                                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                                            }
+                                                                                                    }
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                            if (rax == 0x0) {
+                                                    rax = 0x0;
+                                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                                            rcx = *(int32_t *)(rbx + 0x468);
+                                                            if (rcx <= 0x1410c8f) {
+                                                                    if (rcx != 0x1410c00) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                    var_A = rdx;
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                    if (rax == 0x0) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                            else {
+                                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                    var_A = rdx;
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                    if (rax == 0x0) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+                    else {
+                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                            if (rax == 0x0) {
+                                    rax = 0x0;
+                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                            rcx = *(int32_t *)(rbx + 0x468);
+                                            if (rcx <= 0x1410c8f) {
+                                                    if (rcx != 0x1410c00) {
+                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                            if (rax == 0x0) {
+                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                    var_A = rdx;
+                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                            else {
+                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                            if (rax == 0x0) {
+                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                    var_A = rdx;
+                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    else {
+            if (((rax != 0x1410c90) && (rax != 0x1410dc0)) && (rax != 0x1410df0)) {
+                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                            rax = (*(rbx + 0x410))(rbx, 0x1d, 0x1d);
+                            if (rax == 0x0) {
+                                    rax = *(rbx + 0x410);
+                                    if (rax != 0x0) {
+                                            rax = (rax)(rbx, 0x1e, 0xc1);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x410))(rbx, 0x1e, 0x0);
+                                                    if (rax == 0x0) {
+                                                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                                            if (rax == 0x0) {
+                                                                    rax = 0x0;
+                                                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                                                            rcx = *(int32_t *)(rbx + 0x468);
+                                                                            if (rcx <= 0x1410c8f) {
+                                                                                    if (rcx != 0x1410c00) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                                    var_A = rdx;
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                                    if (rax == 0x0) {
+                                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                                            if (rax == 0x0) {
+                                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                                            }
+                                                                                                    }
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                            else {
+                                                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                                    var_A = rdx;
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                                    if (rax == 0x0) {
+                                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                                            if (rax == 0x0) {
+                                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                                            }
+                                                                                                    }
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                            if (rax == 0x0) {
+                                                    rax = 0x0;
+                                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                                            rcx = *(int32_t *)(rbx + 0x468);
+                                                            if (rcx <= 0x1410c8f) {
+                                                                    if (rcx != 0x1410c00) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                    var_A = rdx;
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                    if (rax == 0x0) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                            else {
+                                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                                    var_A = rdx;
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                                    if (rax == 0x0) {
+                                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                                            if (rax == 0x0) {
+                                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                                            }
+                                                                                    }
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+                    else {
+                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                            if (rax == 0x0) {
+                                    rax = 0x0;
+                                    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                            rcx = *(int32_t *)(rbx + 0x468);
+                                            if (rcx <= 0x1410c8f) {
+                                                    if (rcx != 0x1410c00) {
+                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                            if (rax == 0x0) {
+                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                    var_A = rdx;
+                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                            else {
+                                                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                            if (rax == 0x0) {
+                                                                    rdx = var_A & 0xffff | 0x70;
+                                                                    var_A = rdx;
+                                                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                            if (rax == 0x0) {
+                                                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                            }
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                    if (rax == 0x0) {
+                            rax = 0x0;
+                            if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                                    rcx = *(int32_t *)(rbx + 0x468);
+                                    if (rcx <= 0x1410c8f) {
+                                            if (rcx != 0x1410c00) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rdx = var_A & 0xffff | 0x70;
+                                                            var_A = rdx;
+                                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                            if (rax == 0x0) {
+                                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rdx = var_A & 0xffff | 0x70;
+                                                            var_A = rdx;
+                                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                                            if (rax == 0x0) {
+                                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                                    if (rax == 0x0) {
+                                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                                    }
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+
+loc_10119:
+    rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+    if (rax == 0x0) {
+            rax = 0x0;
+            if (*(int32_t *)(rbx + 0x448) == 0x2) {
+                    rcx = *(int32_t *)(rbx + 0x468);
+                    if (rcx <= 0x1410c8f) {
+                            if (rcx != 0x1410c00) {
+                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                    if (rax == 0x0) {
+                                            rdx = var_A & 0xffff | 0x70;
+                                            var_A = rdx;
+                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+                    else {
+                            if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                                    rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                                    if (rax == 0x0) {
+                                            rdx = var_A & 0xffff | 0x70;
+                                            var_A = rdx;
+                                            rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                                    if (rax == 0x0) {
+                                                            rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+
+loc_10137:
+    rax = 0x0;
+    if (*(int32_t *)(rbx + 0x448) == 0x2) {
+            rcx = *(int32_t *)(rbx + 0x468);
+            if (rcx <= 0x1410c8f) {
+                    if (rcx != 0x1410c00) {
+                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                            if (rax == 0x0) {
+                                    rdx = var_A & 0xffff | 0x70;
+                                    var_A = rdx;
+                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                    if (rax == 0x0) {
+                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    if (((rcx != 0x1410c90) && (rcx != 0x1410dc0)) && (rcx != 0x1410df0)) {
+                            rax = (*(rbx + 0x3d8))(rbx, 0x14, &var_A);
+                            if (rax == 0x0) {
+                                    rdx = var_A & 0xffff | 0x70;
+                                    var_A = rdx;
+                                    rax = (*(rbx + 0x410))(rbx, 0x14, rdx);
+                                    if (rax == 0x0) {
+                                            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+                                            if (rax == 0x0) {
+                                                    rax = (*(rbx + 0x410))(rbx, 0x10, var_A & 0xffff | 0x800);
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+

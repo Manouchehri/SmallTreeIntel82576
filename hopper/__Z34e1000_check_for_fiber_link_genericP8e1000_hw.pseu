@@ -1,0 +1,41 @@
+    rdi = arg0;
+    rax = *(rdi + 0x8);
+    rcx = *(int32_t *)rax;
+    rsi = *(int32_t *)(rax + 0x8);
+    rdx = 0x20000000 & *(int32_t *)(rax + 0x180);
+    if ((rcx & 0x80000) == 0x0) goto loc_caac;
+
+loc_ca77:
+    rsi = rsi & 0x2;
+    if ((rsi != 0x0) || (rdx != 0x0)) goto loc_caac;
+
+loc_ca80:
+    if (*(int8_t *)(rdi + 0x354) == 0x0) goto loc_cad3;
+
+loc_ca89:
+    *(int32_t *)(rax + 0x178) = 0x7fffffff & *(int32_t *)(rdi + 0x138);
+    *(int32_t *)*(rdi + 0x8) = *(int32_t *)*(rdi + 0x8) | 0x41;
+    rax = e1000_config_fc_after_link_up_generic(rdi);
+    if (rax == 0x0) {
+            rax = 0x0;
+    }
+    return rax;
+
+loc_cad3:
+    *(int8_t *)(rdi + 0x354) = 0x1;
+    goto loc_cada;
+
+loc_cada:
+    rax = 0x0;
+    return rax;
+
+loc_caac:
+    if ((rcx & 0x40) != 0x0) {
+            if (rdx != 0x0) {
+                    *(int32_t *)(rax + 0x178) = *(int32_t *)(rdi + 0x138);
+                    *(int32_t *)*(rdi + 0x8) = rcx & 0xffffffbf;
+                    *(int8_t *)(rdi + 0x35c) = 0x1;
+            }
+    }
+    goto loc_cada;
+

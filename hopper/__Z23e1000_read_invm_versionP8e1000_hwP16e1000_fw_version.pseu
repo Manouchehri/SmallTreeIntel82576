@@ -1,0 +1,89 @@
+    rsi = arg1;
+    var_8 = *___stack_chk_guard;
+    rax = *(arg0 + 0x8);
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rbp + rcx + 0xfffffffffffffef0) = *(int32_t *)(rcx + rax + 0x12120);
+            rcx = rcx + 0x4;
+    } while (rcx != 0x100);
+    rdx = &var_18;
+    rdi = 0x1;
+    goto loc_14781;
+
+loc_14781:
+    rax = *(int32_t *)(rdx + 0xfffffffffffffffc);
+    if (rdi != 0x1) goto loc_14798;
+
+loc_14789:
+    rcx = 0x0;
+    if ((rax & 0x1ff8) == 0x0) goto loc_147d7;
+
+loc_14791:
+    if ((rax & 0x7fe000) == 0x0) goto loc_147cd;
+
+loc_14798:
+    if (((rax & 0x1ffb) == 0x0) || (((rax & 0x3) != 0x0) && (rdi != 0x1))) goto loc_147c0;
+
+loc_147a7:
+    if ((rax & 0x7fe003) == 0x0) goto loc_147cd;
+
+loc_147ae:
+    rdx = rdx + 0xfffffffffffffffc;
+    rdi = rdi + 0x1;
+    rax = 0xffffffec;
+    if (rdi <= 0x3d) goto loc_14781;
+
+loc_147e7:
+    rdx = &var_18;
+    rdi = 0x1;
+    goto loc_147f0;
+
+loc_147f0:
+    r9 = *(int32_t *)(rdx + 0xfffffffffffffffc);
+    if (rdi != 0x1) goto loc_14804;
+
+loc_147f9:
+    rcx = r9 & 0x1f800000;
+    if (rcx == 0x0) goto loc_14831;
+
+loc_14804:
+    if (((r9 & 0x1f800003) == 0x0) || (((r9 & 0x3) != 0x0) && (rdi != 0x1))) goto loc_14825;
+
+loc_14818:
+    rdx = rdx + 0xfffffffffffffffc;
+    rdi = rdi + 0x1;
+    if (rdi <= 0x3d) goto loc_147f0;
+
+loc_14837:
+    if (*___stack_chk_guard != var_8) {
+            rax = ___stack_chk_fail();
+    }
+    return rax;
+
+loc_14825:
+    *(int8_t *)(rsi + 0xc) = *(int32_t *)rdx >> 0x17 & 0x3f;
+    goto loc_14835;
+
+loc_14835:
+    rax = 0x0;
+    goto loc_14837;
+
+loc_14831:
+    *(int8_t *)(rsi + 0xc) = 0x0;
+    goto loc_14835;
+
+loc_147cd:
+    rcx = rax >> 0x3 & 0x3ff;
+    goto loc_147d7;
+
+loc_147d7:
+    *(int8_t *)(rsi + 0xa) = rcx >> 0x4;
+    *(int8_t *)(rsi + 0xb) = rcx & 0xf;
+    rax = 0x0;
+    goto loc_147e7;
+
+loc_147c0:
+    rcx = *(int32_t *)rdx >> 0xd;
+    rcx = rcx & 0x3ff;
+    goto loc_147d7;
+

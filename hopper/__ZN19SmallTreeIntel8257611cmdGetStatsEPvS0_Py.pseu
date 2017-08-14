@@ -1,0 +1,34 @@
+    r14 = rcx;
+    r12 = arg2;
+    r15 = arg1;
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            _IOLog("%s %s: p1=%p\n", rbx + 0x38b, "cmdGetStats", r15);
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            rsi = rbx + 0x38b;
+            rcx = "false";
+            if (r15 != 0x0) {
+                    rcx = "true";
+            }
+            rax = 0x0;
+            if (r14 != 0x0) {
+                    rax = *r14;
+            }
+            _IOLog("%s %s: clear=%s pOut=%p pOutSize=%p *pOutSize=0x%lx, outSize=0x%lx\n", rsi, "cmdGetStats", rcx, r12, r14, rax, 0x268);
+    }
+    rax = 0xe00002c2;
+    if (((r12 != 0x0) && (r14 != 0x0)) && (*r14 >= 0x268)) {
+            _bzero(r12, 0x268);
+            SmallTreeIntel82576::updateNicStats();
+            _bcopy(rbx + 0x4d8, r12, 0x268);
+            if (r15 != 0x0) {
+                    SmallTreeIntel82576::clearStats();
+            }
+            *r14 = 0x268;
+            rax = 0x0;
+    }
+    return rax;
+

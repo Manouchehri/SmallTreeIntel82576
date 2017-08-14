@@ -1,0 +1,3 @@
+    rax = e1000_force_mac_fc_generic(arg0);
+    return rax;
+

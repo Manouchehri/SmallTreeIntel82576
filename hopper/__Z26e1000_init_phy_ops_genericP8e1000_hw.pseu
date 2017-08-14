@@ -1,0 +1,26 @@
+    *(arg0 + 0x388) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x390) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x398) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3a0) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3a8) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3b0) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3b8) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3c0) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3c8) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x3d0) = e1000_null_set_page(e1000_hw*, unsigned short);
+    *(arg0 + 0x3d8) = e1000_null_read_reg(e1000_hw*, unsigned int, unsigned short*);
+    *(arg0 + 0x3e0) = e1000_null_read_reg(e1000_hw*, unsigned int, unsigned short*);
+    *(arg0 + 0x3e8) = e1000_null_read_reg(e1000_hw*, unsigned int, unsigned short*);
+    *(arg0 + 0x3f0) = e1000_null_phy_generic(e1000_hw*);
+    *(arg0 + 0x3f8) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x400) = e1000_null_lplu_state(e1000_hw*, bool);
+    *(arg0 + 0x408) = e1000_null_lplu_state(e1000_hw*, bool);
+    *(arg0 + 0x410) = e1000_null_write_reg(e1000_hw*, unsigned int, unsigned short);
+    *(arg0 + 0x418) = e1000_null_write_reg(e1000_hw*, unsigned int, unsigned short);
+    *(arg0 + 0x420) = e1000_null_write_reg(e1000_hw*, unsigned int, unsigned short);
+    *(arg0 + 0x428) = e1000_null_phy_generic(e1000_hw*);
+    *(arg0 + 0x430) = e1000_null_phy_generic(e1000_hw*);
+    *(arg0 + 0x438) = e1000_read_i2c_byte_null(e1000_hw*, unsigned char, unsigned char, unsigned char*);
+    *(arg0 + 0x440) = e1000_write_i2c_byte_null(e1000_hw*, unsigned char, unsigned char, unsigned char);
+    return e1000_write_i2c_byte_null(e1000_hw*, unsigned char, unsigned char, unsigned char);
+

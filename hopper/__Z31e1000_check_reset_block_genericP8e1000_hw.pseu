@@ -1,0 +1,7 @@
+    rcx = 0x40000 & *(int32_t *)(*(arg0 + 0x8) + 0x5820);
+    rax = 0xc;
+    if (rcx == 0x0) {
+            rax = rcx;
+    }
+    return rax;
+

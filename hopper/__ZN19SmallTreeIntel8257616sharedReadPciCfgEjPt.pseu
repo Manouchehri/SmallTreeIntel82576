@@ -1,0 +1,13 @@
+    r15 = rdx;
+    r14 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x786) & 0x10) != 0x0) {
+            _IOLog("%s %s:  Entered", rbx + 0x38b, "sharedReadPciCfg");
+    }
+    rax = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), r14);
+    *(int16_t *)r15 = rax;
+    if ((*(int8_t *)(rbx + 0x786) & 0x10) != 0x0) {
+            rax = _IOLog("%s %s: config reg 0x%x value 0x%x", rbx + 0x38b, "sharedReadPciCfg", r14, rax & 0xffff);
+    }
+    return rax;
+

@@ -1,0 +1,7 @@
+    rsi = arg1;
+    rdi = *arg0;
+    if (rdi != 0x0) {
+            rax = SmallTreeIntel82576::sharedWritePciCfg(rdi, rsi);
+    }
+    return rax;
+

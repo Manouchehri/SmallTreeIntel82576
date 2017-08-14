@@ -1,0 +1,11 @@
+    rbx = arg0;
+    if (*(int32_t *)(rbx + 0x474) == 0x1) {
+            rax = e1000_check_for_copper_link_generic(rbx);
+    }
+    else {
+            e1000_get_pcs_speed_and_duplex_82575(rbx, &var_A, &var_C);
+            *(int8_t *)(rbx + 0x355) = *(int8_t *)(rbx + 0x35c) ^ 0x1;
+            rax = e1000_config_fc_after_link_up_generic(rbx);
+    }
+    return rax;
+

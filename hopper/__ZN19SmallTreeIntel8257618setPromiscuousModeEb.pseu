@@ -1,0 +1,19 @@
+    r14 = rsi;
+    r15 = arg0;
+    rbx = *(int32_t *)(*(r15 + 0x7f0) + 0x100);
+    rax = *(int32_t *)(r15 + 0x784);
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with active=%d\n", r15 + 0x38b, "setPromiscuousMode", r14 & 0xff);
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    rcx = rbx | 0x18;
+    rbx = rbx & 0xffffffe7;
+    if (r14 != 0x0) {
+            rbx = rcx;
+    }
+    if ((rax & 0x2) != 0x0) {
+            _IOLog("%s %s: Writing 0x%08lx to RCTL\n", r15 + 0x38b, "setPromiscuousMode", rbx);
+    }
+    *(int32_t *)(*(r15 + 0x7f0) + 0x100) = rbx;
+    return 0x0;
+

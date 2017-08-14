@@ -1,0 +1,11 @@
+    rbx = rdi;
+    rdi = *(rbx + 0xd8);
+    if (rdi != 0x0) {
+            if ((*(*rdi + 0x5e0))() != 0x0) {
+                    (*(**(rbx + 0xd8) + 0x5d8))(*(rbx + 0xd8), rbx, 0x0);
+            }
+            (*(*rbx + 0x678))(rbx, *(rbx + 0xd8));
+            *(rbx + 0xd8) = 0x0;
+    }
+    return 0x0;
+

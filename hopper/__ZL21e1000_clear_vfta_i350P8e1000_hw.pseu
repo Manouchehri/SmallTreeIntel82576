@@ -1,0 +1,12 @@
+    rax = *(arg0 + 0x8);
+    rcx = 0x0;
+    do {
+            rdx = 0xa;
+            do {
+                    *(int32_t *)(rax + rcx * 0x4 + 0x5600) = 0x0;
+                    rdx = rdx - 0x1;
+            } while (rdx != 0x0);
+            rcx = rcx + 0x1;
+    } while (rcx != 0x80);
+    return rax;
+

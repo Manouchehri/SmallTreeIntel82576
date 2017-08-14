@@ -1,0 +1,8 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "newModelString");
+    }
+    rax = *(int32_t *)(rbx + 0x904);
+    rax = OSString::withCString();
+    return rax;
+

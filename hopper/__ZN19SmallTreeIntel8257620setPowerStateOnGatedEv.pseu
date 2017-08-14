@@ -1,0 +1,18 @@
+    rbx = rdi;
+    (*(**(rbx + 0x748) + 0x8e0))(*(rbx + 0x748), 0x1, rbx + 0x76d);
+    rsi = *(int8_t *)(rbx + 0x76d) & 0xff;
+    if (rsi != 0x0) {
+            r14 = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), rsi + 0x4);
+            if ((*(int8_t *)(rbx + 0x786) & 0x2) != 0x0) {
+                    rcx = *(int8_t *)(rbx + 0x76d) & 0xff;
+                    _IOLog("%s %s: pwrPCICapPtr=%d kIOPCIPMCSR=%d pmcsr=0x%04lx\n", rbx + 0x38b, "setPowerStateOnGated", rcx, rcx + 0x4, r14 & 0xffff);
+            }
+            IOPCIDevice::extendedConfigWrite16(*(rbx + 0x748), (*(int8_t *)(rbx + 0x76d) & 0xff) + 0x4, (r14 | 0x8100) & 0xffff);
+    }
+    *(int32_t *)(*(rbx + 0x7f0) + 0x5800) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x5808) = 0x0;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x5810) = 0xffffffff;
+    *(int32_t *)(*(rbx + 0x7f0) + 0x5838) = 0x0;
+    *(int32_t *)*(rbx + 0x7f0) = *(int32_t *)*(rbx + 0x7f0) & 0xffefffff;
+    return 0x0;
+

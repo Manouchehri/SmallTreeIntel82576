@@ -1,0 +1,373 @@
+    r12 = rsi;
+    r14 = arg0;
+    r13 = (*0x2f468)(arg0);
+    _IOLog("SmallTreeIntel82576::start - Built %s %s\n", "Apr 26 2016", "17:49:58");
+    if (r13 == 0x0) goto loc_2414;
+
+loc_1f12:
+    rax = OSMetaClassBase::safeMetaCast(r12, *IOPCIDevice::metaClass);
+    *(r14 + 0x748) = rax;
+    if (rax == 0x0) goto loc_2450;
+
+loc_1f34:
+    (*(*rax + 0x20))(rax);
+    if ((*(**(r14 + 0x748) + 0x5d0))(*(r14 + 0x748), r14, 0x0, 0x0) == 0x0) goto loc_2477;
+
+loc_1f5c:
+    rax = (*(**(r14 + 0x748) + 0x908))(*(r14 + 0x748), 0x10, 0x0);
+    *(r14 + 0x750) = rax;
+    if (rax == 0x0) goto loc_249e;
+
+loc_1f83:
+    r15 = IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x4);
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rcx = r15 & 0xffff;
+            _IOLog("%s %s: at bringup cfgCmd=0x%0x\n", r14 + 0x38b, "start", rcx);
+    }
+    IOPCIDevice::extendedConfigWrite16(*(r14 + 0x748), 0x4, (r15 | 0x16) & 0xfffe);
+    IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x4);
+    r15 = r14 + 0x76d;
+    (*(**(r14 + 0x748) + 0x8e0))(*(r14 + 0x748), 0x1, r15);
+    if ((*(int8_t *)(r14 + 0x786) & 0x2) != 0x0) {
+            rcx = *(int8_t *)(r14 + 0x76d) & 0xff;
+            _IOLog("%s %s: Found pwrPCICapPtr=0x%04x\n", r14 + 0x38b, "start", rcx);
+    }
+    rsi = *(int8_t *)r15 & 0xff;
+    if (rsi != 0x0) {
+            IOPCIDevice::extendedConfigWrite16(*(r14 + 0x748), rsi + 0x4, 0x8000);
+            _IOSleep(0xa);
+    }
+    rbx = r14 + 0x7e8;
+    *(int16_t *)(r14 + 0xd70) = IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x2);
+    *(int16_t *)(r14 + 0xd76) = IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x0);
+    *(int16_t *)(r14 + 0xd72) = IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x2c);
+    *(int16_t *)(r14 + 0xd74) = IOPCIDevice::extendedConfigRead16(*(r14 + 0x748), 0x2e);
+    *(int8_t *)(r14 + 0xd78) = IOPCIDevice::extendedConfigRead8(*(r14 + 0x748), 0x8);
+    *(int8_t *)(r14 + 0x768) = IOPCIDevice::extendedConfigRead8(*(r14 + 0x748), 0xc);
+    *(int8_t *)(r14 + 0x769) = IOPCIDevice::extendedConfigRead8(*(r14 + 0x748), 0xd);
+    *(int8_t *)(r14 + 0x76a) = (*(**(r14 + 0x748) + 0x8e8))(*(r14 + 0x748));
+    *(int8_t *)(r14 + 0x76b) = (*(**(r14 + 0x748) + 0x8f0))(*(r14 + 0x748));
+    *(int8_t *)(r14 + 0x76c) = (*(**(r14 + 0x748) + 0x8f8))(*(r14 + 0x748));
+    rax = (*(**(r14 + 0x750) + 0x118))(*(r14 + 0x750));
+    *(r14 + 0x7f0) = rax;
+    *(r14 + 0x7e8) = r14;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rcx = *(int8_t *)(r14 + 0x769) & 0xff;
+            _IOLog("%s %s: latencyTimer=0x%lx; cacheLineSize=0x%lx\n", r14 + 0x38b, "start", rcx, *(int8_t *)(r14 + 0x768) & 0xff);
+            rax = *(r14 + 0x7f0);
+    }
+    *(int32_t *)(rax + 0xe0) = 0x0;
+    *(int32_t *)(*(r14 + 0x7f0) + 0xd8) = 0xffffffff;
+    *(int32_t *)(r14 + 0x7e0) = *(int32_t *)(*(r14 + 0x7f0) + 0x8);
+    if ((e1000_setup_init_funcs(rbx, 0x1) != 0x0) && ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_setup_init_funcs returned %d\n", r14 + 0x38b, "start", rcx);
+    }
+    if ((e1000_get_bus_info(rbx) != 0x0) && ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_get_bus_info returned %d\n", r14 + 0x38b, "start", rcx);
+    }
+    if ((loc_c00f(rbx) != 0x0) && ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0)) {
+            _IOLog("%s %s: NVM Checksum incorrect", r14 + 0x38b, "start");
+    }
+    rcx = *(int32_t *)(*(r14 + 0x7f0) + 0x5004);
+    *(int32_t *)(r14 + 0x4d4) = rcx;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: RLPML=%u kMaxPacketSize=%u\n", r14 + 0x38b, "start", rcx, rcx);
+    }
+    SmallTreeIntel82576::selMed(r14);
+    r15 = r14 + 0x385;
+    _bzero(r15, 0x6);
+    if ((e1000_read_mac_addr(rbx) != 0x0) && ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_read_mac_addr returned %d\n", r14 + 0x38b, "start", rcx);
+    }
+    _bcopy(r14 + 0x8f8, r15, 0x6);
+    rcx = *(int8_t *)(r14 + 0x385) & 0xff;
+    _snprintf(r14 + 0x35d, 0x12, "%02x:%02x:%02x:%02x:%02x:%02x", rcx, *(int8_t *)(r14 + 0x386) & 0xff, *(int8_t *)(r14 + 0x387) & 0xff, *(int8_t *)(r14 + 0x388) & 0xff, *(int8_t *)(r14 + 0x389) & 0xff, *(int8_t *)(r14 + 0x38a) & 0xff);
+    rax = (*(*r14 + 0x918))(r14);
+    *(r14 + 0x410) = rax;
+    if (rax == 0x0) goto loc_24c5;
+
+loc_23c5:
+    r15 = (*(*r14 + 0x688))(r14);
+    if (r15 == 0x0) goto loc_24ec;
+
+loc_23dd:
+    var_50 = rbx;
+    var_39 = r13;
+    rbx = 0xffffffff;
+    if ((*(*r12 + 0x708))(r12, 0x0, &var_2C) != 0x0) {
+            var_48 = r15;
+            r13 = 0xffffffff;
+    }
+    else {
+            var_48 = r15;
+            r15 = 0x1;
+            r13 = 0xffffffff;
+            do {
+                    rax = r15 + 0xffffffffffffffff;
+                    rcx = var_2C;
+                    if (rcx == 0x1) {
+                            rbx = rax;
+                    }
+                    else {
+                            if (rcx == 0x10000) {
+                                    r13 = rax;
+                            }
+                    }
+                    rax = (*(*r12 + 0x708))(r12, r15, &var_2C);
+                    r15 = r15 + 0x1;
+            } while (rax == 0x0);
+    }
+    r15 = r13;
+    r8 = rbx;
+    if (r13 == 0xffffffff) {
+            r15 = r8;
+    }
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rcx = r13;
+            _IOLog("%s %s: msi index=%d legacy index=%d chose intr_index=%d\n", r14 + 0x38b, "start", rcx, r8, r15);
+    }
+    rax = IOInterruptEventSource::interruptEventSource(r14, intrOccurred(OSObject*, IOInterruptEventSource*, int), r12, r15);
+    *(r14 + 0x3f8) = rax;
+    if (rax == 0x0) goto loc_25f3;
+
+loc_25b3:
+    rbx = var_48;
+    r12 = (*(*rbx + 0x140))(rbx, rax);
+    r13 = var_39;
+    if (r12 == 0x0) goto loc_261e;
+
+loc_25d2:
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_25e0:
+    rdi = "%s %s: addEventSource intrSrc failed\n";
+    goto loc_2979;
+
+loc_2979:
+    _IOLog(rdi);
+    goto loc_2980;
+
+loc_2980:
+    rdi = *(r14 + 0x748);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x5d8))();
+    }
+    if (r12 == 0x0) goto loc_2a03;
+
+loc_299f:
+    r15 = r14 + 0x784;
+    goto loc_29a6;
+
+loc_29a6:
+    rbx = r12 == 0x0 ? 0x1 : 0x0;
+    SmallTreeIntel82576::freeResources();
+    goto loc_29b4;
+
+loc_29b4:
+    r13 = r13 & rbx;
+    if ((*(int8_t *)r15 & 0x2) != 0x0) {
+            r14 = r14 + 0x38b;
+            rcx = "false";
+            if (r13 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", r14, "start", rcx);
+    }
+    rax = r13;
+    return rax;
+
+loc_2a03:
+    if ((*(*r14 + 0x9c0))(r14, r14 + 0x3e0, 0x0) == 0x0) goto loc_2a66;
+
+loc_2a1c:
+    (*(**(r14 + 0x3e0) + 0x5b0))(*(r14 + 0x3e0), 0x0);
+    r15 = r14 + 0x784;
+    rbx = 0x1;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: registerService called\n", r14 + 0x38b, "start");
+    }
+    goto loc_29b4;
+
+loc_2a66:
+    r15 = r14 + 0x784;
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_29a6;
+
+loc_2a81:
+    rdi = "%s %s: attachInterface() failed\n";
+    goto loc_243d;
+
+loc_243d:
+    _IOLog(rdi);
+    goto loc_29a6;
+
+loc_261e:
+    (*(**(r14 + 0x3f8) + 0x150))(*(r14 + 0x3f8));
+    *(int32_t *)(r14 + 0x4ac) = 0x3e8;
+    *(int32_t *)(r14 + 0x770) = 0x1;
+    rax = IOTimerEventSource::timerEventSource(r14, timeoutOccurred(OSObject*, IOTimerEventSource*));
+    *(r14 + 0x3f0) = rax;
+    if (rax == 0x0) goto loc_2697;
+
+loc_265f:
+    r12 = (*(*rbx + 0x140))(rbx, rax);
+    if (r12 == 0x0) goto loc_26c5;
+
+loc_2676:
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_2684:
+    rdi = "%s %s: addEventSource timerSrc failed\n";
+    goto loc_2979;
+
+loc_26c5:
+    var_38 = 0x0;
+    _mbuf_get(0x0, 0x1, &var_38);
+    if (var_38 == 0x0) goto loc_2890;
+
+loc_26ea:
+    r15 = _mbuf_flags();
+    _mbuf_setflags(var_38, 0x0);
+    *(r14 + 0x498) = _mbuf_datastart(var_38) - var_38;
+    _mbuf_setflags(var_38, 0x2);
+    r9 = _mbuf_datastart(var_38) - var_38 - *(r14 + 0x498);
+    *(r14 + 0x4a0) = r9;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: pkthdr start=0x%lx end=0x%lx len=0x%lx\n", r14 + 0x38b, "start", rcx, r8, r9);
+    }
+    _mbuf_setflags();
+    _mbuf_free(var_38);
+    r12 = OSDictionary::withCapacity(0x5);
+    if (r12 != 0x0) {
+            (*(*r12 + 0x1d0))(r12, "intrMaxPerSec", OSNumber::withNumber(0x1388, 0x20));
+            (*(*r12 + 0x1d0))(r12, "txRingSize", OSNumber::withNumber(0x400, 0x20));
+            (*(*r12 + 0x1d0))(r12, "rxRingSize", OSNumber::withNumber(0x100, 0x20));
+            (*(*r12 + 0x1d0))(r12, "timerMsecs", OSNumber::withNumber(0x3e8, 0x20));
+            (*(*r12 + 0x1d0))(r12, "traceMask", OSNumber::withNumber(*(int32_t *)(r14 + 0x784), 0x20));
+            (*(*r14 + 0x268))(r14, "Configuration Parameters", r12);
+            (*(*r14 + 0x300))(r14, r12);
+            rbx = var_50;
+    }
+    else {
+            rbx = var_50;
+            if ((*(int8_t *)(r14 + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Could not allocate configuration dictionary - will run with default config values\n", r14 + 0x38b, "start");
+            }
+    }
+    *(int32_t *)(r14 + 0x420) = 0x0;
+    *(int32_t *)(r14 + 0x460) = 0x0;
+    *(int32_t *)(*(r14 + 0x7f0) + 0x2808) = *(int32_t *)(r14 + 0x460) << 0x4 & 0xfff00000;
+    if (e1000_reset_hw(rbx) == 0x0) goto loc_2946;
+
+loc_2926:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_2936:
+    rdi = "%s %s: resetHW failed\n";
+    goto loc_2979;
+
+loc_2946:
+    r12 = SmallTreeIntel82576::createMediumTable();
+    if (r12 == 0x0) goto loc_2a94;
+
+loc_295a:
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_2964:
+    rdi = "%s %s: createMediumTable failed\n";
+    goto loc_2979;
+
+loc_2a94:
+    (*(*r14 + 0x980))(r14, 0x1, 0x0, 0x0, 0x0);
+    rax = *(r14 + 0x7f0);
+    rcx = 0xfffffffffffffc00;
+    do {
+            *(int32_t *)(rax + rcx + 0x9c00) = 0x0;
+            *(int32_t *)(rax + rcx + 0x9400) = 0x0;
+            rcx = rcx + 0x8;
+    } while (rcx != 0x0);
+    rax = *(r14 + 0x7f0);
+    r12 = 0x0;
+    rcx = 0x0;
+    do {
+            *(int32_t *)(rcx + rax + 0x5f00) = 0x0;
+            rcx = rcx + 0x8;
+    } while (rcx != 0x20);
+    goto loc_2980;
+
+loc_2890:
+    r12 = 0xe00002ca;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_28a4:
+    rdi = "%s %s: Could not determine packet header length.\n";
+    goto loc_2979;
+
+loc_2697:
+    r12 = 0x0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_26a8:
+    rdi = "%s %s: timerEventSource failed\n";
+    r12 = 0x0;
+    goto loc_2979;
+
+loc_25f3:
+    r12 = 0xe00002bc;
+    r13 = var_39;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_260b:
+    rdi = "%s %s: interruptEventSource failed\n";
+    goto loc_2979;
+
+loc_24ec:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_2500:
+    rdi = "%s %s: getWorkLoop failed\n";
+    goto loc_2979;
+
+loc_24c5:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_24d9:
+    rdi = "%s %s: getOutputQueue failed\n";
+    goto loc_2979;
+
+loc_249e:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_24b2:
+    rdi = "%s %s: mapDeviceMemoryWithRegister for regs failed\n";
+    goto loc_2979;
+
+loc_2477:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_248b:
+    rdi = "%s %s: Could not open PCI Nub\n";
+    goto loc_2979;
+
+loc_2450:
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_2980;
+
+loc_2464:
+    rdi = "%s %s: Could not get PCI Nub\n";
+    goto loc_2979;
+
+loc_2414:
+    r15 = r14 + 0x784;
+    r12 = 0xe00002bc;
+    if ((*(int8_t *)(r14 + 0x784) & 0x1) == 0x0) goto loc_29a6;
+
+loc_242f:
+    rdi = "%s %s: Failed to start provider\n";
+    goto loc_243d;
+

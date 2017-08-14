@@ -1,0 +1,30 @@
+    rax = *(arg0 + 0x3a0);
+    rbx = arg0;
+    if (rax != 0x0) {
+            rcx = (rax)(rbx);
+            rax = 0x0;
+            if (rcx == 0x0) {
+                    rax = (*(rbx + 0x390))(rbx);
+                    if (rax == 0x0) {
+                            *(int32_t *)*(rbx + 0x8) = *(int32_t *)*(rbx + 0x8) | 0x80000000;
+                            _IODelay(*(int32_t *)(rbx + 0x46c));
+                            *(int32_t *)*(rdx + 0x8) = *(int32_t *)*(rdx + 0x8);
+                            _IODelay(0x96);
+                            (*(rdx + 0x3f0))(rdx);
+                            rax = (*(rdx + 0x3b8))(rdx);
+                    }
+            }
+    }
+    else {
+            rax = (*(rbx + 0x390))(rbx);
+            if (rax == 0x0) {
+                    *(int32_t *)*(rbx + 0x8) = *(int32_t *)*(rbx + 0x8) | 0x80000000;
+                    _IODelay(*(int32_t *)(rbx + 0x46c));
+                    *(int32_t *)*(rdx + 0x8) = *(int32_t *)*(rdx + 0x8);
+                    _IODelay(0x96);
+                    (*(rdx + 0x3f0))(rdx);
+                    rax = (*(rdx + 0x3b8))(rdx);
+            }
+    }
+    return rax;
+

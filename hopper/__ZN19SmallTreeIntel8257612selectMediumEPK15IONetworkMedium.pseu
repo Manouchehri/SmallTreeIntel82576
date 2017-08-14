@@ -1,0 +1,96 @@
+    r14 = rsi;
+    rbx = arg0;
+    r15 = (*(*r14 + 0x138))(r14);
+    rax = (*(*r14 + 0x120))(r14);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered type %ld index %d\n", rbx + 0x38b, "selectMedium", rax, r15);
+    }
+    if (*(int8_t *)(rbx + 0x3d8) != 0x0) {
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: fIsLoopback\n", rbx + 0x38b, "selectMedium");
+            }
+            *(int8_t *)(rbx + 0x3d8) = 0x0;
+            r15 = 0x1;
+    }
+    else {
+            r15 = 0x0;
+    }
+    (*(*r14 + 0x120))(r14);
+    rax = SmallTreeIntel82576::selMed(rbx);
+    r12 = *(int8_t *)(rbx + 0x3d8);
+    rcx = *(int32_t *)(rbx + 0x784) & 0x2;
+    if (r12 != 0x0) goto loc_5dd7;
+
+loc_5d7e:
+    r15 = r15 | rax;
+    if (r15 == 0x0) goto loc_5dd7;
+
+loc_5d83:
+    if (rcx != 0x0) {
+            _IOLog("%s %s: Blind Restart!!!\n", rbx + 0x38b, "selectMedium");
+    }
+    r15 = SmallTreeIntel82576::restart();
+    if (r15 == 0x0) goto loc_5ed3;
+
+loc_5db7:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_5ef5;
+
+loc_5dc4:
+    rdi = "%s %s: restart returned error\n";
+    goto loc_5e6a;
+
+loc_5e6a:
+    _IOLog(rdi);
+    goto loc_5ef5;
+
+loc_5ef5:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning 0x%08lx\n", rbx + 0x38b, "selectMedium", sign_extend_64(r15));
+    }
+    rax = r15;
+    return rax;
+
+loc_5ed3:
+    *(int8_t *)(rbx + 0x3d8) = 0x0;
+    goto loc_5ee3;
+
+loc_5ee3:
+    (*(*rbx + 0x978))(rbx, r14);
+    r15 = 0x0;
+    goto loc_5ef5;
+
+loc_5dd7:
+    if (rax == 0x0) goto loc_5e7a;
+
+loc_5ddf:
+    if (rcx != 0x0) {
+            _IOLog("%s %s: Bringing down interface\n", rbx + 0x38b, "selectMedium");
+    }
+    SmallTreeIntel82576::down(rbx);
+    _IODelay(0x7a120);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Bringing up interface\n", rbx + 0x38b, "selectMedium");
+    }
+    r15 = SmallTreeIntel82576::up(rbx);
+    if (r15 == 0x0) goto loc_5edc;
+
+loc_5e4f:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_5ef5;
+
+loc_5e5c:
+    rdi = "%s %s: up returned error\n";
+    goto loc_5e6a;
+
+loc_5edc:
+    *(int8_t *)(rbx + 0x3d8) = r12;
+    goto loc_5ee3;
+
+loc_5e7a:
+    if (rcx != 0x0) {
+            _IOLog("%s %s: Calling e1000_setup_link\n", rbx + 0x38b, "selectMedium");
+    }
+    if ((e1000_setup_link(rbx + 0x7e8) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+            _IOLog("%s %s: e1000_setup_link returned %d\n", rbx + 0x38b, "selectMedium", rcx);
+    }
+    goto loc_5ee3;
+

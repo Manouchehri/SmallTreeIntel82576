@@ -1,0 +1,9 @@
+    rax = *(arg0 + 0x8);
+    rdx = *(int32_t *)(rax + 0x581c) | 0x40000000;
+    rcx = *(int32_t *)(rax + 0x581c) & 0xbfffffff;
+    if (arg1 != 0x0) {
+            rcx = rdx;
+    }
+    *(int32_t *)(rax + 0x581c) = rcx;
+    return rax;
+

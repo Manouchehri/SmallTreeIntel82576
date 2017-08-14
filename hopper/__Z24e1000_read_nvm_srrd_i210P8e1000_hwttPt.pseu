@@ -1,0 +1,28 @@
+    rsi = arg1;
+    var_30 = arg3;
+    r15 = arg2;
+    r13 = arg0;
+    rbx = 0x0;
+    if (r15 != 0x0) {
+            r14 = 0x0;
+            r12 = rsi & 0xffff;
+            do {
+                    rbx = 0xd;
+                    if ((*(r13 + 0x498))(r13) != 0x0) {
+                        break;
+                    }
+                    rax = r15 - r14;
+                    CMP(rax, 0x1ff);
+                    asm { cmovg      ax, cx };
+                    rbx = e1000_read_nvm_eerd(r13, r12, rax & 0xffff, var_30 + r14 * 0x2);
+                    (*(r13 + 0x4a8))(r13);
+                    if (rbx != 0x0) {
+                        break;
+                    }
+                    r14 = r14 + 0x200 & 0xffff;
+                    rbx = 0x0;
+            } while (r15 > r14);
+    }
+    rax = rbx;
+    return rax;
+

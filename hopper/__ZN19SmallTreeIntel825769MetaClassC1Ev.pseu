@@ -1,0 +1,4 @@
+    OSMetaClass::OSMetaClass();
+    *rdi = 0x18d30;
+    return 0x18d30;
+

@@ -1,0 +1,7 @@
+    rcx = *(int32_t *)(*(rdi + 0x7f0) + 0x100) & 0xfbfc4f19;
+    rdx = *(int32_t *)(rdi + 0x918) << 0xc;
+    *(int32_t *)(*(rdi + 0x7f0) + 0x2828) = 0x0;
+    rax = *(rdi + 0x7f0);
+    *(int32_t *)(rax + 0x100) = rdx & 0xfbfc7000 | rcx | 0x4008022;
+    return rax;
+

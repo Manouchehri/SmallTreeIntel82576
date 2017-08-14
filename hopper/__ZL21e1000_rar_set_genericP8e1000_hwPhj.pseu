@@ -1,0 +1,32 @@
+    rdx = arg2;
+    rdi = arg0;
+    rax = *(int8_t *)arg1 & 0xff;
+    rcx = *(int8_t *)(arg1 + 0x1) & 0xff;
+    rcx = rcx << 0x8 | rax;
+    rax = *(int8_t *)(arg1 + 0x2) & 0xff;
+    rax = rax << 0x10 | rcx;
+    rcx = *(int8_t *)(arg1 + 0x3) & 0xff;
+    rcx = rcx << 0x18 | rax;
+    rax = *(int8_t *)(arg1 + 0x4) & 0xff;
+    rsi = *(int8_t *)(arg1 + 0x5) & 0xff;
+    rsi = rsi << 0x8 | rax;
+    r8 = rsi + 0xffffffff80000000;
+    rax = rsi | rcx;
+    if (rax == 0x0) {
+            r8 = rsi;
+    }
+    rax = *(rdi + 0x8);
+    rsi = 0x5460;
+    if (rdx < 0x10) {
+            rsi = 0x5400;
+    }
+    *(int32_t *)(rax + rsi + rdx * 0x8) = rcx;
+    rax = *(rdi + 0x8);
+    rsi = 0x5464;
+    if (CPU_FLAGS & B) {
+            rsi = 0x5404;
+    }
+    *(int32_t *)(rax + rsi + rdx * 0x8) = r8;
+    rax = *(int32_t *)(*(rdi + 0x8) + 0x8);
+    return rax;
+

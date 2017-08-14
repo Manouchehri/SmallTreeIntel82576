@@ -1,0 +1,17 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "createWorkLoop");
+    }
+    r14 = IOWorkLoop::workLoop();
+    *(rbx + 0x3e8) = r14;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rbx = rbx + 0x38b;
+            rcx = "false";
+            if (r14 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", rbx, "createWorkLoop", rcx);
+    }
+    rax = r14 != 0x0 ? 0x1 : 0x0;
+    return rax;
+

@@ -1,0 +1,19 @@
+    rdi = arg0;
+    rax = *(int32_t *)(rdi + 0x11c);
+    if ((rax == 0x2) || (rax == 0x4)) {
+            *(int32_t *)(rdi + 0x55c) = 0x0;
+            *(int32_t *)(rdi + 0x560) = 0x0;
+            *(int16_t *)(rdi + 0x564) = 0x10;
+            *(rdi + 0x510) = e1000_read_mbx_pf(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+            *(rdi + 0x518) = e1000_write_mbx_pf(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+            *(rdi + 0x520) = e1000_read_posted_mbx(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+            *(rdi + 0x528) = e1000_write_posted_mbx(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+            *(rdi + 0x530) = e1000_check_for_msg_pf(e1000_hw*, unsigned short);
+            *(rdi + 0x538) = e1000_check_for_ack_pf(e1000_hw*, unsigned short);
+            *(rdi + 0x540) = e1000_check_for_rst_pf(e1000_hw*, unsigned short);
+            *(int32_t *)(rdi + 0x548) = 0x0;
+            *(rdi + 0x54c) = 0x0;
+            *(rdi + 0x554) = 0x0;
+    }
+    return 0x0;
+

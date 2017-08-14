@@ -1,0 +1,4 @@
+    e1000_release_nvm_generic(arg0);
+    rax = e1000_release_swfw_sync_82575(arg0, 0x1);
+    return rax;
+

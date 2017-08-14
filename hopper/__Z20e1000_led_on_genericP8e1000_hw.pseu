@@ -1,0 +1,12 @@
+    rdi = arg0;
+    rax = *(int32_t *)(rdi + 0x474);
+    if (rax == 0x1) {
+            *(int32_t *)(*(rdi + 0x8) + 0xe00) = *(int32_t *)(rdi + 0x12c);
+    }
+    else {
+            if (rax == 0x2) {
+                    *(int32_t *)*(rdi + 0x8) = 0xffbbffff & *(int32_t *)*(rdi + 0x8) | 0x400000;
+            }
+    }
+    return 0x0;
+

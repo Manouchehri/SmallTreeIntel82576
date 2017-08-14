@@ -1,0 +1,57 @@
+    rbx = rdi;
+    *(int32_t *)(rbx + 0x4b0) = 0x9d;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with fMaxPacketSize=0x%08lx intrMask=0x%08lx\n", rbx + 0x38b, "initHW", *(int32_t *)(rbx + 0x4d0), 0x9d);
+    }
+    rax = *(rbx + 0x7f0);
+    if (*(int32_t *)(rax + 0x8) != 0xffffffff) {
+            r14 = rbx + 0x7e8;
+            *(int32_t *)(rax + 0x38) = 0x8100;
+            rcx = *(int32_t *)(rbx + 0x4d0);
+            rdx = 0x3c00;
+            if (rcx < 0x601) {
+                    rdx = 0x1000;
+            }
+            rax = 0x3000;
+            if (CPU_FLAGS & B) {
+                    rax = 0x800;
+            }
+            *(int32_t *)(rbx + 0xb58) = rdx;
+            *(int32_t *)(rbx + 0xb5c) = rax;
+            *(int16_t *)(rbx + 0xb60) = 0xffff;
+            *(int8_t *)(rbx + 0xb64) = 0x1;
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    rdx = 0x3c00;
+                    if (rcx < 0x601) {
+                            rdx = 0x1000;
+                    }
+                    _IOLog("%s %s: pause_time=0x%08lx; low_water/high_water=0x%08lx\n", rbx + 0x38b, "initHW", 0xffff, rax << 0x10 | rdx);
+            }
+            *(int32_t *)(*(rbx + 0x7f0) + 0x2160) = 0x80008180;
+            *(int32_t *)(*(rbx + 0x7f0) + 0x2168) = 0x8190;
+            rax = e1000_init_hw(r14);
+            r14 = 0xe00002bc;
+            if (rax == 0x0) {
+                    r14 = rax;
+            }
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Packet Buffer Allocation=0x%08lx\n", rbx + 0x38b, "initHW", *(int32_t *)(*(rbx + 0x7f0) + 0x1000));
+            }
+            r15 = *(int32_t *)*(rbx + 0x7f0);
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: initHW ctrl=0x%08lx\n", rbx + 0x38b, "initHW", r15);
+            }
+            *(int32_t *)*(rbx + 0x7f0) = r15 | 0x18000000;
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Returning with ret=0x%08lx\n", rbx + 0x38b, "initHW", sign_extend_64(r14));
+            }
+    }
+    else {
+            r14 = 0xe00002bc;
+            if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                    _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "initHW");
+            }
+    }
+    rax = r14;
+    return rax;
+

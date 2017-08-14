@@ -1,0 +1,135 @@
+    rcx = arg3;
+    r12 = r9;
+    r13 = arg4;
+    r14 = arg2;
+    rbx = arg1;
+    r15 = arg0;
+    r10 = 0xffffffff;
+    rax = *(int32_t *)(r15 + 0x784);
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            _IOLog("%s %s: rgtrType=%d start=0x%lx end=0x%lx\n", r15 + 0x38b, "cmdReadRgtrs", rbx, r14 & 0xffffffff, rcx & 0xffffffff);
+            r10 = 0xffffffff;
+            rcx = rcx;
+            r15 = r15;
+            rax = *(int32_t *)(r15 + 0x784);
+    }
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            var_30 = rbx;
+            rbx = rcx;
+            rsi = r15 + 0x38b;
+            r9 = 0x0;
+            r8 = r12;
+            if (r8 != 0x0) {
+                    r9 = *r8;
+            }
+            r12 = r8;
+            _IOLog("%s %s: pOut=%p pOutSize=%p *pOutSize=0x%lx\n", rsi, "cmdReadRgtrs", r13, r8, r9);
+            rcx = rbx;
+            r10 = 0xffffffff;
+            rbx = var_30;
+    }
+    if (rbx != 0x0) goto loc_13620;
+
+loc_135ea:
+    rax = rcx - r14;
+    if (((r14 | rcx) & 0x3) == 0x0) goto loc_13633;
+
+loc_135f9:
+    rbx = 0xe00002c2;
+    if ((*(int16_t *)(r15 + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_136a5;
+
+loc_13610:
+    r15 = r15 + 0x38b;
+    rdi = "%s %s: Unaligned address\n";
+    goto loc_13694;
+
+loc_13694:
+    _IOLog(rdi);
+    goto loc_136a5;
+
+loc_136a5:
+    rax = rbx;
+    return rax;
+
+loc_13633:
+    r10 = r10 & rax;
+    if ((rcx < r14) || (r10 == 0x0)) goto loc_13673;
+
+loc_13640:
+    if (((r13 == 0x0) || (r12 == 0x0)) || (*r12 < r10)) goto loc_13650;
+
+loc_136b6:
+    var_40 = rcx;
+    var_38 = r12;
+    r12 = r10;
+    _bzero(r13, r10);
+    rcx = rbx;
+    if (rcx != 0x0) goto loc_136fc;
+
+loc_136d3:
+    rdx = var_40;
+    if (r14 < rdx) {
+            rax = *(r15 + 0x7f0);
+            do {
+                    *(int32_t *)r13 = *(int32_t *)(rax + r14);
+                    r13 = r13 + 0x4;
+                    r14 = r14 + 0x4;
+            } while (r14 < rdx);
+    }
+    goto loc_13738;
+
+loc_13738:
+    *var_38 = r12;
+    rbx = 0x0;
+    goto loc_136a5;
+
+loc_136fc:
+    if (rcx != 0x1) goto loc_13746;
+
+loc_13701:
+    rax = var_40;
+    if (r14 < rax) {
+            var_30 = r15 + 0x7e8;
+            do {
+                    (*(r15 + 0xbc0))(var_30, r14, r13);
+                    rax = rax;
+                    r13 = r13 + 0x4;
+                    r14 = r14 + 0x1;
+            } while (rax != r14);
+    }
+    goto loc_13738;
+
+loc_13746:
+    rbx = 0xe00002c2;
+    rsi = r15;
+    if ((*(int8_t *)(rsi + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: Ignoring illegal rgtrType=%d\n", rsi + 0x38b, "cmdReadRgtrs", rcx);
+    }
+    goto loc_136a5;
+
+loc_13650:
+    rbx = 0xe00002c2;
+    if ((*(int16_t *)(r15 + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_136a5;
+
+loc_13663:
+    r15 = r15 + 0x38b;
+    rdi = "%s %s: Output buffer too small\n";
+    goto loc_13694;
+
+loc_13673:
+    rbx = 0xe00002c2;
+    if ((*(int16_t *)(r15 + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_136a5;
+
+loc_13686:
+    r15 = r15 + 0x38b;
+    rdi = "%s %s: register region out of bounds\n";
+    goto loc_13694;
+
+loc_13620:
+    if (rbx != 0x1) goto loc_13673;
+
+loc_13625:
+    rax = rcx - r14 << 0x2;
+    r10 = 0xfffffffc;
+    goto loc_13633;
+

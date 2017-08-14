@@ -1,0 +1,28 @@
+    r15 = arg2;
+    rbx = arg1;
+    r14 = arg0;
+    _memset(r14 + 0x14c, 0x0, 0x200);
+    if (r15 != 0x0) {
+            do {
+                    rax = e1000_hash_mc_addr_generic(r14, rbx);
+                    rdx = *(int16_t *)(r14 + 0x146) & 0xffff;
+                    *(int32_t *)(r14 + (rdx + 0x7ffffff & rax >> 0x5) * 0x4 + 0x14c) = *(int32_t *)(r14 + (rdx + 0x7ffffff & rax >> 0x5) * 0x4 + 0x14c) | 0x1 << rax;
+                    rbx = rbx + 0x6;
+                    r15 = r15 - 0x1;
+            } while (r15 != 0x0);
+    }
+    rcx = *(int16_t *)(r14 + 0x146) & 0xffff;
+    rax = *(r14 + 0x8);
+    if (rcx != 0x0) {
+            rdx = rcx * 0x4 + 0xfffffffffffffffc;
+            do {
+                    rsi = *(int32_t *)(r14 + rcx * 0x4 + 0x148);
+                    rcx = rcx - 0x1;
+                    *(int32_t *)(rax + sign_extend_64(rdx) + 0x5200) = rsi;
+                    rax = *(r14 + 0x8);
+                    rdx = sign_extend_64(rdx) + 0xfffffffc;
+            } while (rcx > 0x0);
+    }
+    rax = *(int32_t *)(rax + 0x8);
+    return rax;
+

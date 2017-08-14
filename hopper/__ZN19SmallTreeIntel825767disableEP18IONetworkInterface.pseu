@@ -1,0 +1,8 @@
+    rcx = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with netif=%p by calling down()\n", rbx + 0x38b, "disable", rcx);
+    }
+    SmallTreeIntel82576::down(rbx);
+    return 0x0;
+

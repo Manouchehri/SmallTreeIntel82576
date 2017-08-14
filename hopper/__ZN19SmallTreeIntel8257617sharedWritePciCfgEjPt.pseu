@@ -1,0 +1,14 @@
+    r14 = rdx;
+    r15 = arg1;
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((rax & 0x100000) != 0x0) {
+            _IOLog("%s %s: Entered", rbx + 0x38b, "sharedWritePciCfg");
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((rax & 0x100000) != 0x0) {
+            _IOLog("%s %s: config write reg 0x%x, value 0x%x", rbx + 0x38b, "sharedWritePciCfg", r15, *(int16_t *)r14 & 0xffff);
+    }
+    rax = IOPCIDevice::extendedConfigWrite16(*(rbx + 0x748), r15, *(int16_t *)r14 & 0xffff);
+    return rax;
+

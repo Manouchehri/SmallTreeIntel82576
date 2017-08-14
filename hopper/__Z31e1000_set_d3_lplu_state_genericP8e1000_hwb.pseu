@@ -1,0 +1,69 @@
+    rbx = arg1;
+    r14 = arg0;
+    rax = *(r14 + 0x3d8);
+    if (rax == 0x0) goto loc_102e4;
+
+loc_102c0:
+    rax = (rax)(r14, 0x19, &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_102d2:
+    if (rbx == 0x0) goto loc_102ef;
+
+loc_102d6:
+    rax = *(int16_t *)(r14 + 0x478) & 0xffff;
+    if (rax <= 0x2f) goto loc_10349;
+
+loc_102e4:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_10349:
+    COND = BIT_TEST(0x800000008008, rax);
+    rax = 0x0;
+    if (COND) goto .l1;
+
+loc_1035e:
+    rdx = var_12 & 0xffff | 0x4;
+    var_12 = rdx;
+    rax = (*(r14 + 0x410))(r14, 0x19, rdx);
+    if (rax != 0x0) goto .l1;
+
+loc_10380:
+    rax = (*(r14 + 0x3d8))(r14, 0x10, &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_1039b:
+    rdx = var_12 & 0xffff & 0xff7f;
+    goto loc_103a5;
+
+loc_103a5:
+    rax = (*(r14 + 0x410))(r14, 0x10);
+    return rax;
+
+loc_102ef:
+    rdx = var_12 & 0xffff & 0xfffb;
+    var_12 = rdx;
+    rax = (*(r14 + 0x410))(r14, 0x19, rdx);
+    if (rax != 0x0) goto .l1;
+
+loc_10310:
+    rax = *(int32_t *)(r14 + 0x460);
+    if (rax == 0x2) goto loc_10380;
+
+loc_1031c:
+    COND = rax != 0x1;
+    rax = 0x0;
+    if (COND) goto .l1;
+
+loc_10326:
+    rax = (*(r14 + 0x3d8))(r14, 0x10, &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_1033d:
+    rdx = var_12 & 0xffff | 0x80;
+    goto loc_103a5;
+

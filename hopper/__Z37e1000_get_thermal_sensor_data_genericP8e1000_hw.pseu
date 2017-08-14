@@ -1,0 +1,45 @@
+    r12 = arg0;
+    r14 = 0xe;
+    if ((*(int32_t *)(r12 + 0x11c) != 0x4) || (*(int16_t *)(r12 + 0x504) != 0x0)) goto loc_a5f2;
+
+loc_a51b:
+    *(int8_t *)(r12 + 0x35f) = *(int32_t *)(*(r12 + 0x8) + 0x8100);
+    e1000_read_nvm(r12, 0x3e, 0x1, &var_2A);
+    rax = var_2A & 0xffff;
+    if ((rax + 0x1 & 0xffff) < 0x2) goto loc_a5ef;
+
+loc_a557:
+    e1000_read_nvm(r12, rax & 0xffff, 0x1, &var_2C);
+    rax = var_2C & 0xffff;
+    if ((rax & 0x38) != 0x0) goto loc_a5f2;
+
+loc_a573:
+    rax = rax & 0x7;
+    r15 = 0x3;
+    if (rax <= 0x3) {
+            r15 = rax;
+    }
+    if (r15 >= 0x2) {
+            rbx = 0x1;
+            rax = 0x1;
+            r14 = &var_2E;
+            do {
+                    e1000_read_nvm(r12, (var_2A & 0xffff) + rax & 0xffff, 0x1, r14);
+                    rax = var_2E & 0xffff;
+                    if ((HIBYTE(rax) & 0x3c) != 0x0) {
+                            (*(r12 + 0x438))(r12, *(int8_t *)((rax >> 0x8 & 0x3) + e1000_emc_temp_data) & 0xff, 0xf8, r12 + (rbx & 0xff) * 0x4 + 0x35f);
+                    }
+                    rbx = rbx + 0x1;
+                    rax = rbx & 0xff;
+            } while (rax < r15);
+    }
+    goto loc_a5ef;
+
+loc_a5ef:
+    r14 = 0x0;
+    goto loc_a5f2;
+
+loc_a5f2:
+    rax = r14;
+    return rax;
+

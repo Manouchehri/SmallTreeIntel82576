@@ -1,0 +1,10 @@
+    r14 = rsi;
+    rbx = arg0;
+    *(int32_t *)(rbx + 0x774) = 0x1;
+    *(rbx + 0x778) = r14;
+    if ((*(int8_t *)(rbx + 0x786) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with currentPowerState=%lu\n", rbx + 0x38b, "registerWithPolicyMaker", 0x1);
+    }
+    rax = (*(*r14 + 0x7a8))(r14, rbx, SmallTreeIntel82576PwrStateArray, 0x2);
+    return rax;
+

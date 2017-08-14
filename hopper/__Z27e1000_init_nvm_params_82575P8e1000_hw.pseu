@@ -1,0 +1,74 @@
+    rdi = arg0;
+    rdx = *(int32_t *)(*(rdi + 0x8) + 0x10);
+    rsi = 0x1 << (rdx >> 0xb & 0xf) + 0x6;
+    rcx = 0x8000;
+    if (((rdx >> 0xb & 0xf) + 0x6 & 0xfff0) <= 0xf) {
+            rcx = rsi;
+    }
+    *(int16_t *)(rdi + 0x4e8) = rcx;
+    rax = *(int32_t *)(rdi + 0x11c);
+    if (rax <= 0x4) {
+            *(int16_t *)(rdi + 0x4ee) = 0x8;
+            *(int16_t *)(rdi + 0x4ea) = 0x1;
+            rsi = *(int32_t *)(rdi + 0x4dc);
+            if (rsi == 0x1) {
+                    *(int16_t *)(rdi + 0x4f0) = 0x8;
+                    *(int16_t *)(rdi + 0x4ec) = 0x8;
+            }
+            else {
+                    if (rsi == 0x2) {
+                            *(int16_t *)(rdi + 0x4f0) = 0x20;
+                            *(int16_t *)(rdi + 0x4ec) = 0x10;
+                    }
+                    else {
+                            rdx = rdx & 0x400;
+                            rsi = 0x8;
+                            if (rdx != 0x0) {
+                                    rsi = 0x20;
+                            }
+                            *(int16_t *)(rdi + 0x4f0) = rsi;
+                            *(int16_t *)(rdi + 0x4ec) = (rdx >> 0x7) + 0x8;
+                    }
+            }
+            if ((rcx & 0xffff) == 0x8000) {
+                    *(int16_t *)(rdi + 0x4f0) = 0x80;
+            }
+            *(int32_t *)(rdi + 0x4d8) = 0x2;
+    }
+    else {
+            *(int32_t *)(rdi + 0x4d8) = 0x3;
+    }
+    *(rdi + 0x498) = e1000_acquire_nvm_82575(e1000_hw*);
+    *(rdi + 0x4a8) = e1000_release_nvm_82575(e1000_hw*);
+    COND = rcx >= 0x0;
+    rcx = e1000_read_nvm_spi(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    if (COND) {
+            rcx = e1000_read_nvm_eerd(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    }
+    *(rdi + 0x4a0) = rcx;
+    *(rdi + 0x4d0) = e1000_write_nvm_spi(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    *(rdi + 0x4c8) = e1000_validate_nvm_checksum_generic(e1000_hw*);
+    *(rdi + 0x4b8) = e1000_update_nvm_checksum_generic(e1000_hw*);
+    *(rdi + 0x4c0) = e1000_valid_led_default_82575(e1000_hw*, unsigned short*);
+    if (rax != 0x4) goto loc_8dea;
+
+loc_8dd3:
+    *(rdi + 0x4c8) = e1000_validate_nvm_checksum_i350(e1000_hw*);
+    rax = e1000_update_nvm_checksum_i350(e1000_hw*);
+    goto loc_8e04;
+
+loc_8e04:
+    *(rdi + 0x4b8) = rax;
+    return 0x0;
+
+.l7:
+    return 0x0;
+
+loc_8dea:
+    if (rax != 0x3) goto .l7;
+
+loc_8def:
+    *(rdi + 0x4c8) = e1000_validate_nvm_checksum_82580(e1000_hw*);
+    rax = e1000_update_nvm_checksum_82580(e1000_hw*);
+    goto loc_8e04;
+

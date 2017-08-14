@@ -1,0 +1,3 @@
+    rax = e1000_acquire_swfw_sync_i210(arg0, 0x1);
+    return rax;
+

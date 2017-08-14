@@ -1,0 +1,4 @@
+    IOUserClient::IOUserClient(arg0);
+    *arg0 = 0x18e30;
+    return 0x18e30;
+

@@ -1,0 +1,33 @@
+    rdi = arg0;
+    if (*(int8_t *)(rdi + 0x34f) != 0x0) {
+            rcx = *(int16_t *)(rdi + 0x142) & 0xffff;
+            rcx = rcx * *(int32_t *)(rdi + 0x120);
+            rax = *(int32_t *)(rdi + 0x134);
+            if (rcx > rax) {
+                    if (rax >= 0x3e9) {
+                            *(int8_t *)(rdi + 0x356) = 0x1;
+                            rax = *(int16_t *)(rdi + 0x13c) & 0xffff;
+                            if (rax < (*(int16_t *)(rdi + 0x13e) & 0xffff)) {
+                                    if (rax != 0x0) {
+                                            rax = rax + *(int16_t *)(rdi + 0x144);
+                                    }
+                                    else {
+                                            rax = *(int16_t *)(rdi + 0x140) & 0xffff;
+                                    }
+                                    *(int16_t *)(rdi + 0x13c) = rax;
+                                    rax = rax & 0xffff;
+                                    *(int32_t *)(*(rdi + 0x8) + 0x458) = rax;
+                            }
+                    }
+            }
+            else {
+                    if ((*(int8_t *)(rdi + 0x356) != 0x0) && (rax <= 0x3e8)) {
+                            *(int16_t *)(rdi + 0x13c) = 0x0;
+                            *(int8_t *)(rdi + 0x356) = 0x0;
+                            rax = *(rdi + 0x8);
+                            *(int32_t *)(rax + 0x458) = 0x0;
+                    }
+            }
+    }
+    return rax;
+

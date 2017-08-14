@@ -1,0 +1,4 @@
+    *(int32_t *)(arg0 + 0x464) = 0x1;
+    rax = e1000_write_phy_reg_mdic(arg0, 0x1f, arg1);
+    return rax;
+

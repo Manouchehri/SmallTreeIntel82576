@@ -1,0 +1,85 @@
+    r8 = rdx;
+    r14 = arg1;
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x784);
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            rsi = rbx + 0x38b;
+            r9 = 0x0;
+            if (r8 != 0x0) {
+                    r9 = *(int32_t *)r8;
+            }
+            _IOLog("%s %s: pOut=%p pOutSize=%p *pOutSize=0x%lx\n", rsi, "cmdInitDumpRxRing", r14, r8, r9);
+            rax = *(int32_t *)(rbx + 0x784);
+    }
+    if ((HIBYTE(rax) & 0x10) != 0x0) {
+            _IOLog("%s %s: ring_setup=%u sizeof(desc_t)=%lu sizeof(mbuf_t)=%lu descBytes=%lu mbufsBytes=%lu\n", rbx + 0x38b, "cmdInitDumpRxRing", *(int32_t *)(rbx + 0x7cc), 0x10, 0x8, *(int32_t *)(rbx + 0x484), *(int32_t *)(rbx + 0x480));
+    }
+    if (*(int32_t *)(rbx + 0x7cc) == 0x0) goto loc_13bc1;
+
+loc_13b8a:
+    r14 = 0xe00002bc;
+    if ((*(int8_t *)(rbx + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: Ring already setup, exiting\n", rbx + 0x38b, "cmdInitDumpRxRing");
+    }
+    goto loc_13d4e;
+
+loc_13d4e:
+    rax = r14;
+    return rax;
+
+loc_13bc1:
+    *(int32_t *)(rbx + 0x7cc) = 0x1;
+    *(int32_t *)(rbx + 0x7b8) = *(int16_t *)(rbx + 0x464) & 0xffff;
+    *(int32_t *)(rbx + 0x7bc) = *(int16_t *)(rbx + 0x466) & 0xffff;
+    *(int32_t *)(rbx + 0x7c0) = *(int32_t *)(rbx + 0x460);
+    *(int32_t *)(rbx + 0x7c4) = *(int32_t *)(rbx + 0x484);
+    *(int32_t *)(rbx + 0x7c8) = *(int32_t *)(rbx + 0x480);
+    rax = _IOMalloc(*(int32_t *)(rbx + 0x484));
+    *(rbx + 0x7d0) = rax;
+    if (rax == 0x0) goto loc_13cca;
+
+loc_13c1e:
+    rax = _IOMalloc(*(int32_t *)(rbx + 0x7c8));
+    *(rbx + 0x7d8) = rax;
+    if (rax == 0x0) goto loc_13ce7;
+
+loc_13c39:
+    _memcpy(*(rbx + 0x7d0), *(rbx + 0x458), *(int32_t *)(rbx + 0x7c4));
+    _memcpy(*(rbx + 0x7d8), *(rbx + 0x478), *(int32_t *)(rbx + 0x7c8));
+    _memcpy(r14, rbx + 0x7b8, 0x18);
+    r14 = 0x0;
+    if ((*(int8_t *)(rbx + 0x785) & 0x10) != 0x0) {
+            r14 = 0x0;
+            _IOLog("%s %s: Returning with ring_head=%u ring_tail=%u ring_length=%u\n", rbx + 0x38b, "cmdInitDumpRxRing", *(int32_t *)(rbx + 0x7b8), *(int32_t *)(rbx + 0x7bc), *(int32_t *)(rbx + 0x7c0));
+    }
+    goto loc_13d4e;
+
+loc_13ce7:
+    if ((*(int16_t *)(rbx + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_13d10;
+
+loc_13cf4:
+    rdi = "%s %s: Failed to allocate rxMbufSnap\n";
+    goto loc_13d02;
+
+loc_13d02:
+    _IOLog(rdi);
+    goto loc_13d10;
+
+loc_13d10:
+    *(int32_t *)(rbx + 0x7cc) = 0x0;
+    if (*(rbx + 0x7d0) != 0x0) {
+            _IOFree();
+    }
+    r14 = 0xe00002bc;
+    if (*(rbx + 0x7d8) != 0x0) {
+            _IOFree();
+    }
+    goto loc_13d4e;
+
+loc_13cca:
+    if ((*(int16_t *)(rbx + 0x784) & 0xffff & 0x1001) == 0x0) goto loc_13d10;
+
+loc_13cd7:
+    rdi = "%s %s: Failed to allocate rxDescSnap\n";
+    goto loc_13d02;
+

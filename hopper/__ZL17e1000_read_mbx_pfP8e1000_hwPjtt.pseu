@@ -1,0 +1,26 @@
+    rcx = arg3;
+    rdx = arg2;
+    rsi = arg1;
+    rdi = arg0;
+    *(int32_t *)(*(rdi + 0x8) + rcx * 0x4 + 0xc00) = 0x8;
+    r8 = *(int32_t *)(*(rdi + 0x8) + rcx * 0x4 + 0xc00) & 0x8;
+    rax = 0xfffffff1;
+    if (r8 != 0x0) {
+            rax = 0x0;
+    }
+    if (r8 != 0x0) {
+            r8 = *(rdi + 0x8);
+            if (rdx != 0x0) {
+                    r10 = 0x0;
+                    r9 = r8 + (rcx << 0x6) + 0x800;
+                    do {
+                            *(int32_t *)(rsi + r10) = *(int32_t *)(r10 + r9);
+                            r10 = r10 + 0x4;
+                            rdx = rdx - 0x1;
+                    } while (rdx != 0x0);
+            }
+            *(int32_t *)(r8 + rcx * 0x4 + 0xc00) = 0x2;
+            *(int32_t *)(rdi + 0x54c) = *(int32_t *)(rdi + 0x54c) + 0x1;
+    }
+    return rax;
+

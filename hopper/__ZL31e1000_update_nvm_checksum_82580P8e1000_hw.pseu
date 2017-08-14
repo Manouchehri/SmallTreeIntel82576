@@ -1,0 +1,48 @@
+    r14 = arg0;
+    rax = (*(r14 + 0x4a0))(arg0, 0x3, 0x1, &var_1A);
+    if (rax == 0x0) {
+            rax = var_1A;
+            r15 = 0x40;
+            if (rax >= 0x0) {
+                    var_1A = rax | 0x8000;
+                    rax = (*(r14 + 0x4d0))(r14, 0x3, 0x1, &var_1A);
+                    if (rax == 0x0) {
+                            rbx = 0x0;
+                            do {
+                                    if ((r15 & 0xffff) == 0x40) {
+                                            rax = 0x0;
+                                    }
+                                    else {
+                                            rax = r15;
+                                    }
+                                    rax = e1000_update_nvm_checksum_with_offset(r14, rax & 0xffff);
+                                    if (rax != 0x0) {
+                                        break;
+                                    }
+                                    rbx = rbx + 0x1;
+                                    r15 = r15 + 0x40;
+                                    rax = 0x0;
+                            } while ((rbx & 0xffff) <= 0x3);
+                    }
+            }
+            else {
+                    rbx = 0x0;
+                    do {
+                            if ((r15 & 0xffff) == 0x40) {
+                                    rax = 0x0;
+                            }
+                            else {
+                                    rax = r15;
+                            }
+                            rax = e1000_update_nvm_checksum_with_offset(r14, rax & 0xffff);
+                            if (rax != 0x0) {
+                                break;
+                            }
+                            rbx = rbx + 0x1;
+                            r15 = r15 + 0x40;
+                            rax = 0x0;
+                    } while ((rbx & 0xffff) <= 0x3);
+            }
+    }
+    return rax;
+

@@ -1,0 +1,17 @@
+    rbx = arg0;
+    if ((*(int32_t *)(rbx + 0x11c) == 0x3) && (*(int8_t *)(rbx + 0x578) != 0x0)) {
+            rax = *(rbx + 0x4a0);
+            rcx = *(int16_t *)(rbx + 0x504);
+            rdx = 0x24;
+            if (rcx != 0x0) {
+                    rdx = (rcx << 0x6) + 0x64;
+            }
+            var_A = 0x0;
+            rax = (rax)(rbx, rdx & 0xffff, 0x1, &var_A);
+            if (rax == 0x0) {
+                    rax = *(rbx + 0x8);
+                    *(int32_t *)(rax + 0xe04) = (0x0 & 0xffff & 0x8) << 0x1b | (0x0 & 0xffff & 0x4) << 0x1d | *(int32_t *)(rax + 0xe04);
+            }
+    }
+    return rax;
+

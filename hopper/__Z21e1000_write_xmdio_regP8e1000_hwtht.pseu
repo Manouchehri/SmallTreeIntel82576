@@ -1,0 +1,4 @@
+    var_2 = arg3;
+    rax = __e1000_access_xmdio_reg(arg0, arg1, arg2, &var_2, 0x0);
+    return rax;
+

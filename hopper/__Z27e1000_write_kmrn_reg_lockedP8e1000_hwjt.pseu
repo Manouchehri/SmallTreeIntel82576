@@ -1,0 +1,4 @@
+    *(int32_t *)(*(arg0 + 0x8) + 0x34) = (arg1 & 0x1f) << 0x10 | arg2;
+    _IODelay(0x2, (arg1 & 0x1f) << 0x10 | arg2, arg2);
+    return 0x0;
+

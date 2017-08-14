@@ -1,0 +1,32 @@
+    var_2C = arg1;
+    r15 = arg0;
+    r13 = arg1 << 0x10 | arg1;
+    rbx = 0x0;
+    r12 = 0xfffffff3;
+    goto loc_a8be;
+
+loc_a8be:
+    if (e1000_get_hw_semaphore_generic(r15) != 0x0) goto loc_a918;
+
+loc_a8ca:
+    r14 = *(int32_t *)(*(r15 + 0x8) + 0x5b5c);
+    if ((r13 & r14) == 0x0) goto loc_a8f6;
+
+loc_a8da:
+    e1000_put_hw_semaphore_generic(r15);
+    _IODelay(0x1388);
+    rbx = rbx + 0x1;
+    if (rbx < 0xc8) goto loc_a8be;
+
+loc_a8f6:
+    if (rbx != 0xc8) {
+            *(int32_t *)(*(r15 + 0x8) + 0x5b5c) = r14 | var_2C;
+            e1000_put_hw_semaphore_generic(r15);
+            r12 = 0x0;
+    }
+    goto loc_a918;
+
+loc_a918:
+    rax = r12;
+    return rax;
+

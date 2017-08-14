@@ -1,0 +1,10 @@
+    *(arg0 + 0x508) = e1000_null_ops_generic(e1000_hw*);
+    *(arg0 + 0x510) = e1000_null_mbx_transact(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+    *(arg0 + 0x518) = e1000_null_mbx_transact(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+    *(arg0 + 0x530) = e1000_null_mbx_check_for_flag(e1000_hw*, unsigned short);
+    *(arg0 + 0x538) = e1000_null_mbx_check_for_flag(e1000_hw*, unsigned short);
+    *(arg0 + 0x540) = e1000_null_mbx_check_for_flag(e1000_hw*, unsigned short);
+    *(arg0 + 0x520) = e1000_read_posted_mbx(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+    *(arg0 + 0x528) = e1000_write_posted_mbx(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+    return e1000_write_posted_mbx(e1000_hw*, unsigned int*, unsigned short, unsigned short);
+

@@ -1,0 +1,19 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "createOutputQueue");
+    }
+    r14 = IOBasicOutputQueue::withTarget(rbx, *(int32_t *)(rbx + 0x380));
+    if (r14 != 0x0) {
+            (*(*r14 + 0x150))(r14, *(int32_t *)(rbx + 0x380));
+    }
+    else {
+            if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Failed to allocate txQueue\n", rbx + 0x38b, "createOutputQueue");
+            }
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning txQueue=%p\n", rbx + 0x38b, "createOutputQueue", r14);
+    }
+    rax = r14;
+    return rax;
+

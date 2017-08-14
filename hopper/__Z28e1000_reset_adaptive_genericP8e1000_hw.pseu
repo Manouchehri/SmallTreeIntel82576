@@ -1,0 +1,13 @@
+    rdi = arg0;
+    if (*(int8_t *)(rdi + 0x34f) != 0x0) {
+            *(int16_t *)(rdi + 0x13c) = 0x0;
+            *(int16_t *)(rdi + 0x140) = 0x28;
+            *(int16_t *)(rdi + 0x13e) = 0x50;
+            *(int16_t *)(rdi + 0x144) = 0xa;
+            *(int16_t *)(rdi + 0x142) = 0x4;
+            *(int8_t *)(rdi + 0x356) = 0x0;
+            rax = *(rdi + 0x8);
+            *(int32_t *)(rax + 0x458) = 0x0;
+    }
+    return rax;
+

@@ -1,0 +1,17 @@
+    rdx = arg2;
+    rsi = arg1;
+    r14 = rdx;
+    r15 = rsi;
+    rbx = arg0;
+    rcx = *(rbx + 0x390);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            rax = (rcx)(rbx, rsi, rdx, rcx);
+            if (rax == 0x0) {
+                    r14 = e1000_read_phy_reg_mdic(rbx, r15 & 0x1f, r14);
+                    (*(rbx + 0x3f0))(rbx);
+                    rax = r14;
+            }
+    }
+    return rax;
+

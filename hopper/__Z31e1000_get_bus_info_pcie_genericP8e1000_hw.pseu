@@ -1,0 +1,24 @@
+    rbx = arg0;
+    *(int32_t *)(rbx + 0x4f8) = 0x3;
+    if (e1000_read_pcie_cap_reg(arg0, 0x12, &var_A) != 0x0) {
+            *(rbx + 0x4fc) = 0x0;
+    }
+    else {
+            rax = var_A & 0xffff;
+            rcx = rax & 0xf;
+            if (rcx == 0x2) {
+                    *(int32_t *)(rbx + 0x4fc) = 0x7;
+            }
+            else {
+                    if (rcx == 0x1) {
+                            *(int32_t *)(rbx + 0x4fc) = 0x6;
+                    }
+                    else {
+                            *(int32_t *)(rbx + 0x4fc) = 0x0;
+                    }
+            }
+            *(int32_t *)(rbx + 0x500) = rax >> 0x4 & 0x3f;
+    }
+    (*(rbx + 0x68))(rbx);
+    return 0x0;
+

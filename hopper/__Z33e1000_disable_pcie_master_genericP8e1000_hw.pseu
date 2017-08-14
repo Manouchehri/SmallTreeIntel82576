@@ -1,0 +1,14 @@
+    r14 = arg0;
+    *(int32_t *)*(r14 + 0x8) = *(int32_t *)*(r14 + 0x8) | 0x4;
+    rbx = 0xfffffce0;
+    do {
+            rax = 0x0;
+            if ((*(int32_t *)(*(r14 + 0x8) + 0x8) & 0x80000) == 0x0) {
+                break;
+            }
+            _IODelay(0x64);
+            rbx = rbx + 0x1;
+            rax = 0xfffffff6;
+    } while (rbx != 0x0);
+    return rax;
+

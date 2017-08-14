@@ -1,0 +1,121 @@
+    r14 = arg1;
+    rbx = arg0;
+    rcx = *(int16_t *)(rbx + 0x588) & 0xffff;
+    rax = 0xfffffffb;
+    if (rcx > 0x10a6) goto loc_ba65;
+
+loc_ba39:
+    rcx = rcx + 0xfffffbc8;
+    if ((rcx > 0x8) || ((BIT_TEST(0x115, rcx)))) goto .l1;
+
+loc_ba56:
+    *(int32_t *)(rbx + 0x11c) = 0x3;
+    goto loc_bb3b;
+
+loc_bb3b:
+    if (*(rbx + 0x8) == 0x0) goto loc_bbea;
+
+loc_bb46:
+    e1000_init_mac_ops_generic(rbx);
+    e1000_init_phy_ops_generic(rbx);
+    e1000_init_nvm_ops_generic(rbx);
+    e1000_init_mbx_ops_generic(rbx);
+    rax = *(int32_t *)(rbx + 0x11c);
+    if (rax < 0x7) goto loc_bb85;
+
+loc_bb74:
+    if (rax > 0x4) goto loc_bbea;
+
+loc_bb7b:
+    e1000_init_function_pointers_82575(rbx);
+    goto loc_bb8d;
+
+loc_bb8d:
+    rax = 0x0;
+    if (r14 != 0x0) {
+            rax = *(rbx + 0x20);
+            if (rax != 0x0) {
+                    rax = (rax)(rbx);
+                    if (rax == 0x0) {
+                            rcx = *(rbx + 0x490);
+                            if (rcx != 0x0) {
+                                    rax = (rcx)(rbx);
+                                    if (rax == 0x0) {
+                                            rcx = *(rbx + 0x388);
+                                            if (rcx != 0x0) {
+                                                    rax = (rcx)(rbx);
+                                                    if (rax == 0x0) {
+                                                            rcx = *(rbx + 0x508);
+                                                            rax = 0xfffffffd;
+                                                            if (rcx != 0x0) {
+                                                                    rax = (rcx)(rbx);
+                                                            }
+                                                    }
+                                            }
+                                            else {
+                                                    rax = 0xfffffffd;
+                                            }
+                                    }
+                            }
+                            else {
+                                    rax = 0xfffffffd;
+                            }
+                    }
+            }
+            else {
+                    rax = 0xfffffffd;
+            }
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_bbea:
+    rax = 0xfffffffd;
+    return rax;
+
+loc_bb85:
+    e1000_init_function_pointers_i210(rbx);
+    goto loc_bb8d;
+
+loc_ba65:
+    if (rcx > 0x157a) goto loc_baa6;
+
+loc_ba6d:
+    if (rcx > 0x10e5) goto loc_bae9;
+
+loc_ba7d:
+    if (rcx > 0x10c8) goto loc_bb11;
+
+loc_ba89:
+    if ((rcx == 0x10a7) || (rcx == 0x10a9)) goto loc_bb31;
+    goto .l1;
+
+loc_bb31:
+    *(int32_t *)(rbx + 0x11c) = 0x1;
+    goto loc_bb3b;
+
+loc_bb11:
+    if (rcx != 0x10c9) goto loc_bb25;
+
+loc_bb19:
+    *(int32_t *)(rbx + 0x11c) = 0x2;
+    goto loc_bb3b;
+
+loc_bb25:
+    if (rcx != 0x10d6) goto .l1;
+    goto loc_bb31;
+
+loc_bae9:
+    if (rcx < 0x10e9) goto loc_bb19;
+    goto .l1;
+
+loc_baa6:
+    if (rcx < 0x157d) goto loc_badd;
+    goto .l1;
+
+loc_badd:
+    *(int32_t *)(rbx + 0x11c) = 0x5;
+    goto loc_bb3b;
+

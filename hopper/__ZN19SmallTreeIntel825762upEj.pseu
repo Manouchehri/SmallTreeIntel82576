@@ -1,0 +1,155 @@
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "up");
+    }
+    *(rbx + 0x408) = IOMbufNaturalMemoryCursor::withSpecification(*(int32_t *)(rbx + 0x3bc), 0x28);
+    rax = IOMbufNaturalMemoryCursor::withSpecification(*(int32_t *)(rbx + 0x3bc), 0x5);
+    *(rbx + 0x400) = rax;
+    if ((rax == 0x0) || (*(rbx + 0x408) == 0x0)) goto loc_6245;
+
+loc_6212:
+    r14 = rbx + 0x7e8;
+    if (e1000_reset_hw(r14) == 0x0) goto loc_6279;
+
+loc_6225:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_6393;
+
+loc_6232:
+    rdi = "%s %s: resetHW failed\n";
+    goto loc_6385;
+
+loc_6385:
+    _IOLog(rdi);
+    goto loc_6393;
+
+loc_6393:
+    rdi = *(rbx + 0x400);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x400) = 0x0;
+    }
+    rdi = *(rbx + 0x408);
+    r14 = 0xe00002bc;
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x408) = 0x0;
+    }
+    goto loc_63d3;
+
+loc_63d3:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%08lx with enabledCount=%lu\n", rbx + 0x38b, "up", sign_extend_64(r14), *(int32_t *)(rbx + 0x4b8));
+    }
+    rax = r14;
+    return rax;
+
+loc_6279:
+    e1000_power_up_phy(r14);
+    if (SmallTreeIntel82576::allocateRings() == 0x0) goto loc_636e;
+
+loc_6291:
+    if (*(int32_t *)(rbx + 0x4b8) != 0x0) goto loc_62fe;
+
+loc_629a:
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: enabledCount=%d, running init code\n", rbx + 0x38b, "up", 0x0);
+    }
+    if (((*(**(rbx + 0x748) + 0x5e0))(*(rbx + 0x748), 0x0) != 0x0) || ((*(**(rbx + 0x748) + 0x5d0))(*(rbx + 0x748), rbx, 0x0, 0x0) != 0x0)) goto loc_62f6;
+
+loc_64f3:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_6393;
+
+loc_6500:
+    rdi = "%s %s: Could not reopen PCI Provider\n";
+    goto loc_6385;
+
+loc_62f6:
+    SmallTreeIntel82576::initHW();
+    goto loc_62fe;
+
+loc_62fe:
+    _IOSleep(0xa);
+    SmallTreeIntel82576::stockRxRing(rbx);
+    r14 = SmallTreeIntel82576::initTransmitUnit();
+    if (r14 == 0x0) goto loc_640d;
+
+loc_6326:
+    SmallTreeIntel82576::freeMbufs(rbx);
+    rdi = *(rbx + 0x408);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x408) = 0x0;
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_63d3;
+
+loc_635b:
+    rdi = "%s %s: initTransmitUnit failed ret=%d\n";
+    goto loc_6460;
+
+loc_6460:
+    _IOLog(rdi);
+    goto loc_63d3;
+
+loc_640d:
+    r14 = SmallTreeIntel82576::initReceiveUnit();
+    if (r14 == 0x0) goto loc_6476;
+
+loc_641d:
+    SmallTreeIntel82576::freeMbufs(rbx);
+    rdi = *(rbx + 0x400);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x28))();
+            *(rbx + 0x400) = 0x0;
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_63d3;
+
+loc_6452:
+    rdi = "%s %s: initReceiveUnit failed ret=%d\n";
+    goto loc_6460;
+
+loc_6476:
+    *(rbx + 0x4c0) = 0x0;
+    *(rbx + 0x4c8) = 0x0;
+    *(int32_t *)(rbx + 0x4b8) = *(int32_t *)(rbx + 0x4b8) + 0x1;
+    rdi = *(rbx + 0x3f0);
+    if ((rdi != 0x0) && (*(int32_t *)(rbx + 0x4ac) != 0x0)) {
+            (*(*rdi + 0x1d0))();
+    }
+    rdi = *(rbx + 0x410);
+    if (rdi == 0x0) goto loc_6513;
+
+loc_64bd:
+    (*(*rdi + 0x150))();
+    (*(**(rbx + 0x410) + 0x130))(*(rbx + 0x410));
+    SmallTreeIntel82576::enableIntrs();
+    *(int8_t *)(rbx + 0x138) = 0x1;
+    r14 = 0x0;
+    goto loc_63d3;
+
+loc_6513:
+    r14 = 0xe00002bc;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_63d3;
+
+loc_6526:
+    rdi = "%s %s: No txQueue - this is bad\n";
+    goto loc_6266;
+
+loc_6266:
+    _IOLog(rdi);
+    goto loc_63d3;
+
+loc_636e:
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_6393;
+
+loc_6377:
+    rdi = "%s %s: allocateRings failed\n";
+    goto loc_6385;
+
+loc_6245:
+    r14 = 0xe00002bc;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_63d3;
+
+loc_6258:
+    rdi = "%s %s: MbufCursor failed\n";
+    goto loc_6266;
+

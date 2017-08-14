@@ -1,0 +1,4 @@
+    OSMetaClass::OSMetaClass(SmallTreeIntel82576::gMetaClass, "SmallTreeIntel82576", IOEthernetController::gMetaClass, 0xd88);
+    *SmallTreeIntel82576::gMetaClass = 0x18d30;
+    return 0x18d30;
+

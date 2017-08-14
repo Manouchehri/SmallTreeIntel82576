@@ -1,0 +1,15 @@
+    rbx = arg0;
+    rcx = *(rbx + 0x3d8);
+    rax = 0x0;
+    if (rcx != 0x0) {
+            rax = (rcx)(rbx, 0x0, &var_A, rcx);
+            if (rax == 0x0) {
+                    rax = (*(rbx + 0x410))(rbx, 0x0, var_A & 0xffff | 0x8000);
+                    if (rax == 0x0) {
+                            _IODelay(0x1);
+                            rax = 0x0;
+                    }
+            }
+    }
+    return rax;
+

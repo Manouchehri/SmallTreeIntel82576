@@ -1,0 +1,11 @@
+    r15 = arg2;
+    r14 = arg1;
+    rbx = arg0;
+    rax = (*(rbx + 0x390))(arg0, arg1, arg2);
+    if (rax == 0x0) {
+            r14 = e1000_write_phy_reg_mdic(rbx, r14, r15 & 0xffff);
+            (*(rbx + 0x3f0))(rbx);
+            rax = r14;
+    }
+    return rax;
+

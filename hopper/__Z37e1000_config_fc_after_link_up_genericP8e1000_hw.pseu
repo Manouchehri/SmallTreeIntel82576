@@ -1,0 +1,146 @@
+    rbx = arg0;
+    COND = *(int8_t *)(rbx + 0x354) == 0x0;
+    rax = *(int32_t *)(rbx + 0x474);
+    if (COND) goto loc_c81f;
+
+loc_c813:
+    if ((rax & 0xfffffffe) == 0x2) goto loc_c828;
+
+loc_c83e:
+    if (rax != 0x1) goto loc_c983;
+
+loc_c847:
+    if (*(int8_t *)(rbx + 0x353) == 0x0) goto loc_ca4e;
+
+loc_c854:
+    rax = (*(rbx + 0x3d8))(rbx, 0x1, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_c86e:
+    rax = (*(rbx + 0x3d8))(rbx, 0x1, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_c888:
+    rax = 0x0;
+    if ((var_A & 0x20) == 0x0) goto .l1;
+
+loc_c894:
+    rax = (*(rbx + 0x3d8))(rbx, 0x4, &var_C);
+    if (rax != 0x0) goto .l1;
+
+loc_c8ae:
+    rax = (*(rbx + 0x3d8))(rbx, 0x5, &var_E);
+    if (rax != 0x0) goto .l1;
+
+loc_c8c8:
+    rax = var_C & 0xffff;
+    if (((HIBYTE(rax) & 0x4) != 0x0) && ((var_D & 0x4) != 0x0)) {
+            if (*(int32_t *)(rbx + 0x384) == 0x3) {
+                    *(int32_t *)(rbx + 0x380) = 0x3;
+            }
+            else {
+                    *(int32_t *)(rbx + 0x380) = 0x1;
+            }
+    }
+    else {
+            rax = rax & 0xc00;
+            if (rax == 0xc00) {
+                    if ((var_E & 0xffff & 0xc00) == 0x800) {
+                            *(int32_t *)(rbx + 0x380) = 0x1;
+                    }
+                    else {
+                            *(int32_t *)(rbx + 0x380) = 0x0;
+                    }
+            }
+            else {
+                    if (((rax & 0xffff) == 0x800) && ((var_E & 0xffff & 0xc00) == 0xc00)) {
+                            *(int32_t *)(rbx + 0x380) = 0x2;
+                    }
+                    else {
+                            *(int32_t *)(rbx + 0x380) = 0x0;
+                    }
+            }
+    }
+    rax = (*(rbx + 0x70))(rbx, &var_10, &var_12);
+    if (rax != 0x0) goto .l1;
+
+loc_c95a:
+    if ((var_12 & 0xffff) == 0x1) {
+            *(int32_t *)(rbx + 0x380) = 0x0;
+    }
+    rax = e1000_force_mac_fc_generic(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_c97d:
+    rax = *(int32_t *)(rbx + 0x474);
+    goto loc_c983;
+
+loc_c983:
+    if ((rax == 0x3) && (*(int8_t *)(rbx + 0x353) != 0x0)) {
+            rdx = *(rbx + 0x8);
+            rax = 0x0;
+            if ((*(int32_t *)(rdx + 0x420c) & 0x10000) != 0x0) {
+                    rcx = *(int32_t *)(rdx + 0x4218);
+                    rax = *(int32_t *)(rdx + 0x421c);
+                    if ((rcx & rax & 0x80) != 0x0) {
+                            if (*(int32_t *)(rbx + 0x384) == 0x3) {
+                                    *(int32_t *)(rbx + 0x380) = 0x3;
+                            }
+                            else {
+                                    *(int32_t *)(rbx + 0x380) = 0x1;
+                            }
+                    }
+                    else {
+                            rdx = rax & 0x80;
+                            rcx = rcx & 0x180;
+                            rax = rax & 0x100;
+                            if (((rcx == 0x100) && (rdx != 0x0)) && (rax != 0x0)) {
+                                    *(int32_t *)(rbx + 0x380) = 0x2;
+                            }
+                            else {
+                                    rdx = rdx != 0x0 ? 0x1 : 0x0;
+                                    rcx = rcx != 0x180 ? 0x1 : 0x0;
+                                    if (rax != 0x0) {
+                                            rcx = rcx | rdx;
+                                            if (rcx == 0x0) {
+                                                    *(int32_t *)(rbx + 0x380) = 0x1;
+                                            }
+                                            else {
+                                                    *(int32_t *)(rbx + 0x380) = 0x0;
+                                            }
+                                    }
+                                    else {
+                                            *(int32_t *)(rbx + 0x380) = 0x0;
+                                    }
+                            }
+                    }
+                    *(int32_t *)(*(rbx + 0x8) + 0x4208) = *(int32_t *)(*(rbx + 0x8) + 0x4208) | 0x80;
+                    rax = e1000_force_mac_fc_generic(rbx);
+                    if (rax == 0x0) {
+                            rax = 0x0;
+                    }
+            }
+    }
+    else {
+            rax = 0x0;
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_ca4e:
+    rax = 0x0;
+    return rax;
+
+loc_c828:
+    rax = e1000_force_mac_fc_generic(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_c838:
+    rax = *(int32_t *)(rbx + 0x474);
+    goto loc_c83e;
+
+loc_c81f:
+    if (rax != 0x1) goto loc_c983;
+

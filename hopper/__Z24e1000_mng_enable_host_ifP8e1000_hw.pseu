@@ -1,0 +1,3 @@
+    rax = e1000_mng_enable_host_if_generic(arg0);
+    return rax;
+

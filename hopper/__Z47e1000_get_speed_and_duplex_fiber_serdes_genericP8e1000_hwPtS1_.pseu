@@ -1,0 +1,4 @@
+    *(int16_t *)arg1 = 0x3e8;
+    *(int16_t *)arg2 = 0x2;
+    return 0x0;
+

@@ -1,0 +1,133 @@
+    rbx = arg0;
+    rax = *(int32_t *)(rbx + 0x468);
+    if (rax > 0x1410c8f) goto loc_10642;
+
+loc_105bb:
+    rcx = 0xfffffffe;
+    if (rax == 0x1410c00) {
+            rcx = (*(rbx + 0x3d8))(rbx, *(int32_t *)(rbx + 0x464) + 0x70010, &var_A);
+            if (rcx == 0x0) {
+                    rcx = (*(rbx + 0x3d8))(rbx, 0x70015, &var_C);
+                    if (rcx == 0x0) {
+                            rax = var_A;
+                            rsi = 0x1;
+                            if ((HIBYTE(var_C & 0xffff) & 0x4) == 0x0) {
+                                    rsi = 0x64;
+                            }
+                            rcx = 0x0;
+                            *(int16_t *)(rbx + 0x480) = rax / rsi;
+                            *(int16_t *)(rbx + 0x47e) = rax / rsi;
+                            *(int16_t *)(rbx + 0x47c) = rax / rsi;
+                    }
+            }
+    }
+    goto loc_107c2;
+
+loc_107c2:
+    rax = rcx;
+    return rax;
+
+loc_10642:
+    if (rax == 0x1410c90) goto loc_10721;
+
+loc_1064d:
+    if (rax != 0x1410dc0) {
+            rcx = 0xfffffffe;
+            if (rax == 0x1410df0) {
+                    rcx = (*(rbx + 0x3d8))(rbx, 0x16, &var_E);
+                    if (rcx == 0x0) {
+                            rcx = (*(rbx + 0x410))(rbx, 0x16, 0x7);
+                            if (rcx == 0x0) {
+                                    rcx = (*(rbx + 0x3d8))(rbx, *(int32_t *)(rbx + 0x464) + 0x10, &var_A);
+                                    if (rcx == 0x0) {
+                                            rcx = (*(rbx + 0x3d8))(rbx, 0x15, &var_C);
+                                            if (rcx == 0x0) {
+                                                    rax = var_A;
+                                                    rsi = 0x1;
+                                                    if ((HIBYTE(var_C & 0xffff) & 0x4) == 0x0) {
+                                                            rsi = 0x64;
+                                                    }
+                                                    *(int16_t *)(rbx + 0x480) = rax / rsi;
+                                                    *(int16_t *)(rbx + 0x47e) = rax / rsi;
+                                                    *(int16_t *)(rbx + 0x47c) = rax / rsi;
+                                                    rax = (*(rbx + 0x410))(rbx, 0x16, var_E & 0xffff);
+                                            }
+                                            else {
+                                                    rax = rcx;
+                                            }
+                                    }
+                                    else {
+                                            rax = rcx;
+                                    }
+                            }
+                            else {
+                                    rax = rcx;
+                            }
+                    }
+                    else {
+                            rax = rcx;
+                    }
+            }
+            else {
+                    rax = rcx;
+            }
+    }
+    else {
+            rcx = (*(rbx + 0x3d8))(rbx, 0x16, &var_E);
+            if (rcx == 0x0) {
+                    rcx = (*(rbx + 0x410))(rbx, 0x16, 0x7);
+                    if (rcx == 0x0) {
+                            rcx = (*(rbx + 0x3d8))(rbx, *(int32_t *)(rbx + 0x464) + 0x10, &var_A);
+                            if (rcx == 0x0) {
+                                    rcx = (*(rbx + 0x3d8))(rbx, 0x15, &var_C);
+                                    if (rcx == 0x0) {
+                                            rax = var_A;
+                                            rsi = 0x1;
+                                            if ((HIBYTE(var_C & 0xffff) & 0x4) == 0x0) {
+                                                    rsi = 0x64;
+                                            }
+                                            *(int16_t *)(rbx + 0x480) = rax / rsi;
+                                            *(int16_t *)(rbx + 0x47e) = rax / rsi;
+                                            *(int16_t *)(rbx + 0x47c) = rax / rsi;
+                                            rax = (*(rbx + 0x410))(rbx, 0x16, var_E & 0xffff);
+                                    }
+                                    else {
+                                            rax = rcx;
+                                    }
+                            }
+                            else {
+                                    rax = rcx;
+                            }
+                    }
+                    else {
+                            rax = rcx;
+                    }
+            }
+            else {
+                    rax = rcx;
+            }
+    }
+    return rax;
+
+loc_10721:
+    rcx = (*(rbx + 0x3d8))(rbx, 0x16, &var_E);
+    if (rcx == 0x0) {
+            rcx = (*(rbx + 0x410))(rbx, 0x16, 0x5);
+            if (rcx == 0x0) {
+                    rcx = (*(rbx + 0x3d8))(rbx, 0x1a, &var_A);
+                    if (rcx == 0x0) {
+                            rax = (var_A & 0xffff) >> 0x7 & 0x7;
+                            rcx = 0xfffffffe;
+                            if (rax <= 0x5) {
+                                    rdx = *(int16_t *)(e1000_m88_cable_length_table + (rax & 0xffff) * 0x2) & 0xffff;
+                                    *(int16_t *)(rbx + 0x480) = rdx;
+                                    rax = *(int16_t *)(0x17e72 + (rax & 0xffff) * 0x2) & 0xffff;
+                                    *(int16_t *)(rbx + 0x47e) = rax;
+                                    *(int16_t *)(rbx + 0x47c) = rdx + rax >> 0x1;
+                                    rcx = (*(rbx + 0x410))(rbx, 0x16, var_E & 0xffff, e1000_m88_cable_length_table);
+                            }
+                    }
+            }
+    }
+    goto loc_107c2;
+

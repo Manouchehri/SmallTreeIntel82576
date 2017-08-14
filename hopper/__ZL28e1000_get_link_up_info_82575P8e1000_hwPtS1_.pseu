@@ -1,0 +1,12 @@
+    rdx = arg2;
+    rsi = arg1;
+    rdi = arg0;
+    if (*(int32_t *)(rdi + 0x474) == 0x1) {
+            rax = e1000_get_speed_and_duplex_copper_generic(rdi, rsi, rdx);
+    }
+    else {
+            e1000_get_pcs_speed_and_duplex_82575(rdi, rsi, rdx);
+            rax = 0x0;
+    }
+    return rax;
+

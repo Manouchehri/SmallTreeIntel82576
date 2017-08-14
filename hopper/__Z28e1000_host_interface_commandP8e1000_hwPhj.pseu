@@ -1,0 +1,52 @@
+    r12 = arg2;
+    r15 = arg1;
+    r13 = arg0;
+    r14 = 0x0;
+    if ((*(int8_t *)(r13 + 0x351) != 0x0) && (*(int8_t *)(r13 + 0x352) != 0x0)) {
+            r14 = 0xfffffff5;
+            if (((r12 != 0x0) && ((r12 & 0x3) == 0x0)) && (r12 <= 0x700)) {
+                    rax = *(int32_t *)(*(r13 + 0x8) + 0x8f00);
+                    if ((rax & 0x1) != 0x0) {
+                            r12 = r12 >> 0x2;
+                            rcx = *(r13 + 0x8);
+                            if (r12 != 0x0) {
+                                    rdx = 0x0;
+                                    rsi = 0x0;
+                                    do {
+                                            *(int32_t *)(rcx + rsi + 0x8800) = *(int32_t *)(r15 + rsi);
+                                            rsi = rsi + 0x4;
+                                            rdx = rdx + 0x1;
+                                    } while (rdx < r12);
+                            }
+                            *(int32_t *)(rcx + 0x8f00) = rax | 0x2;
+                            rbx = 0x0;
+                            do {
+                                    if ((*(int32_t *)(*(r13 + 0x8) + 0x8f00) & 0x2) == 0x0) {
+                                        break;
+                                    }
+                                    _IODelay(0x3e8);
+                                    rbx = rbx + 0x1;
+                            } while (rbx < 0x1f4);
+                            if (rbx != 0x1f4) {
+                                    rax = *(int32_t *)(*(r13 + 0x8) + 0x8f00) & 0x4;
+                                    r14 = 0xfffffff5;
+                                    if (rax != 0x0) {
+                                            r14 = 0x0;
+                                    }
+                                    if ((rax != 0x0) && (r12 != 0x0)) {
+                                            rax = 0x8800 + *(r13 + 0x8);
+                                            r14 = 0x0;
+                                            rcx = 0x0;
+                                            do {
+                                                    *(int32_t *)(r15 + rcx * 0x4) = *(int32_t *)rax;
+                                                    rcx = rcx + 0x1;
+                                                    rax = rax + 0x4;
+                                            } while (rcx < r12);
+                                    }
+                            }
+                    }
+            }
+    }
+    rax = r14;
+    return rax;
+

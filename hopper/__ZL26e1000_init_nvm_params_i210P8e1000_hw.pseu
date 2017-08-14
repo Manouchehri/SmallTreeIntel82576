@@ -1,0 +1,29 @@
+    rbx = arg0;
+    rax = e1000_init_nvm_params_82575(arg0);
+    *(rbx + 0x498) = e1000_acquire_nvm_i210(e1000_hw*);
+    *(rbx + 0x4a8) = e1000_release_nvm_i210(e1000_hw*);
+    *(rbx + 0x4c0) = e1000_valid_led_default_i210(e1000_hw*, unsigned short*);
+    rdx = 0x80000 & *(int32_t *)(*(rbx + 0x8) + 0x10);
+    r9 = e1000_read_nvm_srrd_i210(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    if (rdx == 0x0) {
+            r9 = e1000_read_invm_i210(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    }
+    r10 = e1000_write_nvm_srwr_i210(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    if (CPU_FLAGS & E) {
+            r10 = e1000_null_write_nvm(e1000_hw*, unsigned short, unsigned short, unsigned short*);
+    }
+    rdi = e1000_validate_nvm_checksum_i210(e1000_hw*);
+    if (CPU_FLAGS & E) {
+            rdi = e1000_null_ops_generic(e1000_hw*);
+    }
+    rsi = e1000_update_nvm_checksum_i210(e1000_hw*);
+    if (CPU_FLAGS & E) {
+            rsi = e1000_null_ops_generic(e1000_hw*);
+    }
+    *(int32_t *)(rbx + 0x4d8) = 0x4 - (rdx >> 0x13);
+    *(rbx + 0x4a0) = r9;
+    *(rbx + 0x4d0) = r10;
+    *(rbx + 0x4c8) = rdi;
+    *(rbx + 0x4b8) = rsi;
+    return rax;
+

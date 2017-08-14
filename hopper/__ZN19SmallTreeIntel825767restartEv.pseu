@@ -1,0 +1,14 @@
+    rbx = rdi;
+    if ((*(int8_t *)(rbx + 0x784) & 0x8) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "restart");
+    }
+    e1000_phy_hw_reset(rbx + 0x7e8);
+    SmallTreeIntel82576::down(rbx);
+    _IODelay(0x7a120);
+    r14 = SmallTreeIntel82576::up(rbx);
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%08lx\n", rbx + 0x38b, "restart", sign_extend_64(r14));
+    }
+    rax = r14;
+    return rax;
+

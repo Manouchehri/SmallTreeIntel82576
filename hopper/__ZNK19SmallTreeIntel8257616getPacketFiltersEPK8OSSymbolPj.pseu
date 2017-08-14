@@ -1,0 +1,19 @@
+    r14 = rdx;
+    r15 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "getPacketFilters");
+    }
+    if (*_gIONetworkFilterGroup != r15) {
+            r15 = (*0x2f7a8)(rbx, r15, r14);
+    }
+    else {
+            *(int32_t *)r14 = 0x113;
+            r15 = 0x0;
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning ret=0x%x filters=0x%lx\n", rbx + 0x38b, "getPacketFilters", r15, *(int32_t *)r14);
+    }
+    rax = r15;
+    return rax;
+

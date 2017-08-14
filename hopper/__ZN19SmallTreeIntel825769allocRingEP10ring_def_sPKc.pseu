@@ -1,0 +1,116 @@
+    r14 = rdx;
+    r12 = arg1;
+    r15 = arg0;
+    rbx = *(int32_t *)(r12 + 0x8);
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered with ringsize=%ld\n", r15 + 0x38b, "allocRing", rbx);
+    }
+    _strncpy(r12 + 0x38, r14, 0x6);
+    *(int32_t *)(r12 + 0x2c) = (rbx << 0x4) + 0xfff & 0xfffff000;
+    rax = IOBufferMemoryDescriptor::inTaskWithPhysicalMask(*_kernel_task, 0x13, (rbx << 0x4) + 0xfff & 0xfffff000, 0xfffffff000);
+    *(r12 + 0x18) = rax;
+    if (rax == 0x0) goto loc_3494;
+
+loc_3419:
+    rax = IODMACommand::withSpecification(IODMACommand::OutputHost64(IODMACommand*, IODMACommand::Segment64, void*, unsigned int), 0x40, *(int32_t *)(r12 + 0x2c), 0x0, 0x0, 0x1, 0x0, 0x0);
+    *(r12 + 0x30) = rax;
+    if (rax == 0x0) goto loc_34b4;
+
+loc_3455:
+    r13 = (*(*rax + 0x128))(rax, *(r12 + 0x18), 0x1, *rax);
+    if (r13 == 0x0) goto loc_3535;
+
+loc_3477:
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) == 0x0) goto loc_34e3;
+
+loc_3481:
+    rdi = "%s %s: setMemoryDescriptor failed for %s\n";
+    goto loc_356f;
+
+loc_356f:
+    rbx = r14;
+    _IOLog(rdi);
+    r14 = 0x0;
+    if (r13 != 0x0) {
+            SmallTreeIntel82576::freeRing(r15, r12);
+            r14 = r13;
+    }
+    goto loc_34f7;
+
+loc_34f7:
+    if ((*(int8_t *)(r15 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning 0x%08lx\n", r15 + 0x38b, "allocRing", sign_extend_64(r14));
+    }
+    rax = r14;
+    return rax;
+
+loc_34e3:
+    rbx = r14;
+    goto loc_34e6;
+
+loc_34e6:
+    SmallTreeIntel82576::freeRing(r15, r12);
+    r14 = r13;
+    goto loc_34f7;
+
+loc_3535:
+    var_40 = 0x0;
+    var_44 = 0x1;
+    r13 = (*(**(r12 + 0x30) + 0x158))(*(r12 + 0x30), &var_40, &var_38, &var_44);
+    if (r13 == 0x0) goto loc_3594;
+
+loc_3557:
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) == 0x0) goto loc_34e3;
+
+loc_3561:
+    rdi = "%s %s: gen64IOVMSegments failed for %s\n";
+    goto loc_356f;
+
+loc_3594:
+    var_50 = r14;
+    *(r12 + 0x10) = var_38;
+    rax = (*(**(r12 + 0x18) + 0x2e0))(*(r12 + 0x18));
+    *r12 = rax;
+    r14 = 0x0;
+    _memset(rax, 0x0, *(int32_t *)(r12 + 0x2c));
+    rbx = rbx << 0x3;
+    *(int32_t *)(r12 + 0x28) = rbx;
+    rax = _IOMalloc(rbx);
+    *(r12 + 0x20) = rax;
+    if (rax == 0x0) goto loc_35f1;
+
+loc_35df:
+    _memset(rax, 0x0, rbx);
+    goto loc_34f7;
+
+loc_35f1:
+    r13 = 0xe00002bd;
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) != 0x0) {
+            rbx = var_50;
+            _IOLog("%s %s: Could not allocate mbuf array memory for %s\n", r15 + 0x38b, "allocRing", rbx);
+    }
+    else {
+            rbx = var_50;
+    }
+    goto loc_34e6;
+
+loc_34b4:
+    r13 = 0xe00002bc;
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) == 0x0) goto loc_34e3;
+
+loc_34c4:
+    rdi = "%s %s: IODMACommand failed for %s\n";
+    goto loc_34d2;
+
+loc_34d2:
+    _IOLog(rdi);
+    goto loc_34e3;
+
+loc_3494:
+    r13 = 0xe00002bc;
+    if ((*(int8_t *)(r15 + 0x784) & 0x1) == 0x0) goto loc_34e3;
+
+loc_34a4:
+    rdi = "%s %s: No memory descriptors for %s\n";
+    goto loc_34d2;
+

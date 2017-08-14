@@ -1,0 +1,28 @@
+    rbx = arg0;
+    rax = (*(rbx + 0x3d8))(arg0, 0x9, &var_A);
+    if (rax == 0x0) {
+            rax = var_A;
+            rcx = rax & 0xffff;
+            rdx = 0x3;
+            if ((HIBYTE(rcx) & 0x10) != 0x0) {
+                    rdx = 0x2 - (rcx >> 0xb & 0x1);
+            }
+            *(int32_t *)(rbx + 0x458) = rdx;
+            rcx = *(int32_t *)(rbx + 0x454);
+            if (rcx != 0x3) {
+                    if (rcx == 0x2) {
+                            rax = rax & 0xffffe7ff | 0x1000;
+                    }
+                    else {
+                            if (rcx == 0x1) {
+                                    rax = rax | 0x1800;
+                            }
+                    }
+            }
+            else {
+                    rax = rax & 0xefff;
+            }
+            rax = (*(rbx + 0x410))(rbx, 0x9, rax & 0xffff);
+    }
+    return rax;
+

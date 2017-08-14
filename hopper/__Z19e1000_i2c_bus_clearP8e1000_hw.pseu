@@ -1,0 +1,20 @@
+    r14 = arg0;
+    var_1C = *(int32_t *)(*(r14 + 0x8) + 0x102c);
+    e1000_i2c_start(arg0);
+    e1000_set_i2c_data(r14, &var_1C, 0x1);
+    rbx = 0x9;
+    do {
+            *(int32_t *)(*(r14 + 0x8) + 0x102c) = var_1C & 0xffffddff | 0x200;
+            _IODelay(0x1);
+            _IODelay(0x4);
+            rax = (var_1C & 0xffffddff | 0x200) & 0xffffddff;
+            var_1C = rax;
+            *(int32_t *)(*(r14 + 0x8) + 0x102c) = rax;
+            _IODelay(0x1);
+            _IODelay(0x5);
+            rbx = rbx - 0x1;
+    } while (rbx != 0x0);
+    e1000_i2c_start(r14);
+    rax = e1000_i2c_stop(r14);
+    return rax;
+

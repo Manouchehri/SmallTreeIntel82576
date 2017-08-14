@@ -1,0 +1,110 @@
+    rbx = arg0;
+    if (*(int32_t *)(rbx + 0x474) == 0x3) goto loc_b352;
+
+loc_b342:
+    r14 = 0x0;
+    if (*(int8_t *)(rbx + 0x578) == 0x0) goto loc_b4a8;
+
+loc_b352:
+    *(int32_t *)(*(rbx + 0x8) + 0x24) = 0x400;
+    rax = *(int32_t *)(*(rbx + 0x8) + 0x18);
+    *(int32_t *)(*(rbx + 0x8) + 0x18) = rax & 0xffffff7f;
+    r12 = *(int32_t *)*(rbx + 0x8);
+    rcx = *(int32_t *)(rbx + 0x11c);
+    if ((rcx != 0x1) && (rcx != 0x2)) {
+            r12 = r12 | 0x40;
+    }
+    else {
+            r12 = r12 | 0xc0040;
+    }
+    r15 = *(int32_t *)(*(rbx + 0x8) + 0x4208);
+    rax = rax & 0xc00000;
+    if (rax != 0x400000) goto loc_b3af;
+
+loc_b3aa:
+    r13 = 0x0;
+    goto loc_b3cd;
+
+loc_b3cd:
+    if (*(int32_t *)(rbx + 0x11c) > 0x2) goto loc_b406;
+
+loc_b3da:
+    r14 = (*(rbx + 0x4a0))(rbx, 0x3, 0x1, &var_2A);
+    if (r14 != 0x0) goto loc_b4a8;
+
+loc_b3fd:
+    if ((var_29 & 0x40) != 0x0) {
+            r13 = 0x0;
+    }
+    goto loc_b406;
+
+loc_b406:
+    r15 = r15 | 0xc;
+    *(int32_t *)*(rbx + 0x8) = r12 | 0x1a01;
+    if ((r13 & 0x1) != 0x0) {
+            r15 = r15 & 0xfffcff4e | 0x30000;
+            rcx = *(int32_t *)(*(rbx + 0x8) + 0x4218);
+            rdx = *(int32_t *)(rbx + 0x384);
+            if (rdx != 0x1) {
+                    rax = rcx & 0xfffffe7f;
+                    if (rdx == 0x2) {
+                            rax = rax | 0x100;
+                    }
+                    else {
+                            if (rdx == 0x3) {
+                                    rax = rcx | 0x180;
+                            }
+                    }
+            }
+            else {
+                    rax = rcx | 0x180;
+            }
+            *(int32_t *)(*(rbx + 0x8) + 0x4218) = rax;
+            *(int32_t *)(*(rbx + 0x8) + 0x4208) = r15;
+            r14 = 0x0;
+    }
+    else {
+            *(int32_t *)(*(rbx + 0x8) + 0x4208) = r15 & 0xfffeff4e | 0x90;
+            r14 = 0x0;
+            if (*(int8_t *)(rbx + 0x578) == 0x0) {
+                    e1000_force_mac_fc_generic(rbx);
+            }
+    }
+    goto loc_b4a8;
+
+loc_b4a8:
+    rax = r14;
+    return rax;
+
+loc_b3af:
+    if (rax != 0x800000) goto loc_b3c6;
+
+loc_b3b6:
+    r15 = r15 & 0xfffbffff;
+    *(int32_t *)*(rbx + 0x8) = r12;
+    r15 = r15 & 0xfffcff4e | 0x30000;
+    rcx = *(int32_t *)(*(rbx + 0x8) + 0x4218);
+    rdx = *(int32_t *)(rbx + 0x384);
+    if (rdx != 0x1) {
+            rax = rcx & 0xfffffe7f;
+            if (rdx == 0x2) {
+                    rax = rax | 0x100;
+            }
+            else {
+                    if (rdx == 0x3) {
+                            rax = rcx | 0x180;
+                    }
+            }
+    }
+    else {
+            rax = rcx | 0x180;
+    }
+    *(int32_t *)(*(rbx + 0x8) + 0x4218) = rax;
+    *(int32_t *)(*(rbx + 0x8) + 0x4208) = r15;
+    r14 = 0x0;
+    goto loc_b4a8;
+
+loc_b3c6:
+    r13 = *(int8_t *)(rbx + 0x353);
+    goto loc_b3cd;
+

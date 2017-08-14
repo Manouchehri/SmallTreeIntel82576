@@ -1,0 +1,47 @@
+    rbx = arg0;
+    rax = e1000_phy_has_link_generic(arg0, 0x1, 0x0, &var_D);
+    if (rax != 0x0) goto .l1;
+
+loc_113bc:
+    rax = 0xfffffffd;
+    if (var_D == 0x0) goto .l1;
+
+loc_113cb:
+    *(int8_t *)(rbx + 0x485) = 0x1;
+    rax = (*(rbx + 0x3d8))(rbx, 0x1a, &var_A);
+    if (rax != 0x0) goto .l1;
+
+loc_113ec:
+    *(int32_t *)(rbx + 0x45c) = (var_A & 0xffff) >> 0xa & 0x1;
+    rax = (*(rbx + 0x3d8))(rbx, 0x1a, &var_C);
+    if (rax != 0x0) goto .l1;
+
+loc_11412:
+    *(int8_t *)(rbx + 0x484) = (var_C & 0xffff) >> 0xb & 0x1;
+    if ((var_C & 0xffff & 0x300) != 0x200) goto loc_11473;
+
+loc_11430:
+    rax = (*(rbx + 0x3c0))(rbx);
+    if (rax != 0x0) goto .l1;
+
+loc_1143d:
+    rax = (*(rbx + 0x3d8))(rbx, 0xa, &var_C);
+    if (rax != 0x0) goto .l1;
+
+loc_11453:
+    *(int32_t *)(rbx + 0x44c) = (var_C & 0xffff) >> 0xd & 0x1;
+    *(int32_t *)(rbx + 0x450) = (var_C & 0xffff) >> 0xc & 0x1;
+    goto loc_1148d;
+
+loc_1148d:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_11473:
+    *(int16_t *)(rbx + 0x47c) = 0xff;
+    *(rbx + 0x44c) = 0xff000000ff;
+    goto loc_1148d;
+

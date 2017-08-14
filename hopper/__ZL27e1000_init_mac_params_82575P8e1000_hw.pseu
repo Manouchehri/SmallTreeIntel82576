@@ -1,0 +1,216 @@
+    r14 = arg0;
+    *(int8_t *)(r14 + 0x578) = 0x0;
+    *(int8_t *)(r14 + 0x57b) = 0x0;
+    rdx = *(int32_t *)(*(r14 + 0x8) + 0x18);
+    r13 = rdx & 0xc00000;
+    if (r13 > 0x3fffff) goto loc_9143;
+
+loc_912a:
+    if (r13 == 0x0) {
+            *(int32_t *)(r14 + 0x474) = 0x1;
+    }
+    goto loc_92d8;
+
+loc_92d8:
+    *(int16_t *)(r14 + 0x146) = 0x80;
+    rax = *(int32_t *)(r14 + 0x11c);
+    *(int16_t *)(r14 + 0x148) = ((rax != 0x1 ? 0x1 : 0x0) & 0xff) << 0x7;
+    rdx = 0x10;
+    if (rax == 0x2) {
+            rdx = 0x18;
+    }
+    if (rax == 0x3) {
+            rdx = 0x18;
+    }
+    rcx = 0x20;
+    if (rax != 0x4) {
+            rcx = rdx;
+    }
+    *(int16_t *)(r14 + 0x34c) = rcx;
+    if (!CPU_FLAGS & L) {
+            *(int8_t *)(r14 + 0x57a) = 0x0;
+            if (rax >= 0x5) {
+                    *(int8_t *)(r14 + 0x57c) = 0x1;
+            }
+    }
+    *(int8_t *)(r14 + 0x352) = 0x1;
+    *(int8_t *)(r14 + 0x350) = 0x1;
+    *(int8_t *)(r14 + 0x351) = (*(int32_t *)(*(r14 + 0x8) + 0x5b54) & 0xe) != 0x0 ? 0x1 : 0x0;
+    *(r14 + 0x60) = e1000_get_bus_info_pcie_generic(e1000_hw*);
+    rax = *(int32_t *)(r14 + 0x11c);
+    CMP(rax, 0x2);
+    rdx = e1000_reset_hw_82575(e1000_hw*);
+    asm { cmovg      rdx, rcx };
+    *(r14 + 0x90) = rdx;
+    *(r14 + 0x98) = e1000_init_hw_82575(e1000_hw*);
+    *(r14 + 0xb0) = e1000_setup_link_generic(e1000_hw*);
+    rdx = e1000_setup_serdes_link_82575(e1000_hw*);
+    if (*(int32_t *)(r14 + 0x474) == 0x1) {
+            rdx = e1000_setup_copper_link_82575(e1000_hw*);
+    }
+    *(r14 + 0xb8) = rdx;
+    *(r14 + 0xa0) = e1000_shutdown_serdes_link_82575(e1000_hw*);
+    *(r14 + 0xa8) = e1000_power_up_serdes_link_82575(e1000_hw*);
+    *(r14 + 0x40) = e1000_check_for_link_82575(e1000_hw*);
+    *(r14 + 0xe0) = e1000_read_mac_addr_82575(e1000_hw*);
+    *(r14 + 0xd0) = e1000_config_collision_dist_82575(e1000_hw*);
+    *(r14 + 0x88) = e1000_update_mc_addr_list_generic(e1000_hw*, unsigned char*, unsigned int);
+    rcx = e1000_write_vfta_i350(e1000_hw*, unsigned int, unsigned int);
+    if (rax != 0x4) {
+            rcx = e1000_write_vfta_generic(e1000_hw*, unsigned int, unsigned int);
+    }
+    rdx = e1000_clear_vfta_i350(e1000_hw*);
+    if (CPU_FLAGS & NE) {
+            rdx = e1000_clear_vfta_generic(e1000_hw*);
+    }
+    *(r14 + 0xc8) = rcx;
+    *(r14 + 0x58) = rdx;
+    if (rax >= 0x3) {
+            *(r14 + 0xe8) = e1000_validate_mdi_setting_crossover_generic(e1000_hw*);
+    }
+    *(r14 + 0x28) = e1000_id_led_init_generic(e1000_hw*);
+    *(r14 + 0x30) = e1000_blink_led_generic(e1000_hw*);
+    *(r14 + 0xc0) = e1000_setup_led_generic(e1000_hw*);
+    *(r14 + 0x48) = e1000_cleanup_led_generic(e1000_hw*);
+    *(r14 + 0x78) = e1000_led_on_generic(e1000_hw*);
+    *(r14 + 0x80) = e1000_led_off_generic(e1000_hw*);
+    *(r14 + 0x50) = e1000_clear_hw_cntrs_82575(e1000_hw*);
+    *(r14 + 0x70) = e1000_get_link_up_info_82575(e1000_hw*, unsigned short*, unsigned short*);
+    *(r14 + 0xf0) = e1000_get_thermal_sensor_data_generic(e1000_hw*);
+    *(r14 + 0xf8) = e1000_init_thermal_sensor_thresh_generic(e1000_hw*);
+    *(r14 + 0x100) = e1000_acquire_swfw_sync_82575(e1000_hw*, unsigned short);
+    *(r14 + 0x108) = e1000_release_swfw_sync_82575(e1000_hw*, unsigned short);
+    if (rax >= 0x5) {
+            *(r14 + 0x100) = e1000_acquire_swfw_sync_i210(e1000_hw*, unsigned short);
+            *(r14 + 0x108) = e1000_release_swfw_sync_i210(e1000_hw*, unsigned short);
+    }
+    (*(r14 + 0x68))(r14);
+    return 0x0;
+
+loc_9143:
+    if (r13 == 0xc00000) goto loc_91a4;
+
+loc_914c:
+    if (r13 != 0x800000) goto loc_916f;
+
+loc_9155:
+    rax = *(int32_t *)(r14 + 0x11c);
+    if (rax >= 0x7) goto loc_918c;
+
+loc_9164:
+    rax = 0xe04 + *(r14 + 0x8);
+    goto loc_919b;
+
+loc_919b:
+    if (*(int32_t *)rax < 0x0) goto loc_92c5;
+
+loc_91a4:
+    var_34 = rdx;
+    var_29 = 0x0;
+    rcx = 0xffffff7f & *(int32_t *)(*(r14 + 0x8) + 0x18);
+    var_30 = rcx;
+    *(int32_t *)(*(r14 + 0x8) + 0x18) = rcx | 0x2000000;
+    r12 = 0xfffffffd;
+    r15 = &var_29;
+    goto loc_91d4;
+
+loc_91d4:
+    rbx = e1000_read_sfp_data_byte(r14, 0x0, r15);
+    if (rbx == 0x0) goto loc_91f8;
+
+loc_91e7:
+    _IODelay(0x186a0);
+    r12 = r12 + 0x1;
+    if (r12 != 0x0) goto loc_91d4;
+
+loc_9271:
+    *(int32_t *)(*(r14 + 0x8) + 0x18) = var_30;
+    if (rbx == 0x0) {
+            rax = *(int32_t *)(r14 + 0x474);
+            if (rax != 0x0) {
+                    if ((*(int8_t *)(r14 + 0x584) & 0x20) == 0x0) {
+                            if (rax == 0x1) {
+                                    rcx = var_34 & 0xff3fffff | 0x800000;
+                            }
+                            else {
+                                    rcx = var_34 | 0xc00000;
+                            }
+                            *(int32_t *)(*(r14 + 0x8) + 0x18) = rcx;
+                    }
+            }
+            else {
+                    *(int32_t *)(r14 + 0x474) = 0x3;
+                    if (r13 == 0x800000) {
+                            *(int32_t *)(r14 + 0x474) = 0x1;
+                            *(int8_t *)(r14 + 0x578) = 0x1;
+                    }
+            }
+    }
+    else {
+            *(int32_t *)(r14 + 0x474) = 0x3;
+            if (r13 == 0x800000) {
+                    *(int32_t *)(r14 + 0x474) = 0x1;
+                    *(int8_t *)(r14 + 0x578) = 0x1;
+            }
+    }
+    goto loc_92d8;
+
+loc_91f8:
+    rbx = e1000_read_sfp_data_byte(r14, 0x6, r14 + 0x584);
+    if (rbx != 0x0) goto loc_9271;
+
+loc_9212:
+    if ((var_29 & 0xfe & 0xff) != 0x2) goto loc_9264;
+
+loc_921f:
+    *(int8_t *)(r14 + 0x57b) = 0x1;
+    rax = *(int8_t *)(r14 + 0x584);
+    if ((rax & 0x3) != 0x0) goto loc_923e;
+
+loc_9232:
+    if ((rax & 0x20) == 0x0) goto loc_924b;
+
+loc_9236:
+    *(int8_t *)(r14 + 0x578) = 0x1;
+    goto loc_923e;
+
+loc_923e:
+    *(int32_t *)(r14 + 0x474) = 0x3;
+    goto loc_926f;
+
+loc_926f:
+    rbx = 0x0;
+    goto loc_9271;
+
+loc_924b:
+    if ((rax & 0x8) != 0x0) {
+            *(int8_t *)(r14 + 0x578) = 0x1;
+            *(int32_t *)(r14 + 0x474) = 0x1;
+    }
+    else {
+            *(int32_t *)(r14 + 0x474) = 0x0;
+    }
+    goto loc_926f;
+
+loc_9264:
+    *(int32_t *)(r14 + 0x474) = 0x0;
+    goto loc_926f;
+
+loc_92c5:
+    *(int32_t *)(r14 + 0x474) = 0x1;
+    *(int8_t *)(r14 + 0x578) = 0x1;
+    goto loc_92d8;
+
+loc_918c:
+    if (rax > 0x2) goto loc_91a4;
+
+loc_9193:
+    rax = *(r14 + 0x8) + 0x20;
+    goto loc_919b;
+
+loc_916f:
+    if (r13 == 0x400000) {
+            *(int32_t *)(r14 + 0x474) = 0x3;
+    }
+    goto loc_92d8;
+

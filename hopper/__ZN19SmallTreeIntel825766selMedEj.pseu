@@ -1,0 +1,224 @@
+    rbx = rsi;
+    r14 = arg0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered for type=%ld\n", r14 + 0x38b, "selMed", rbx);
+    }
+    *(int32_t *)(r14 + 0x740) = rbx;
+    if (rbx > 0x100022) goto loc_2baf;
+
+loc_2b3f:
+    if (rbx != 0x20) goto loc_2fbc;
+
+loc_2b48:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: EthernetAuto\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x20;
+    *(int16_t *)(r14 + 0xc60) = 0x2f;
+    *(int32_t *)(r14 + 0xb68) = 0x3;
+    *(int32_t *)(r14 + 0xb6c) = 0x3;
+    goto loc_2b9e;
+
+loc_2b9e:
+    *(int16_t *)(r14 + 0x154) = 0x0;
+    rbx = 0x1;
+    goto loc_2fea;
+
+loc_2fea:
+    if (*(int8_t *)(r14 + 0x155) != 0x0) {
+            *(int32_t *)(r14 + 0x150) = 0x4;
+    }
+    *(int8_t *)(r14 + 0xc70) = 0x0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            r14 = r14 + 0x38b;
+            rcx = "false";
+            if (rbx != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", r14, "selMed", rcx);
+    }
+    rax = rbx;
+    return rax;
+
+loc_2fbc:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rcx = rbx;
+            rbx = 0x0;
+            _IOLog("%s %s: Uknown medium type=%ld", r14 + 0x38b, "selMed", rcx);
+    }
+    else {
+            rbx = 0x0;
+    }
+    goto loc_2fea;
+
+loc_2baf:
+    if (rbx > 0x8000022) goto loc_2c2c;
+
+loc_2bb7:
+    if (rbx > 0x500022) goto loc_2c7f;
+
+loc_2bc3:
+    if (rbx > 0x200022) goto loc_2d85;
+
+loc_2bcf:
+    if (rbx == 0x100023) goto loc_2ef2;
+
+loc_2bdb:
+    if (rbx != 0x100026) goto loc_2f59;
+
+loc_2be7:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 100 full\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x8;
+    *(int16_t *)(r14 + 0xc60) = 0x8;
+    goto loc_2f32;
+
+loc_2f32:
+    *(int32_t *)(r14 + 0xb68) = 0x0;
+    *(int32_t *)(r14 + 0xb6c) = 0x0;
+    goto loc_2f48;
+
+loc_2f48:
+    *(int16_t *)(r14 + 0x154) = 0x100;
+    rbx = 0x1;
+    goto loc_2fea;
+
+loc_2f59:
+    if (rbx != 0x100030) goto loc_2fbc;
+
+loc_2f61:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 1000 full\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int16_t *)(r14 + 0xc60) = 0x20;
+    *(int8_t *)(r14 + 0xb36) = 0x20;
+    *(int32_t *)(r14 + 0xb68) = 0x0;
+    *(int32_t *)(r14 + 0xb6c) = 0x0;
+    goto loc_2b9e;
+
+loc_2ef2:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 10 full\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x2;
+    *(int16_t *)(r14 + 0xc60) = 0x2;
+    goto loc_2f32;
+
+loc_2d85:
+    if (rbx != 0x200023) goto loc_2ea4;
+
+loc_2d91:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 10 half\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x1;
+    *(int16_t *)(r14 + 0xc60) = 0x1;
+    goto loc_2f32;
+
+loc_2ea4:
+    if (rbx != 0x200026) goto loc_2fbc;
+
+loc_2eb0:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 100 half\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x4;
+    *(int16_t *)(r14 + 0xc60) = 0x4;
+    goto loc_2f32;
+
+loc_2c7f:
+    if (rbx == 0x500023) goto loc_2dd6;
+
+loc_2c8b:
+    if (rbx != 0x500026) goto loc_2e3d;
+
+loc_2c97:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 100 full fc\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x8;
+    *(int16_t *)(r14 + 0xc60) = 0x8;
+    goto loc_2e16;
+
+loc_2e16:
+    *(int32_t *)(r14 + 0xb68) = 0x3;
+    *(int32_t *)(r14 + 0xb6c) = 0x3;
+    *(int16_t *)(r14 + 0x154) = 0x101;
+    rbx = 0x1;
+    goto loc_2fea;
+
+loc_2e3d:
+    if (rbx != 0x500030) goto loc_2fbc;
+
+loc_2e49:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 1000 full fc\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int16_t *)(r14 + 0xc60) = 0x20;
+    *(int8_t *)(r14 + 0xb36) = 0x20;
+    *(int32_t *)(r14 + 0xb68) = 0x3;
+    *(int32_t *)(r14 + 0xb6c) = 0x3;
+    goto loc_2f48;
+
+loc_2dd6:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 10 full fc\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x1;
+    *(int8_t *)(r14 + 0xb36) = 0x2;
+    *(int16_t *)(r14 + 0xc60) = 0x2;
+    goto loc_2e16;
+
+loc_2c2c:
+    if (rbx == 0x8000023) goto loc_2cdc;
+
+loc_2c38:
+    if (rbx != 0x8000026) goto loc_2d1e;
+
+loc_2c44:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 100 loopback\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x0;
+    *(int8_t *)(r14 + 0xb36) = 0x8;
+    goto loc_2d12;
+
+loc_2d12:
+    *(int16_t *)(r14 + 0xc60) = 0x0;
+    goto loc_2d60;
+
+loc_2d60:
+    *(int32_t *)(r14 + 0xb68) = 0x0;
+    *(int32_t *)(r14 + 0xb6c) = 0x0;
+    *(int16_t *)(r14 + 0x154) = 0x0;
+    rbx = 0x0;
+    goto loc_2fea;
+
+loc_2d1e:
+    if (rbx != 0x8000030) goto loc_2fbc;
+
+loc_2d2a:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 1000 loop\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x0;
+    *(int8_t *)(r14 + 0xb36) = 0x20;
+    goto loc_2d60;
+
+loc_2cdc:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: 10 loopback\n", r14 + 0x38b, "selMed");
+    }
+    *(int8_t *)(r14 + 0xb3b) = 0x0;
+    *(int8_t *)(r14 + 0xb36) = 0x2;
+    goto loc_2d12;
+

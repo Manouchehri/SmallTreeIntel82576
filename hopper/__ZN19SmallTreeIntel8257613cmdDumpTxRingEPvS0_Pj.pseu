@@ -1,0 +1,67 @@
+    r14 = rcx;
+    rbx = arg2;
+    r13 = arg1;
+    r12 = arg0;
+    if ((*(int8_t *)(r12 + 0x785) & 0x10) != 0x0) {
+            rsi = r12 + 0x38b;
+            rax = 0x0;
+            if (r14 != 0x0) {
+                    rax = *(int32_t *)r14;
+            }
+            _IOLog("%s %s: p1=%p pOut=%p pOutSize=%p *pOutSize=0x%lx\n", rsi, "cmdDumpTxRing", r13, rbx, r14, rax);
+    }
+    if (*(int32_t *)(r12 + 0x7a0) == 0x0) goto loc_14297;
+
+loc_14223:
+    var_30 = rbx;
+    r15 = r13 >> 0x1e & 0x3;
+    rbx = r13 >> 0x14 & 0x3ff;
+    r13 = r13 & 0xfffff;
+    if ((*(int8_t *)(r12 + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: type=%lu count=%lu offset=%lu\n", r12 + 0x38b, "cmdDumpTxRing", r15, rbx, r13);
+    }
+    if (r15 != 0x1) goto loc_142c8;
+
+loc_1427e:
+    rbx = rbx << 0x4;
+    rdi = var_30;
+    rsi = (r13 << 0x4) + *(r12 + 0x418);
+    goto loc_142e1;
+
+loc_142e1:
+    _memcpy(rdi, rsi, rbx);
+    goto loc_1431c;
+
+loc_1431c:
+    *(int32_t *)r14 = rbx;
+    rbx = 0x0;
+    goto loc_14321;
+
+loc_14321:
+    rax = rbx;
+    return rax;
+
+loc_142c8:
+    if (r15 != 0x0) goto loc_142eb;
+
+loc_142cd:
+    rbx = rbx << 0x3;
+    rsi = *(r12 + 0x438) + r13 * 0x8;
+    rdi = var_30;
+    goto loc_142e1;
+
+loc_142eb:
+    rbx = 0x0;
+    if ((*(int8_t *)(r12 + 0x785) & 0x10) != 0x0) {
+            rbx = 0x0;
+            _IOLog("%s %s: Unknown ring type=%lu\n", r12 + 0x38b, "cmdDumpTxRing", r15);
+    }
+    goto loc_1431c;
+
+loc_14297:
+    rbx = 0xe00002bc;
+    if ((*(int8_t *)(r12 + 0x785) & 0x10) != 0x0) {
+            _IOLog("%s %s: Ring not setup, returning\n", r12 + 0x38b, "cmdDumpTxRing");
+    }
+    goto loc_14321;
+

@@ -1,0 +1,51 @@
+    r13 = arg0;
+    r14 = 0xe;
+    if ((*(int32_t *)(r13 + 0x11c) != 0x4) || (*(int16_t *)(r13 + 0x504) != 0x0)) goto loc_a75f;
+
+loc_a638:
+    _memset(r13 + 0x35e, 0x0, 0xc);
+    *(int8_t *)(r13 + 0x35e) = 0x1;
+    *(int8_t *)(r13 + 0x360) = *(int32_t *)(*(r13 + 0x8) + 0x810c);
+    *(int8_t *)(r13 + 0x361) = *(int32_t *)(*(r13 + 0x8) + 0x8104);
+    e1000_read_nvm(r13, 0x3e, 0x1, &var_2A);
+    rax = var_2A & 0xffff;
+    if ((rax + 0x1 & 0xffff) < 0x2) goto loc_a75c;
+
+loc_a69e:
+    e1000_read_nvm(r13, rax & 0xffff, 0x1, &var_2C);
+    r15 = var_2C & 0xffff;
+    if ((r15 & 0x38) != 0x0) goto loc_a75f;
+
+loc_a6c1:
+    r12 = r15 & 0x7;
+    if (r12 != 0x0) {
+            r15 = r15 >> 0x6 & 0x1f;
+            rbx = 0x1;
+            rax = 0x1;
+            do {
+                    e1000_read_nvm(r13, (var_2A & 0xffff) + rax & 0xffff, 0x1, &var_2E);
+                    r14 = var_2E & 0xffff;
+                    (*(r13 + 0x440))(r13, *(int8_t *)((r14 >> 0x8 & 0x3) + e1000_emc_therm_limit) & 0xff, 0xf8, r14 & 0xff);
+                    rax = rbx & 0xff;
+                    if (rax <= 0x2) {
+                            rcx = r14 >> 0xa & 0xf;
+                            if (rcx != 0x0) {
+                                    *(int8_t *)(r13 + rax * 0x4 + 0x35e) = rcx;
+                                    *(int8_t *)(r13 + rax * 0x4 + 0x360) = r14;
+                                    *(int8_t *)(r13 + rax * 0x4 + 0x361) = r14 - r15;
+                            }
+                    }
+                    rbx = rbx + 0x1;
+                    rax = rbx & 0xff;
+            } while (rax <= r12);
+    }
+    goto loc_a75c;
+
+loc_a75c:
+    r14 = 0x0;
+    goto loc_a75f;
+
+loc_a75f:
+    rax = r14;
+    return rax;
+

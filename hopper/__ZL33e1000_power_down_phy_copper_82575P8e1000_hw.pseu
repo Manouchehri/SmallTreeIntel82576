@@ -1,0 +1,12 @@
+    rbx = arg0;
+    if (*(rbx + 0x3a0) != 0x0) {
+            rax = e1000_enable_mng_pass_thru(rbx);
+            if (rax == 0x0) {
+                    rax = (*(rbx + 0x3a0))(rbx);
+                    if (rax == 0x0) {
+                            rax = e1000_power_down_phy_copper(rbx);
+                    }
+            }
+    }
+    return rax;
+

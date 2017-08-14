@@ -1,0 +1,40 @@
+    rdx = arg2;
+    rsi = arg1;
+    r12 = arg0;
+    r14 = 0xfffffffe;
+    if (rsi > 0x1ff) goto loc_f270;
+
+loc_f207:
+    *(int32_t *)(*(r12 + 0x8) + 0x1028) = rsi << 0x10 | 0x8000000;
+    r15 = rdx & 0xff | rsi << 0x10;
+    rbx = 0x0;
+    goto loc_f225;
+
+loc_f225:
+    _IODelay(0x32);
+    rcx = *(r12 + 0x8);
+    rax = *(int32_t *)(rcx + 0x1028);
+    if ((rax & 0x20000000) == 0x0) goto loc_f256;
+
+loc_f241:
+    if ((rax & 0x8000000) == 0x0) goto loc_f260;
+
+loc_f248:
+    rax = rax & 0xff00 | r15;
+    *(int32_t *)(rcx + 0x1028) = rax;
+    goto loc_f256;
+
+loc_f256:
+    rbx = rbx + 0x1;
+    if (rbx < 0xc8) goto loc_f225;
+
+loc_f260:
+    if ((rax & 0x20000000) != 0x0) {
+            r14 = SAR(rax, 0x1f) & 0xfffffffe;
+    }
+    goto loc_f270;
+
+loc_f270:
+    rax = r14;
+    return rax;
+

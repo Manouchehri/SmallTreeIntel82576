@@ -1,0 +1,4 @@
+    rax = *(arg0 + 0x8);
+    *(int32_t *)(rax + 0x5b50) = *(int32_t *)(rax + 0x5b50) & 0xfffffffc;
+    return rax;
+

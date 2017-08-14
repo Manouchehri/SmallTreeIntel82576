@@ -1,0 +1,24 @@
+    rsi = arg1;
+    r14 = arg2;
+    r12 = arg0;
+    r15 = 0xfffffffe;
+    if (rsi <= 0x1ff) {
+            *(int32_t *)(*(r12 + 0x8) + 0x1028) = rsi << 0x10 | 0x8000000;
+            rbx = 0x1;
+            do {
+                    _IODelay(0x32);
+                    rax = *(int32_t *)(*(r12 + 0x8) + 0x1028);
+                    if ((rax & 0x20000000) != 0x0) {
+                        break;
+                    }
+                    COND = rbx < 0xc8;
+                    rbx = rbx + 0x1;
+            } while (COND);
+            if ((rax & 0xa0000000) == 0x20000000) {
+                    *(int8_t *)r14 = rax;
+                    r15 = 0x0;
+            }
+    }
+    rax = r15;
+    return rax;
+

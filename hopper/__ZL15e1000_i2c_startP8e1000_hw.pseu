@@ -1,0 +1,12 @@
+    var_1C = *(int32_t *)(*(arg0 + 0x8) + 0x102c);
+    e1000_set_i2c_data(arg0, &var_1C, 0x1);
+    *(int32_t *)(*(arg0 + 0x8) + 0x102c) = var_1C & 0xffffddff | 0x200;
+    _IODelay(0x1);
+    _IODelay(0x5);
+    e1000_set_i2c_data(arg0, &var_1C, 0x0);
+    _IODelay(0x4);
+    *(int32_t *)(*(arg0 + 0x8) + 0x102c) = 0xffffddff & (var_1C & 0xffffddff | 0x200);
+    _IODelay(0x1);
+    rax = _IODelay(0x5);
+    return rax;
+

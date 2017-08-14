@@ -1,0 +1,18 @@
+    rdi = arg0;
+    if ((*(int32_t *)(rdi + 0x11c) >= 0x4) && (*(int32_t *)(rdi + 0x474) == 0x1)) {
+            rdx = *(rdi + 0x8);
+            rcx = *(int32_t *)(rdx + 0xe38);
+            rax = *(int32_t *)(rdx + 0xe30);
+            if (*(int8_t *)(rdi + 0x57a) != 0x0) {
+                    rcx = rcx & 0xfffffff3;
+                    rax = rax & 0xfff8ffff;
+            }
+            else {
+                    rcx = rcx | 0xc;
+                    rax = rax | 0x70000;
+            }
+            *(int32_t *)(*(rdi + 0x8) + 0xe38) = rcx;
+            *(int32_t *)(*(rdi + 0x8) + 0xe30) = rax;
+    }
+    return 0x0;
+

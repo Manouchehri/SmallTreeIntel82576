@@ -1,0 +1,6 @@
+    rsi = *arg0;
+    if ((rsi != 0x0) && ((*(int8_t *)(rsi + 0x786) & 0x10) != 0x0)) {
+            rax = _IOLog("%s %s:  Entered", rsi + 0x38b, "sharedFreeDevSpecStruct");
+    }
+    return rax;
+

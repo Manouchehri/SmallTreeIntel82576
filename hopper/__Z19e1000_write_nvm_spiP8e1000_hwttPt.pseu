@@ -1,0 +1,66 @@
+    rdx = arg2;
+    var_38 = arg3;
+    var_30 = arg1;
+    r15 = arg0;
+    rax = *(int16_t *)(r15 + 0x4e8) & 0xffff;
+    r12 = 0xffffffff;
+    rax = rax - arg1;
+    if (rax <= 0x0) goto loc_e72d;
+
+loc_e5eb:
+    r13 = rdx & 0xffff;
+    if ((r13 > rax) || (rdx == 0x0)) goto loc_e72d;
+
+loc_e601:
+    r14 = 0x0;
+    var_3C = var_30 & 0xffff;
+    goto loc_e60e;
+
+loc_e60e:
+    r12 = (*(r15 + 0x498))(r15);
+    if (r12 != 0x0) goto loc_e72d;
+
+loc_e624:
+    r12 = e1000_ready_nvm_eeprom(r15);
+    if (r12 != 0x0) goto loc_e723;
+
+loc_e638:
+    e1000_standby_nvm(r15);
+    e1000_shift_out_eec_bits(r15, 0x6, *(int16_t *)(r15 + 0x4ee) & 0xffff);
+    e1000_standby_nvm(r15);
+    rax = 0x2;
+    if (((var_3C > 0x7f ? 0x1 : 0x0) & ((*(int16_t *)(r15 + 0x4ec) & 0xffff) == 0x8 ? 0x1 : 0x0)) != 0x0) {
+            rax = 0xa;
+    }
+    e1000_shift_out_eec_bits(r15, rax & 0xffff, *(int16_t *)(r15 + 0x4ee) & 0xffff);
+    e1000_shift_out_eec_bits(r15, r14 + var_30 + r14 + var_30 & 0xffff, *(int16_t *)(r15 + 0x4ec) & 0xffff);
+    r12 = var_38;
+    goto loc_e6b4;
+
+loc_e6b4:
+    rbx = r14 & 0xffff;
+    if (rbx >= r13) goto loc_e6fd;
+
+loc_e6bd:
+    e1000_shift_out_eec_bits(r15, ROL(*(int16_t *)(r12 + rbx * 0x2), 0x8) & 0xffff, 0x10);
+    r14 = rbx + 0x1;
+    if (((r14 & 0xffff) + var_30 + (r14 & 0xffff) + var_30) % (*(int16_t *)(r15 + 0x4f0) & 0xffff) != 0x0) goto loc_e6b4;
+
+loc_e6f5:
+    e1000_standby_nvm(r15);
+    goto loc_e6fd;
+
+loc_e6fd:
+    _IODelay(0x2710);
+    (*(r15 + 0x4a8))(r15);
+    r12 = 0x0;
+    if ((r14 & 0xffff) < r13) goto loc_e60e;
+
+loc_e72d:
+    rax = r12;
+    return rax;
+
+loc_e723:
+    (*(r15 + 0x4a8))(r15);
+    goto loc_e72d;
+

@@ -1,0 +1,10 @@
+    rbx = arg1;
+    rax = (*(arg0 + 0x4a0))(arg0, 0x4, 0x1, rbx);
+    if (rax == 0x0) {
+            rax = 0x0;
+            if (((*(int16_t *)rbx & 0xffff) + 0x1 & 0xffff) <= 0x1) {
+                    *(int16_t *)rbx = 0x8911;
+            }
+    }
+    return rax;
+

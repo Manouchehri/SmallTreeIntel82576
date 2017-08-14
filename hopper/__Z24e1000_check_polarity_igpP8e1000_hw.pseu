@@ -1,0 +1,18 @@
+    rbx = arg0;
+    rax = (*(rbx + 0x3d8))(arg0, 0x11, &var_1A);
+    if (rax == 0x0) {
+            r14 = 0x11;
+            r15 = var_1A & 0xffff;
+            CMP(r15, 0xbfff);
+            asm { cmova      r14d, eax };
+            rax = (*(rbx + 0x3d8))(rbx, r14, &var_1A);
+            if (rax == 0x0) {
+                    CMP(r15 & 0xffff, 0xbfff);
+                    rcx = 0x2;
+                    asm { cmova      ecx, eax };
+                    *(int32_t *)(rbx + 0x45c) = ((rcx & var_1A & 0xffff) != 0x0 ? 0x1 : 0x0) & 0xff;
+                    rax = 0x0;
+            }
+    }
+    return rax;
+

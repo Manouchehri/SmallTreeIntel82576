@@ -1,0 +1,11 @@
+    rdi = arg0;
+    rax = 0x0;
+    if (*(int8_t *)(rdi + 0x353) == 0x0) {
+            rcx = *(int8_t *)(rdi + 0x482);
+            if ((rcx == 0x0) || ((rcx & 0xff) == 0x3)) {
+                    *(int8_t *)(rdi + 0x482) = 0x1;
+                    rax = 0xfffffffd;
+            }
+    }
+    return rax;
+

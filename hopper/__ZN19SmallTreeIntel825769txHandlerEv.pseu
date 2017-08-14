@@ -1,0 +1,69 @@
+    rdx = rdi;
+    var_30 = rdx;
+    r12 = *(int16_t *)(rdx + 0x424);
+    rax = *(int32_t *)(*(rdx + 0x7f0) + 0x3810);
+    rcx = 0xffff + *(int32_t *)(rdx + 0x420);
+    var_34 = rcx;
+    rbx = rax - (r12 & 0xffff) & rcx & 0xffff;
+    if ((*(int8_t *)(rdx + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Entered with cnt=%d txMask=0x%04x txHeadDriver=0x%04x txHeadHW=0x%04x\n", rdx + 0x38b, "txHandler", rbx, r8, r9, rax & 0xffff);
+            rdx = rdx;
+    }
+    *(rdx + 0x710) = *(rdx + 0x710) + rbx;
+    if (rbx != 0x0) {
+            r15 = rbx;
+            *(rdx + 0x708) = *(rdx + 0x708) + 0x1;
+            *(int8_t *)(rdx + 0x3d9) = 0x0;
+            var_40 = rdx + 0x38b;
+            r13 = 0x0;
+            r14 = 0x0;
+            do {
+                    r12 = r12 & 0xffff;
+                    rax = *(rdx + 0x438);
+                    rbx = *(rax + r12 * 0x8);
+                    rcx = *(int32_t *)(rdx + 0x784) & 0x100;
+                    if (rbx != 0x0) {
+                            if (rcx != 0x0) {
+                                    _IOLog("%s %s: Found pkt=%p to free\n", var_40, "txHandler", rbx);
+                                    rax = *(var_30 + 0x438);
+                            }
+                            *(rax + r12 * 0x8) = 0x0;
+                            _mbuf_setnextpkt(rbx, r13);
+                            rdx = var_30;
+                    }
+                    else {
+                            if (rcx != 0x0) {
+                                    _IOLog("%s %s: No pkt found\n", var_40, "txHandler");
+                                    rdx = rdx;
+                            }
+                            rbx = r13;
+                    }
+                    r12 = r12 + 0x1 & var_34;
+                    r14 = r14 + 0x1;
+                    r13 = rbx;
+            } while (r14 < r15);
+    }
+    else {
+            rbx = 0x0;
+    }
+    *(int16_t *)(rdx + 0x424) = r12;
+    rax = (*(**(rdx + 0x410) + 0x140))(*(rdx + 0x410), 0x1);
+    rsi = rdx;
+    if (rbx != 0x0) {
+            r14 = rsi;
+            if ((*(int8_t *)(rsi + 0x785) & 0x1) != 0x0) {
+                    _IOLog("%s %s: Freeing pkt chain at free_list=%p\n", r14 + 0x38b, "txHandler", rbx);
+            }
+            rax = _mbuf_freem_list(rbx);
+            rcx = rax;
+            rsi = r14;
+            if ((*(int8_t *)(r14 + 0x785) & 0x1) != 0x0) {
+                    rax = _IOLog("%s %s: mbuf_freem_list returned count=0x%x\n", rsi + 0x38b, "txHandler", rcx);
+                    rsi = rsi;
+            }
+    }
+    if ((*(int8_t *)(rsi + 0x785) & 0x1) != 0x0) {
+            rax = _IOLog("%s %s: Done\n", rsi + 0x38b, "txHandler");
+    }
+    return rax;
+

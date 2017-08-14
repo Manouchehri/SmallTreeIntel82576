@@ -1,0 +1,8 @@
+    r14 = arg1;
+    rbx = arg0;
+    do {
+    } while (e1000_get_hw_semaphore_i210(rbx) != 0x0);
+    *(int32_t *)(*(rbx + 0x8) + 0x5b5c) = *(int32_t *)(*(rbx + 0x8) + 0x5b5c) & !(r14 & 0xffff);
+    rax = e1000_put_hw_semaphore_generic(rbx);
+    return rax;
+

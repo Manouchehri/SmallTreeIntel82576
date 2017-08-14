@@ -1,0 +1,25 @@
+    rsi = arg1;
+    r14 = arg0;
+    r13 = *(int32_t *)(*(r14 + 0x8) + 0x10);
+    if (rsi != 0x0) {
+            r13 = r13 & 0xfffffff3;
+            r15 = rsi & 0xffff;
+            r12 = 0x0;
+            do {
+                    *(int32_t *)(*(r14 + 0x8) + 0x10) = r13 | 0x1;
+                    _IODelay(*(int16_t *)(r14 + 0x4ea) & 0xffff);
+                    rbx = *(int32_t *)(*(r14 + 0x8) + 0x10) >> 0x3;
+                    rbx = rbx & 0x1 | r12 + r12;
+                    r13 = *(int32_t *)(*(r14 + 0x8) + 0x10) & 0xfffffffa;
+                    *(int32_t *)(*(r14 + 0x8) + 0x10) = r13;
+                    _IODelay(*(int16_t *)(r14 + 0x4ea) & 0xffff);
+                    r15 = r15 - 0x1;
+                    r12 = rbx;
+            } while (r15 != 0x0);
+    }
+    else {
+            rbx = 0x0;
+    }
+    rax = rbx & 0xffff;
+    return rax;
+

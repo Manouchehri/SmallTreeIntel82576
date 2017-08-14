@@ -1,0 +1,45 @@
+    rcx = rdx;
+    rbx = arg1;
+    r14 = arg0;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            rax = _IOLog("%s %s: Entered for %s\n", r14 + 0x38b, "freeRing", rcx);
+    }
+    if (rbx != 0x0) {
+            rdi = *(rbx + 0x18);
+            if (rdi != 0x0) {
+                    rax = *(rbx + 0x30);
+                    if (rax != 0x0) {
+                            (*(*rax + 0x130))(rax, 0x1);
+                            (*(**(rbx + 0x30) + 0x28))(*(rbx + 0x30));
+                            *(rbx + 0x30) = 0x0;
+                            rdi = *(rbx + 0x18);
+                    }
+                    (*(*rdi + 0x1f8))();
+                    rax = (*(**(rbx + 0x18) + 0x28))(*(rbx + 0x18));
+                    *(rbx + 0x18) = 0x0;
+                    *rbx = 0x0;
+            }
+            if ((*(rbx + 0x20) != 0x0) && (*(int32_t *)(rbx + 0x28) != 0x0)) {
+                    rax = *(int32_t *)(r14 + 0x784);
+                    if ((rax & 0x2) != 0x0) {
+                            _IOLog("%s %s: freeing ring->mbuf\n", r14 + 0x38b, "freeRing");
+                            rax = *(int32_t *)(r14 + 0x784);
+                    }
+                    if ((rax & 0x2) != 0x0) {
+                            _IOLog("%s %s: IOFreeAligned initiating\n", r14 + 0x38b, "freeRing");
+                    }
+                    _IOFree(*(rbx + 0x20), *(int32_t *)(rbx + 0x28));
+                    rax = *(int32_t *)(r14 + 0x784);
+                    if ((rax & 0x2) != 0x0) {
+                            _IOLog("%s %s: IOFreeAligned completed\n", r14 + 0x38b, "freeRing");
+                            rax = *(int32_t *)(r14 + 0x784);
+                    }
+                    *(rbx + 0x20) = 0x0;
+                    *(int32_t *)(rbx + 0x28) = 0x0;
+                    if ((rax & 0x2) != 0x0) {
+                            rax = _IOLog("%s %s: Freed ring->mbuf\n", r14 + 0x38b, "freeRing");
+                    }
+            }
+    }
+    return rax;
+

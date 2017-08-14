@@ -1,0 +1,29 @@
+    rbx = arg0;
+    rax = (*(rbx + 0x3d8))(arg0, 0x0, &var_A);
+    if (rax == 0x0) {
+            e1000_phy_force_speed_duplex_setup(rbx, &var_A);
+            rax = (*(rbx + 0x410))(rbx, 0x0, var_A & 0xffff);
+            if (rax == 0x0) {
+                    rax = (*(rbx + 0x3d8))(rbx, 0x1c, &var_A);
+                    if (rax == 0x0) {
+                            rax = (*(rbx + 0x410))(rbx, 0x1c, var_A & 0xffff & 0xff3f);
+                            if (rax == 0x0) {
+                                    _IODelay(0x1);
+                                    if (*(int8_t *)(rbx + 0x488) != 0x0) {
+                                            rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                            if (rax == 0x0) {
+                                                    rax = e1000_phy_has_link_generic(rbx, 0x14, 0x186a0, &var_B);
+                                                    if (rax == 0x0) {
+                                                            rax = 0x0;
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            rax = 0x0;
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+

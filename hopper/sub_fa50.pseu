@@ -1,0 +1,10 @@
+    *(int16_t *)(rbp + 0xfffffffffffffff6) = rax | 0x1000;
+    rdx = *(int16_t *)(rbp + 0xfffffffffffffff6) & 0xffff;
+    *(int16_t *)(rbp + 0xfffffffffffffff6) = rdx & 0xff7f;
+    rdx = *(int16_t *)(rbp + 0xfffffffffffffff6) & 0xffff;
+    *(int16_t *)(rbp + 0xfffffffffffffff6) = rdx & 0xefff;
+    rax = (*(rbx + 0x410))(rbx, 0x9, rdx & 0xefff);
+    TEST(rax & rax);
+    rax = loc_fafa();
+    return rax;
+

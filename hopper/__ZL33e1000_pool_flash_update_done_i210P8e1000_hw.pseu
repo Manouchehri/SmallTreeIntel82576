@@ -1,0 +1,20 @@
+    r14 = arg0;
+    rbx = 0x0;
+    goto loc_149e0;
+
+loc_149e0:
+    if ((*(int32_t *)(*(r14 + 0x8) + 0x10) & 0x4000000) != 0x0) goto loc_14a08;
+
+loc_149ed:
+    _IODelay(0x5);
+    rbx = rbx + 0x1;
+    rax = 0xffffffff;
+    if (rbx < 0x4e20) goto loc_149e0;
+
+.l1:
+    return rax;
+
+loc_14a08:
+    rax = 0x0;
+    return rax;
+

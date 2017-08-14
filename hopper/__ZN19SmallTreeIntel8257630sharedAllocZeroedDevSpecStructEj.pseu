@@ -1,0 +1,6 @@
+    rcx = arg0;
+    if ((*(int8_t *)(rcx + 0x786) & 0x10) != 0x0) {
+            _IOLog("%s %s:  Entered", rcx + 0x38b, "sharedAllocZeroedDevSpecStruct");
+    }
+    return 0x0;
+

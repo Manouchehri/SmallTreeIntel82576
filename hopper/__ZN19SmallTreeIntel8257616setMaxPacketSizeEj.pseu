@@ -1,0 +1,50 @@
+    r15 = rsi;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: maxSize=%ld\n", rbx + 0x38b, "setMaxPacketSize", r15);
+    }
+    r14 = 0x0;
+    if (*(int32_t *)(rbx + 0x4d0) != r15) {
+            if (*(int32_t *)(rbx + 0x4d4) < r15) {
+                    r14 = 0xe00002bc;
+                    if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+                            _IOLog("%s %s: maxSize=%ld is too large.\n", rbx + 0x38b, "setMaxPacketSize", r15);
+                    }
+            }
+            else {
+                    *(int32_t *)(rbx + 0x4d0) = r15;
+                    if ((*(int32_t *)(rbx + 0x784) & 0x80000002) != 0x0) {
+                            _IOLog("%s %s: Set fMaxPacketSize=%ld\n", rbx + 0x38b, "setMaxPacketSize", r15);
+                    }
+                    r15 = *(int32_t *)(*(rbx + 0x7f0) + 0x100);
+                    *(int32_t *)(*(rbx + 0x7f0) + 0x100) = r15 & 0xfffffffd;
+                    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+                    _IODelay(0x186a0);
+                    r14 = r15 & 0xffffffdd;
+                    CMP(*(int32_t *)(rbx + 0x4d0), 0x5dc);
+                    asm { cmova      r14d, r12d };
+                    *(int32_t *)(*(rbx + 0x7f0) + 0x100) = r14;
+                    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+                    _IODelay(0x186a0);
+                    if ((r15 & 0x2) != 0x0) {
+                            *(int32_t *)(*(rbx + 0x7f0) + 0x100) = r14 | 0x2;
+                    }
+                    *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+                    rcx = *(int32_t *)(*(rbx + 0x7f0) + 0x100);
+                    if ((*(int32_t *)(rbx + 0x784) & 0x80000002) != 0x0) {
+                            _IOLog("%s %s: Returning with rctl=0x%08lx\n", rbx + 0x38b, "setMaxPacketSize", rcx);
+                    }
+                    r14 = SmallTreeIntel82576::restart();
+            }
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rbx = rbx + 0x38b;
+            rcx = "false";
+            if (r14 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", rbx, "setMaxPacketSize", rcx);
+    }
+    rax = r14;
+    return rax;
+

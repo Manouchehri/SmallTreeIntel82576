@@ -1,0 +1,81 @@
+    r14 = arg3;
+    rbx = arg0;
+    r12 = 0x1;
+    r15 = arg2 & 0xff;
+    var_2C = arg1 & 0xff;
+    var_30 = (arg2 | 0x1) & 0xff;
+    goto loc_9e3d;
+
+loc_9e3d:
+    r13 = 0xd;
+    if ((*(rbx + 0x100))(rbx, 0x2) != 0x0) goto loc_9fef;
+
+loc_9e59:
+    e1000_i2c_start(rbx);
+    r13 = e1000_clock_out_i2c_byte(rbx, r15);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9e78:
+    r13 = e1000_get_i2c_ack(rbx);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9e8c:
+    r13 = e1000_clock_out_i2c_byte(rbx, var_2C);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9ea3:
+    r13 = e1000_get_i2c_ack(rbx);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9eb7:
+    e1000_i2c_start(rbx);
+    r13 = e1000_clock_out_i2c_byte(rbx, var_30);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9ed6:
+    r13 = e1000_get_i2c_ack(rbx);
+    if (r13 != 0x0) goto loc_9fa7;
+
+loc_9eea:
+    var_34 = r15;
+    *(int8_t *)r14 = 0x0;
+    r13 = 0x8;
+    do {
+            *(int32_t *)(*(rbx + 0x8) + 0x102c) = *(int32_t *)(*(rbx + 0x8) + 0x102c) & 0xffffddff | 0x200;
+            _IODelay(0x1);
+            _IODelay(0x4);
+            r15 = r14;
+            r14 = *(int32_t *)(*(rbx + 0x8) + 0x102c) >> 0xc;
+            *(int32_t *)(*(rbx + 0x8) + 0x102c) = *(int32_t *)(*(rbx + 0x8) + 0x102c) & 0xffffddff;
+            _IODelay(0x1);
+            _IODelay(0x5);
+            r13 = r13 - 0x1;
+            rax = *(int8_t *)r15 & 0xff;
+            rax = rax | (r14 & 0x1) << r13;
+            r14 = r15;
+            *(int8_t *)r14 = rax;
+    } while (r13 > 0x0);
+    r13 = e1000_clock_out_i2c_bit(rbx, 0x1);
+    r15 = var_34;
+    if (r13 == 0x0) goto loc_9fd6;
+
+loc_9fa7:
+    (*(rbx + 0x108))(rbx, 0x2);
+    _IODelay(0x186a0);
+    e1000_i2c_bus_clear(rbx);
+    r12 = r12 + 0x1;
+    if (r12 < 0xa) goto loc_9e3d;
+
+loc_9fe1:
+    (*(rbx + 0x108))(rbx, 0x2);
+    goto loc_9fef;
+
+loc_9fef:
+    rax = r13;
+    return rax;
+
+loc_9fd6:
+    e1000_i2c_stop(rbx);
+    r13 = 0x0;
+    goto loc_9fe1;
+

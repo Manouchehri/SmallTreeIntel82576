@@ -1,0 +1,28 @@
+    r14 = arg0;
+    rax = *(int16_t *)(r14 + 0x504) & 0xffff;
+    r15 = 0x80000;
+    if (rax != 0x1) {
+            rax = rax & 0xffff;
+            if (rax == 0x2) {
+                    r15 = 0x100000;
+            }
+            else {
+                    r15 = 0x40000;
+                    if (rax == 0x3) {
+                            r15 = 0x200000;
+                    }
+            }
+    }
+    rbx = 0xffffff9c;
+    do {
+            if ((*(int32_t *)(*(r14 + 0x8) + 0x1010) & r15) != 0x0) {
+                break;
+            }
+            _IODelay(0x3e8);
+            rbx = rbx + 0x1;
+    } while (rbx != 0x0);
+    if (((HIBYTE(*(int32_t *)(*(r14 + 0x8) + 0x10)) & 0x1) == 0x0) && (*(int32_t *)(r14 + 0x448) == 0x6)) {
+            e1000_phy_init_script_igp3(r14);
+    }
+    return 0x0;
+

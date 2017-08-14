@@ -1,0 +1,60 @@
+    r14 = arg0;
+    r15 = *(int32_t *)*(r14 + 0x8);
+    (*(r14 + 0xd0))(arg0);
+    rax = sign_extend_64(*(int32_t *)(r14 + 0x380));
+    rbx = 0xfffffffd;
+    if (rax <= 0x3) {
+            *(int32_t *)(*(r14 + 0x8) + 0x178) = *(int32_t *)(0x17e60 + rax * 0x4);
+            *(int32_t *)(r14 + 0x138) = *(int32_t *)(0x17e60 + rax * 0x4);
+            *(int32_t *)*(r14 + 0x8) = r15 & 0xfffffff7;
+            _IODelay(0x3e8);
+            rbx = 0x0;
+            if (*(int32_t *)(r14 + 0x474) != 0x3) {
+                    rbx = 0x0;
+                    if ((*(int32_t *)*(r14 + 0x8) & 0x80000) != 0x0) {
+                            do {
+                                    _IODelay(0x2710);
+                                    if ((*(int32_t *)(*(r14 + 0x8) + 0x8) & 0x2) != 0x0) {
+                                        break;
+                                    }
+                                    rbx = rbx + 0x1;
+                            } while (rbx <= 0x31);
+                            if (rbx == 0x32) {
+                                    *(int8_t *)(r14 + 0x354) = 0x1;
+                                    rbx = (*(r14 + 0x40))(r14);
+                                    if (rbx == 0x0) {
+                                            *(int8_t *)(r14 + 0x354) = 0x0;
+                                            rbx = 0x0;
+                                    }
+                            }
+                            else {
+                                    *(int8_t *)(r14 + 0x354) = 0x0;
+                                    rbx = 0x0;
+                            }
+                    }
+            }
+            else {
+                    do {
+                            _IODelay(0x2710);
+                            if ((*(int32_t *)(*(r14 + 0x8) + 0x8) & 0x2) != 0x0) {
+                                break;
+                            }
+                            rbx = rbx + 0x1;
+                    } while (rbx <= 0x31);
+                    if (rbx == 0x32) {
+                            *(int8_t *)(r14 + 0x354) = 0x1;
+                            rbx = (*(r14 + 0x40))(r14);
+                            if (rbx == 0x0) {
+                                    *(int8_t *)(r14 + 0x354) = 0x0;
+                                    rbx = 0x0;
+                            }
+                    }
+                    else {
+                            *(int8_t *)(r14 + 0x354) = 0x0;
+                            rbx = 0x0;
+                    }
+            }
+    }
+    rax = rbx;
+    return rax;
+

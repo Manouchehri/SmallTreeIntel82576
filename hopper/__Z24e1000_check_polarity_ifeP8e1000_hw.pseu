@@ -1,0 +1,12 @@
+    rbx = arg0;
+    r14 = *(int8_t *)(rbx + 0x485);
+    rax = (*(rbx + 0x3d8))(arg0, (r14 == 0x0 ? 0x1 : 0x0) & 0xff | 0x10, &var_12);
+    if (rax == 0x0) {
+            rdx = 0x100;
+            if (r14 == 0x0) {
+                    rdx = 0x20;
+            }
+            *(int32_t *)(rbx + 0x45c) = ((rdx & var_12 & 0xffff) != 0x0 ? 0x1 : 0x0) & 0xff;
+    }
+    return rax;
+

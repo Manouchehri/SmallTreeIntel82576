@@ -1,0 +1,32 @@
+    r14 = arg0;
+    *(int32_t *)(*(r14 + 0x8) + 0x102c) = 0xffffddff & *(int32_t *)(*(r14 + 0x8) + 0x102c) | 0x200;
+    _IODelay(0x1);
+    _IODelay(0x4);
+    rbx = 0x0;
+    r15 = 0x13;
+    goto loc_a151;
+
+loc_a151:
+    _IODelay(0x1);
+    rax = *(int32_t *)(*(r14 + 0x8) + 0x102c);
+    if ((HIBYTE(rax) & 0x40) != 0x0) goto loc_a173;
+
+loc_a16a:
+    rbx = rbx + 0x1;
+    if (rbx <= 0x9) goto loc_a151;
+
+loc_a1af:
+    rax = r15;
+    return rax;
+
+loc_a173:
+    rcx = rax & 0x1000;
+    r15 = 0x13;
+    if (rcx == 0x0) {
+            r15 = rcx;
+    }
+    *(int32_t *)(*(r14 + 0x8) + 0x102c) = rax & 0xffffddff;
+    _IODelay(0x1);
+    _IODelay(0x5);
+    goto loc_a1af;
+

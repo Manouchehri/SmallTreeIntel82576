@@ -1,0 +1,62 @@
+    r15 = arg0;
+    var_30 = *___stack_chk_guard;
+    if (*(int32_t *)(r15 + 0x11c) == 0x1) {
+            rax = *(r15 + 0x8);
+            if ((*(int32_t *)(rax + 0x5820) & 0x20000) != 0x0) {
+                    rax = 0x2828 + *(r15 + 0x8);
+                    rbx = 0x0;
+                    rcx = 0x0;
+                    do {
+                            *(int32_t *)(rbp + rcx * 0x4 + 0xffffffffffffffc0) = *(int32_t *)rax;
+                            *(int32_t *)rax = *(int32_t *)rax & 0xfdffffff;
+                            rcx = rcx + 0x1;
+                            rax = rax + 0x100;
+                    } while (rcx != 0x4);
+                    do {
+                            _IODelay(0x3e8);
+                            rax = *(r15 + 0x8);
+                            rcx = 0x0;
+                            rdx = 0x0;
+                            do {
+                                    rdx = rdx | *(int32_t *)(rcx + rax + 0x2828);
+                                    rcx = rcx + 0x100;
+                            } while (rcx != 0x400);
+                            if ((rdx & 0x2000000) == 0x0) {
+                                break;
+                            }
+                            rbx = rbx + 0x1;
+                    } while (rbx < 0xa);
+                    r13 = *(int32_t *)(*(r15 + 0x8) + 0x5008);
+                    *(int32_t *)(*(r15 + 0x8) + 0x5008) = r13 & 0xfffbffff;
+                    r12 = *(int32_t *)(*(r15 + 0x8) + 0x5004);
+                    *(int32_t *)(*(r15 + 0x8) + 0x5004) = 0x0;
+                    rbx = *(int32_t *)(*(r15 + 0x8) + 0x100);
+                    *(int32_t *)(*(r15 + 0x8) + 0x100) = (rbx & 0xffffffd9) + 0x20;
+                    *(int32_t *)(*(r15 + 0x8) + 0x100) = rbx & 0xffffffd9 | 0x22;
+                    _IODelay(0x7d0);
+                    rax = *(r15 + 0x8);
+                    rcx = &var_40;
+                    rdx = 0x2828;
+                    do {
+                            *(int32_t *)(rdx + rax) = *(int32_t *)rcx;
+                            rdx = rdx + 0x100;
+                            rcx = rcx + 0x4;
+                    } while (rdx != 0x2c28);
+                    *(int32_t *)(rax + 0x100) = rbx;
+                    *(int32_t *)(*(r15 + 0x8) + 0x5004) = r12;
+                    *(int32_t *)(*(r15 + 0x8) + 0x5008) = r13;
+                    rax = loc_9bc2();
+            }
+            else {
+                    if (*___stack_chk_guard != var_30) {
+                            rax = ___stack_chk_fail();
+                    }
+            }
+    }
+    else {
+            if (*___stack_chk_guard != var_30) {
+                    rax = ___stack_chk_fail();
+            }
+    }
+    return rax;
+

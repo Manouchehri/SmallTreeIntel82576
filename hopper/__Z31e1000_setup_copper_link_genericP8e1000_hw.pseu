@@ -1,0 +1,151 @@
+    rbx = arg0;
+    if (*(int8_t *)(rbx + 0x353) == 0x0) goto loc_fb92;
+
+loc_fb24:
+    rax = *(int16_t *)(rbx + 0x47a) & 0xffff;
+    rcx = *(int16_t *)(rbx + 0x478) & 0xffff;
+    rdx = rcx & rax;
+    rcx = rcx & rax;
+    if (rcx == 0x0) {
+            rdx = rax;
+    }
+    *(int16_t *)(rbx + 0x478) = rdx;
+    rax = (*(rbx + 0x3d8))(rbx, 0x4, &var_1C);
+    if (rax != 0x0) goto .l3;
+
+loc_fb64:
+    if ((*(int8_t *)(rbx + 0x47a) & 0x20) == 0x0) goto loc_fba8;
+
+loc_fb6d:
+    var_1E = 0x0;
+    rax = (*(rbx + 0x3d8))(rbx, 0x9, &var_1E);
+    if (rax != 0x0) goto .l3;
+
+loc_fb87:
+    rax = 0x0 & 0xffff & 0xfcff;
+    goto loc_fbaa;
+
+loc_fbaa:
+    rcx = var_1C & 0xffff & 0xfe1f;
+    var_1E = rax;
+    rdx = *(int16_t *)(rbx + 0x478) & 0xffff;
+    if ((rdx & 0x1) != 0x0) {
+            rcx = rcx | 0x20;
+    }
+    if ((rdx & 0x2) != 0x0) {
+            rcx = rcx | 0x40;
+    }
+    if ((rdx & 0x4) != 0x0) {
+            rcx = rcx | 0x80;
+    }
+    if ((rdx & 0x8) != 0x0) {
+            rcx = rcx | 0x100;
+    }
+    rax = 0xfffffffd;
+    rdx = *(int32_t *)(rbx + 0x380);
+    if (rdx > 0x3) goto .l3;
+
+loc_fc1c:
+    switch (sign_extend_64(*(int32_t *)(switch_table + rdx * 0x4)) + switch_table) {
+        case 0:
+            rcx = rcx & 0xf3ff;
+            break;
+        case 1:
+            rcx = rcx | 0xc00;
+            break;
+        case 2:
+            rcx = rcx & 0xfffff3ff | 0x800;
+            break;
+    }
+    rax = (*(rbx + 0x410))(rbx, 0x4, rcx & 0xffff);
+    if (rax == 0x0) {
+            if ((*(int8_t *)(rbx + 0x47a) & 0x20) != 0x0) {
+                    rax = (*(rbx + 0x410))(rbx, 0x9, var_1E & 0xffff);
+                    if (rax == 0x0) {
+                            rax = (*(rbx + 0x3d8))(rbx, 0x0, &var_20);
+                            if (rax == 0x0) {
+                                    rax = (*(rbx + 0x410))(rbx, 0x0, var_20 & 0xffff | 0x1200);
+                                    if (rax == 0x0) {
+                                            if (*(int8_t *)(rbx + 0x488) != 0x0) {
+                                                    rax = *(rbx + 0x3d8);
+                                                    if (rax != 0x0) {
+                                                            rax = (rax)(rbx, 0x1, &var_1A);
+                                                            if (rax == 0x0) {
+                                                                    rax = loc_fcff(rbx, 0x1, &var_1A);
+                                                            }
+                                                    }
+                                                    else {
+                                                            *(int8_t *)(rbx + 0x355) = 0x1;
+                                                            rax = e1000_phy_has_link_generic(rbx, 0xa, 0xa, &var_21);
+                                                            if ((rax == 0x0) && (var_21 != 0x0)) {
+                                                                    (*(rbx + 0xd0))(rbx);
+                                                                    rax = e1000_config_fc_after_link_up_generic(rbx);
+                                                            }
+                                                    }
+                                            }
+                                            else {
+                                                    *(int8_t *)(rbx + 0x355) = 0x1;
+                                                    rax = e1000_phy_has_link_generic(rbx, 0xa, 0xa, &var_21);
+                                                    if ((rax == 0x0) && (var_21 != 0x0)) {
+                                                            (*(rbx + 0xd0))(rbx);
+                                                            rax = e1000_config_fc_after_link_up_generic(rbx);
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            else {
+                    rax = (*(rbx + 0x3d8))(rbx, 0x0, &var_20);
+                    if (rax == 0x0) {
+                            rax = (*(rbx + 0x410))(rbx, 0x0, var_20 & 0xffff | 0x1200);
+                            if (rax == 0x0) {
+                                    if (*(int8_t *)(rbx + 0x488) != 0x0) {
+                                            rax = *(rbx + 0x3d8);
+                                            if (rax != 0x0) {
+                                                    rax = (rax)(rbx, 0x1, &var_1A);
+                                                    if (rax == 0x0) {
+                                                            rax = loc_fcff(rbx, 0x1, &var_1A);
+                                                    }
+                                            }
+                                            else {
+                                                    *(int8_t *)(rbx + 0x355) = 0x1;
+                                                    rax = e1000_phy_has_link_generic(rbx, 0xa, 0xa, &var_21);
+                                                    if ((rax == 0x0) && (var_21 != 0x0)) {
+                                                            (*(rbx + 0xd0))(rbx);
+                                                            rax = e1000_config_fc_after_link_up_generic(rbx);
+                                                    }
+                                            }
+                                    }
+                                    else {
+                                            *(int8_t *)(rbx + 0x355) = 0x1;
+                                            rax = e1000_phy_has_link_generic(rbx, 0xa, 0xa, &var_21);
+                                            if ((rax == 0x0) && (var_21 != 0x0)) {
+                                                    (*(rbx + 0xd0))(rbx);
+                                                    rax = e1000_config_fc_after_link_up_generic(rbx);
+                                            }
+                                    }
+                            }
+                    }
+            }
+    }
+    return rax;
+
+.l3:
+    return rax;
+
+loc_fba8:
+    rax = 0x0;
+    goto loc_fbaa;
+
+loc_fb92:
+    rax = (*(rbx + 0x3b0))(rbx);
+    if (rax == 0x0) {
+            rax = e1000_phy_has_link_generic(rbx, 0xa, 0xa, &var_21);
+            if ((rax == 0x0) && (var_21 != 0x0)) {
+                    (*(rbx + 0xd0))(rbx);
+                    rax = e1000_config_fc_after_link_up_generic(rbx);
+            }
+    }
+    return rax;
+

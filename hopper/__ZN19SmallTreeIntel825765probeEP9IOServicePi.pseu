@@ -1,0 +1,155 @@
+    r14 = rdx;
+    r15 = arg1;
+    rbx = arg0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", rbx + 0x38b, "probe");
+    }
+    rax = OSMetaClassBase::safeMetaCast(r15, *IOPCIDevice::metaClass);
+    *(rbx + 0x748) = rax;
+    if (rax == 0x0) goto loc_195b;
+
+loc_15c1:
+    (*(*rax + 0x20))(rax);
+    if ((*(**(rbx + 0x748) + 0x5d0))(*(rbx + 0x748), rbx, 0x0, 0x0) == 0x0) goto loc_197b;
+
+loc_15e9:
+    rax = (*(**(rbx + 0x748) + 0x908))(*(rbx + 0x748), 0x10, 0x0);
+    *(rbx + 0x750) = rax;
+    if (rax != 0x0) {
+            var_38 = r14;
+            IOPCIDevice::extendedConfigWrite16(*(rbx + 0x748), 0x4, (IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x4) | 0x16) & 0xfffe);
+            IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x4);
+            *(int16_t *)(rbx + 0xd70) = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x2);
+            *(int16_t *)(rbx + 0xd76) = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x0);
+            *(int16_t *)(rbx + 0xd72) = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x2c);
+            *(int16_t *)(rbx + 0xd74) = IOPCIDevice::extendedConfigRead16(*(rbx + 0x748), 0x2e);
+            *(int8_t *)(rbx + 0xd78) = IOPCIDevice::extendedConfigRead8(*(rbx + 0x748), 0x8);
+            *(int8_t *)(rbx + 0x768) = IOPCIDevice::extendedConfigRead8(*(rbx + 0x748), 0xc);
+            *(int8_t *)(rbx + 0x769) = IOPCIDevice::extendedConfigRead8(*(rbx + 0x748), 0xd);
+            *(int8_t *)(rbx + 0x76a) = (*(**(rbx + 0x748) + 0x8e8))(*(rbx + 0x748));
+            *(int8_t *)(rbx + 0x76b) = (*(**(rbx + 0x748) + 0x8f0))(*(rbx + 0x748));
+            *(int8_t *)(rbx + 0x76c) = (*(**(rbx + 0x748) + 0x8f8))(*(rbx + 0x748));
+            rax = (*(**(rbx + 0x750) + 0x118))(*(rbx + 0x750));
+            *(rbx + 0x7f0) = rax;
+            *(rbx + 0x7e8) = rbx;
+            *(int32_t *)(rax + 0xe0) = 0x0;
+            *(int32_t *)(*(rbx + 0x7f0) + 0xd8) = 0xffffffff;
+            *(int32_t *)(rbx + 0x7e0) = *(int32_t *)(*(rbx + 0x7f0) + 0x8);
+            r13 = (*(**(rbx + 0x748) + 0x8e8))(*(rbx + 0x748)) & 0xff;
+            r12 = (*(**(rbx + 0x748) + 0x8f0))(*(rbx + 0x748)) & 0xff;
+            r9 = (*(**(rbx + 0x748) + 0x8f8))(*(rbx + 0x748)) & 0xff;
+            r8 = r12;
+            r12 = rbx + 0x38b;
+            _snprintf(r12, 0x1e, "b%dd%df%d", r13, r8, r9);
+            rcx = *(int16_t *)(rbx + 0xd74) & 0xffff;
+            rdx = *(int16_t *)(rbx + 0xd76) & 0xffff;
+            if ((rcx == 0xa) && (rdx == 0x8086)) {
+                    rcx = *(int16_t *)(rbx + 0xd70) & 0xffff;
+                    rax = rcx + 0xffffeadf & 0xffff;
+                    r14 = var_38;
+                    if (((rcx + 0xffffeadf & 0xffff) <= 0x12) && (!(BIT_TEST(0x40003, rax)))) {
+                            r13 = rbx + 0x7e8;
+                            if (e1000_setup_init_funcs(r13, 0x1) != 0x0) {
+                                    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+                                            _IOLog("%s %s: e1000_setup_init_funcs returned %d\n", r12, "probe", rcx);
+                                    }
+                            }
+                            if ((e1000_get_bus_info(r13) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+                                    _IOLog("%s %s: e1000_get_bus_info returned %d\n", r12, "probe", rcx);
+                            }
+                            var_40 = r13;
+                            if ((loc_c00f(r13) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0)) {
+                                    _IOLog("%s %s: NVM Checksum incorrect", r12, "probe");
+                            }
+                            r13 = rbx + 0x385;
+                            _bzero(r13, 0x6);
+                            if ((e1000_read_mac_addr(var_40) != 0x0) && ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0)) {
+                                    _IOLog("%s %s: e1000_read_mac_addr returned %d\n", r12, "probe", rcx);
+                            }
+                            _bcopy(rbx + 0x8f8, r13, 0x6);
+                            rcx = *(int8_t *)(rbx + 0x76c) & 0xff;
+                            if (rcx < 0x4) {
+                                    var_48 = r12;
+                                    rax = 0x12e00ee00ae004e >> rcx << 0x4;
+                                    r12 = 0x12f00ef00af004f >> rcx << 0x4;
+                            }
+                            else {
+                                    var_48 = r12;
+                                    rax = _IOLog("SmallTreeIntel82576 %s : Unsupported function=%d\n", r12, rcx);
+                            }
+                            e1000_read_nvm(var_40, rax & 0xffff, 0x1, &var_2A);
+                            e1000_read_nvm(var_40, r12 & 0xffff, 0x1, &var_2C);
+                            rax = var_2A;
+                            r8 = rax & 0xffff;
+                            rcx = 0x0;
+                            do {
+                                    rdx = *(int8_t *)(rbx + rcx * 0x2 + 0x385) & 0xff;
+                                    rsi = *(int8_t *)(rbx + rcx * 0x2 + 0x386) & 0xff;
+                                    rsi = rsi | rdx << 0x8;
+                                    rdx = rax & 0xffff;
+                                    rax = -rsi;
+                                    if ((rdx & 0x1) == 0x0) {
+                                            rax = rsi;
+                                    }
+                                    rax = rax + rdx;
+                                    rcx = rcx + 0x1;
+                            } while (rcx != 0x3);
+                            rsi = var_48;
+                            if ((var_2C & 0xffff) == (rax & 0xffff)) {
+                                    r15 = (*0x2f460)(rbx, r15, r14);
+                                    *(int32_t *)r14 = *(int32_t *)r14 + 0x2000;
+                            }
+                            else {
+                                    r15 = 0x0;
+                                    _IOLog("SmallTreeIntel82576 %s: Invalid EEPROM 0x%04x 0x%04x 0x%04x 0x%04x\n", rsi, *(int16_t *)(rbx + 0xd74) & 0xffff, *(int16_t *)(rbx + 0xd70) & 0xffff, r8, r9);
+                            }
+                    }
+                    else {
+                            r15 = (*0x2f460)(rbx, r15, r14);
+                            *(int32_t *)r14 = *(int32_t *)r14 + 0x2000;
+                    }
+            }
+            else {
+                    r15 = 0x0;
+                    _IOLog("SmallTreeIntel82576 %s : Unsupported Card Vendor=0x%04x SubsystemID=0x%04x\n", r12, rdx, rcx);
+                    r14 = var_38;
+            }
+    }
+    else {
+            r15 = 0x0;
+            _IOLog("probe mapDeviceMemoryWithRegister failed\n");
+    }
+    goto loc_1aaf;
+
+loc_1aaf:
+    rdi = *(rbx + 0x748);
+    if (rdi != 0x0) {
+            (*(*rdi + 0x5d8))();
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Returning with score=%ld match=%p\n", rbx + 0x38b, "probe", sign_extend_64(*(int32_t *)r14), r15);
+    }
+    rax = r15;
+    return rax;
+
+loc_197b:
+    r15 = 0x0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_1aaf;
+
+loc_198b:
+    rdi = "%s %s: Could not open PCI Nub\n";
+    goto loc_1999;
+
+loc_1999:
+    r15 = 0x0;
+    _IOLog(rdi);
+    goto loc_1aaf;
+
+loc_195b:
+    r15 = 0x0;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_1aaf;
+
+loc_196b:
+    rdi = "%s %s: Could not get PCI Nub\n";
+    goto loc_1999;
+

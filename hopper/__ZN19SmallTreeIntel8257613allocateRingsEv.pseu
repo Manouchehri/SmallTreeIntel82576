@@ -1,0 +1,106 @@
+    r14 = rdi;
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            _IOLog("%s %s: Entered\n", r14 + 0x38b, "allocateRings");
+    }
+    r12 = OSMetaClassBase::safeMetaCast((*(*r14 + 0x2b8))(r14, "Configuration Parameters"), *OSDictionary::metaClass);
+    rbx = 0x100;
+    r15 = 0x100;
+    if (r12 != 0x0) {
+            rax = (*(*r12 + 0x208))(r12, "rxRingSize");
+            rax = OSMetaClassBase::safeMetaCast(rax, *OSNumber::metaClass);
+            r15 = 0x100;
+            if (rax != 0x0) {
+                    rax = (*(*rax + 0x148))(rax);
+                    rcx = 0x2000;
+                    do {
+                            r15 = rcx;
+                            if (r15 < 0x11) {
+                                break;
+                            }
+                            rcx = r15 >> 0x1;
+                    } while (r15 > rax);
+            }
+            if ((*(int8_t *)(r14 + 0x785) & 0x20) != 0x0) {
+                    _IOLog("%s %s: rxRingSize=%ld\n", r14 + 0x38b, "allocateRings", r15);
+            }
+            rax = (*(*r12 + 0x208))(r12, "txRingSize");
+            rax = OSMetaClassBase::safeMetaCast(rax, *OSNumber::metaClass);
+            rbx = 0x100;
+            if (rax != 0x0) {
+                    rax = (*(*rax + 0x148))(rax);
+                    rcx = 0x2000;
+                    do {
+                            rbx = rcx;
+                            if (rbx < 0x11) {
+                                break;
+                            }
+                            rcx = rbx >> 0x1;
+                    } while (rbx > rax);
+            }
+            if ((*(int8_t *)(r14 + 0x785) & 0x20) != 0x0) {
+                    _IOLog("%s %s: txRingSize=%ld\n", r14 + 0x38b, "allocateRings", rbx);
+            }
+    }
+    if (SmallTreeIntel82576::powerOfTwo(r14) == 0x0) {
+            rbx = SmallTreeIntel82576::roundUpPowerOfTwo(r14);
+    }
+    if (SmallTreeIntel82576::powerOfTwo(r14) == 0x0) {
+            r15 = SmallTreeIntel82576::roundUpPowerOfTwo(r14);
+    }
+    if (*(int32_t *)(r14 + 0x460) == r15) goto loc_3921;
+
+loc_38c6:
+    r12 = r14 + 0x458;
+    if (*r12 != 0x0) {
+            SmallTreeIntel82576::freeRing(r14, r12);
+    }
+    *(int32_t *)(r14 + 0x460) = r15;
+    if (SmallTreeIntel82576::allocRing(r14, r12) == 0x0) goto loc_3921;
+
+loc_3903:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) == 0x0) goto loc_3995;
+
+loc_3911:
+    rdi = "%s %s: Failed allocating rxRing\n";
+    goto loc_3982;
+
+loc_3982:
+    r15 = 0x0;
+    _IOLog(rdi);
+    goto loc_3998;
+
+loc_3998:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) != 0x0) {
+            r14 = r14 + 0x38b;
+            rcx = "false";
+            if (r15 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s\n", r14, "allocateRings", rcx);
+    }
+    rax = r15;
+    return rax;
+
+loc_3995:
+    r15 = 0x0;
+    goto loc_3998;
+
+loc_3921:
+    r15 = 0x1;
+    if (*(int32_t *)(r14 + 0x420) == rbx) goto loc_3998;
+
+loc_392d:
+    r12 = r14 + 0x418;
+    if (*r12 != 0x0) {
+            SmallTreeIntel82576::freeRing(r14, r12);
+    }
+    *(int32_t *)(r14 + 0x420) = rbx;
+    if (SmallTreeIntel82576::allocRing(r14, r12) == 0x0) goto loc_3998;
+
+loc_396a:
+    if ((*(int8_t *)(r14 + 0x784) & 0x2) == 0x0) goto loc_3995;
+
+loc_3974:
+    rdi = "%s %s: Failed allocating txRing\n";
+    goto loc_3982;
+

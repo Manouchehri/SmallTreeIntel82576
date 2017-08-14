@@ -1,0 +1,16 @@
+    rcx = arg3;
+    rdx = arg2;
+    rsi = arg1;
+    rdi = arg0;
+    r9 = *(rdi + 0x510);
+    if (r9 != 0x0) {
+            rax = *(int16_t *)(rdi + 0x564) & 0xffff & 0xffff;
+            CMP(rax, rdx & 0xffff);
+            asm { cmovae     ax, dx };
+            rax = (r9)(rdi, rsi, rax & 0xffff, rcx & 0xffff);
+    }
+    else {
+            rax = 0xfffffff1;
+    }
+    return rax;
+

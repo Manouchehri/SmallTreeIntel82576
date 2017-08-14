@@ -1,0 +1,54 @@
+    rbx = rdi;
+    rax = (*(*rbx + 0x2b8))();
+    rax = OSMetaClassBase::safeMetaCast(rax, *OSDictionary::metaClass);
+    if (rax == 0x0) goto loc_8942;
+
+loc_88a9:
+    rax = (*(*rax + 0x208))(rax, "intrMaxPerSec");
+    rax = OSMetaClassBase::safeMetaCast(rax, *OSNumber::metaClass);
+    if (rax == 0x0) goto loc_8961;
+
+loc_88d7:
+    rcx = (*(*rax + 0x148))(rax);
+    if ((rcx >= 0x9c41) && (rcx != 0x0)) {
+            r14 = 0x1f4;
+            if ((*(int8_t *)(rbx + 0x784) & 0x1) != 0x0) {
+                    _IOLog("%s %s: intrThrottle=%ld is out of range %u-%u.  Using default (%ld)\n", rbx + 0x38b, "setIntrThrottle", rcx, 0x7b, 0x9c40, 0x1f4);
+            }
+    }
+    else {
+            r14 = 0x0;
+            if (rcx != 0x0) {
+                    r14 = 0xf4240 / rcx << 0x2 & 0x7ffc;
+            }
+    }
+    goto loc_89ac;
+
+loc_89ac:
+    *(int32_t *)(*(rbx + 0x7f0) + 0x1680) = r14;
+    rax = *(int16_t *)(rbx + 0x784) & 0xffff;
+    if ((rax & 0x2002) != 0x0) {
+            rax = _IOLog("%s %s: setting eitr=0x%08lx\n", rbx + 0x38b, "setIntrThrottle", r14);
+    }
+    return rax;
+
+loc_8961:
+    r14 = 0x1f4;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_89ac;
+
+loc_8970:
+    rdi = "%s %s: Failed to get intrThrottle value from dictionary - using default value\n";
+    goto loc_897e;
+
+loc_897e:
+    _IOLog(rdi);
+    goto loc_89ac;
+
+loc_8942:
+    r14 = 0x1f4;
+    if ((*(int8_t *)(rbx + 0x784) & 0x1) == 0x0) goto loc_89ac;
+
+loc_8951:
+    rdi = "%s %s: Failed to get Configuration Parameters dictionary - using default value\n";
+    goto loc_897e;
+

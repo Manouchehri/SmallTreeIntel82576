@@ -1,0 +1,38 @@
+    rbx = arg0;
+    rax = 0x0;
+    if (*(int8_t *)(rbx + 0x486) == 0x0) {
+            rax = (*(rbx + 0x3d8))(rbx, 0x10, &var_A);
+            if (rax == 0x0) {
+                    rcx = var_A & 0xffff;
+                    rax = rcx & 0xff9f;
+                    rdx = *(int8_t *)(rbx + 0x482) & 0xff;
+                    if (rdx != 0x3) {
+                            if (rdx == 0x2) {
+                                    rax = rax | 0x20;
+                            }
+                            else {
+                                    if (rdx != 0x1) {
+                                            rax = rcx | 0x60;
+                                    }
+                            }
+                    }
+                    else {
+                            if (*(int32_t *)(rbx + 0x468) != 0x1410c90) {
+                                    rax = rax | 0x40;
+                            }
+                            else {
+                                    rax = rcx | 0x60;
+                            }
+                    }
+                    rcx = rax & 0xfffd;
+                    if (*(int8_t *)(rbx + 0x483) != 0x0) {
+                            rcx = rax | 0x2;
+                    }
+                    rax = (*(rbx + 0x410))(rbx, 0x10, (rcx & 0xffff87ff | 0x5800) & 0xffff, rcx & 0xffff87ff | 0x5800);
+                    if (rax == 0x0) {
+                            rax = (*(rbx + 0x3a8))(rbx);
+                    }
+            }
+    }
+    return rax;
+

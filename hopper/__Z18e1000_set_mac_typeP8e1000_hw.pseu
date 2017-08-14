@@ -1,0 +1,84 @@
+    rdi = arg0;
+    rcx = *(int16_t *)(rdi + 0x588) & 0xffff;
+    rax = 0xfffffffb;
+    if (rcx > 0x10a6) goto loc_b889;
+
+loc_b85d:
+    rcx = rcx + 0xfffffbc8;
+    if ((rcx > 0x8) || ((BIT_TEST(0x115, rcx)))) goto .l1;
+
+loc_b87a:
+    *(int32_t *)(rdi + 0x11c) = 0x3;
+    goto loc_b945;
+
+loc_b945:
+    rax = 0x0;
+    return rax;
+
+.l1:
+    return rax;
+
+loc_b889:
+    if (rcx > 0x157a) goto loc_b8c2;
+
+loc_b891:
+    if (rcx > 0x1509) goto loc_b8cf;
+
+loc_b899:
+    if (rcx > 0x10e5) goto loc_b8fe;
+
+loc_b8a1:
+    if (rcx > 0x10c8) goto loc_b91f;
+
+loc_b8a9:
+    if ((rcx == 0x10a7) || (rcx == 0x10a9)) goto loc_b93b;
+    goto .l1;
+
+loc_b93b:
+    *(int32_t *)(rdi + 0x11c) = 0x1;
+    goto loc_b945;
+
+loc_b91f:
+    if (rcx != 0x10c9) goto loc_b933;
+
+loc_b927:
+    *(int32_t *)(rdi + 0x11c) = 0x2;
+    goto loc_b945;
+
+loc_b933:
+    if (rcx != 0x10d6) goto .l1;
+    goto loc_b93b;
+
+loc_b8fe:
+    if (rcx < 0x10e9) goto loc_b927;
+    goto .l1;
+
+loc_b8cf:
+    if (rcx > 0x1545) goto loc_b90b;
+
+loc_b8d7:
+    rcx = rcx + 0xffffeaf6;
+    if (rcx > 0x2f) goto .l1;
+
+loc_b8e2:
+    goto *0xb958[sign_extend_64(*(int32_t *)(switch_table + rcx * 0x4)) + switch_table];
+
+loc_b913:
+    *(int32_t *)(rdi + 0x11c) = 0x4;
+    goto loc_b945;
+
+loc_b8f2:
+    *(int32_t *)(rdi + 0x11c) = 0x5;
+    goto loc_b945;
+
+loc_b949:
+    *(int32_t *)(rdi + 0x11c) = 0x6;
+    goto loc_b945;
+
+loc_b90b:
+    if (rcx != 0x1546) goto .l1;
+    goto loc_b913;
+
+loc_b8c2:
+    if (rcx < 0x157d) goto loc_b8f2;
+

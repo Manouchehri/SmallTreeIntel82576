@@ -1,0 +1,3 @@
+    rax = loc_e028(arg0);
+    return rax;
+

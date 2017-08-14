@@ -1,0 +1,88 @@
+    rbx = rdi;
+    rax = *(int32_t *)(rbx + 0x784);
+    if (*(int32_t *)(*(rbx + 0x7f0) + 0x8) != 0xffffffff) {
+            if ((HIBYTE(rax) & 0x10) != 0x0) {
+                    _IOLog("%s %s: Updating stats\n", rbx + 0x38b, "updateNicStats");
+            }
+            *(rbx + 0x4d8) = *(rbx + 0x4d8) + *(int32_t *)(*(rbx + 0x7f0) + 0x4000);
+            *(rbx + 0x4e0) = *(rbx + 0x4e0) + *(int32_t *)(*(rbx + 0x7f0) + 0x4004);
+            *(rbx + 0x4e8) = *(rbx + 0x4e8) + *(int32_t *)(*(rbx + 0x7f0) + 0x4008);
+            *(rbx + 0x4f0) = *(rbx + 0x4f0) + *(int32_t *)(*(rbx + 0x7f0) + 0x400c);
+            *(rbx + 0x4f8) = *(rbx + 0x4f8) + *(int32_t *)(*(rbx + 0x7f0) + 0x4010);
+            *(rbx + 0x500) = *(rbx + 0x500) + *(int32_t *)(*(rbx + 0x7f0) + 0x4014);
+            *(rbx + 0x508) = *(rbx + 0x508) + *(int32_t *)(*(rbx + 0x7f0) + 0x4018);
+            *(rbx + 0x510) = *(rbx + 0x510) + *(int32_t *)(*(rbx + 0x7f0) + 0x401c);
+            *(rbx + 0x518) = *(rbx + 0x518) + *(int32_t *)(*(rbx + 0x7f0) + 0x4020);
+            *(rbx + 0x520) = *(rbx + 0x520) + *(int32_t *)(*(rbx + 0x7f0) + 0x4028);
+            *(rbx + 0x528) = *(rbx + 0x528) + *(int32_t *)(*(rbx + 0x7f0) + 0x4030);
+            *(rbx + 0x530) = *(rbx + 0x530) + *(int32_t *)(*(rbx + 0x7f0) + 0x4034);
+            *(rbx + 0x538) = *(rbx + 0x538) + *(int32_t *)(*(rbx + 0x7f0) + 0x4038);
+            *(rbx + 0x540) = *(rbx + 0x540) + *(int32_t *)(*(rbx + 0x7f0) + 0x4040);
+            *(rbx + 0x548) = *(rbx + 0x548) + *(int32_t *)(*(rbx + 0x7f0) + 0x4048);
+            *(rbx + 0x550) = *(rbx + 0x550) + *(int32_t *)(*(rbx + 0x7f0) + 0x404c);
+            *(rbx + 0x558) = *(rbx + 0x558) + *(int32_t *)(*(rbx + 0x7f0) + 0x4050);
+            *(rbx + 0x560) = *(rbx + 0x560) + *(int32_t *)(*(rbx + 0x7f0) + 0x4054);
+            *(rbx + 0x568) = *(rbx + 0x568) + *(int32_t *)(*(rbx + 0x7f0) + 0x4058);
+            *(rbx + 0x570) = *(rbx + 0x570) + *(int32_t *)(*(rbx + 0x7f0) + 0x405c);
+            *(rbx + 0x578) = *(rbx + 0x578) + *(int32_t *)(*(rbx + 0x7f0) + 0x4060);
+            *(rbx + 0x580) = *(rbx + 0x580) + *(int32_t *)(*(rbx + 0x7f0) + 0x4064);
+            *(rbx + 0x588) = *(rbx + 0x588) + *(int32_t *)(*(rbx + 0x7f0) + 0x4068);
+            *(rbx + 0x590) = *(rbx + 0x590) + *(int32_t *)(*(rbx + 0x7f0) + 0x406c);
+            *(rbx + 0x598) = *(rbx + 0x598) + *(int32_t *)(*(rbx + 0x7f0) + 0x4070);
+            *(rbx + 0x5a0) = *(rbx + 0x5a0) + *(int32_t *)(*(rbx + 0x7f0) + 0x4074);
+            *(rbx + 0x5a8) = *(rbx + 0x5a8) + *(int32_t *)(*(rbx + 0x7f0) + 0x4078);
+            *(rbx + 0x5b0) = *(rbx + 0x5b0) + *(int32_t *)(*(rbx + 0x7f0) + 0x407c);
+            *(rbx + 0x5b8) = *(rbx + 0x5b8) + *(int32_t *)(*(rbx + 0x7f0) + 0x4080);
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x4088) + *(rbx + 0x5c0);
+            *(rbx + 0x5c0) = rax;
+            *(rbx + 0x5c0) = (*(int32_t *)(*(rbx + 0x7f0) + 0x408c) << 0x20) + rax;
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x4090) + *(rbx + 0x5c8);
+            *(rbx + 0x5c8) = rax;
+            *(rbx + 0x5c8) = (*(int32_t *)(*(rbx + 0x7f0) + 0x4094) << 0x20) + rax;
+            *(rbx + 0x5d0) = *(rbx + 0x5d0) + *(int32_t *)(*(rbx + 0x7f0) + 0x40a0);
+            *(rbx + 0x5d8) = *(rbx + 0x5d8) + *(int32_t *)(*(rbx + 0x7f0) + 0x40a4);
+            *(rbx + 0x5e0) = *(rbx + 0x5e0) + *(int32_t *)(*(rbx + 0x7f0) + 0x40a8);
+            *(rbx + 0x5e8) = *(rbx + 0x5e8) + *(int32_t *)(*(rbx + 0x7f0) + 0x40ac);
+            *(rbx + 0x5f0) = *(rbx + 0x5f0) + *(int32_t *)(*(rbx + 0x7f0) + 0x40b0);
+            *(rbx + 0x5f8) = *(rbx + 0x5f8) + *(int32_t *)(*(rbx + 0x7f0) + 0x40b4);
+            *(rbx + 0x600) = *(rbx + 0x600) + *(int32_t *)(*(rbx + 0x7f0) + 0x40b8);
+            *(rbx + 0x608) = *(rbx + 0x608) + *(int32_t *)(*(rbx + 0x7f0) + 0x40bc);
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x40c0) + *(rbx + 0x610);
+            *(rbx + 0x610) = rax;
+            *(rbx + 0x610) = (*(int32_t *)(*(rbx + 0x7f0) + 0x40c4) << 0x20) + rax;
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x40c8) + *(rbx + 0x618);
+            *(rbx + 0x618) = rax;
+            *(rbx + 0x618) = (*(int32_t *)(*(rbx + 0x7f0) + 0x40cc) << 0x20) + rax;
+            *(rbx + 0x620) = *(rbx + 0x620) + *(int32_t *)(*(rbx + 0x7f0) + 0x40d0);
+            *(rbx + 0x628) = *(rbx + 0x628) + *(int32_t *)(*(rbx + 0x7f0) + 0x40d4);
+            *(rbx + 0x630) = *(rbx + 0x630) + *(int32_t *)(*(rbx + 0x7f0) + 0x40d8);
+            *(rbx + 0x638) = *(rbx + 0x638) + *(int32_t *)(*(rbx + 0x7f0) + 0x40dc);
+            *(rbx + 0x640) = *(rbx + 0x640) + *(int32_t *)(*(rbx + 0x7f0) + 0x40e0);
+            *(rbx + 0x648) = *(rbx + 0x648) + *(int32_t *)(*(rbx + 0x7f0) + 0x40e4);
+            *(rbx + 0x650) = *(rbx + 0x650) + *(int32_t *)(*(rbx + 0x7f0) + 0x40e8);
+            *(rbx + 0x658) = *(rbx + 0x658) + *(int32_t *)(*(rbx + 0x7f0) + 0x40ec);
+            *(rbx + 0x660) = *(rbx + 0x660) + *(int32_t *)(*(rbx + 0x7f0) + 0x40f0);
+            *(rbx + 0x668) = *(rbx + 0x668) + *(int32_t *)(*(rbx + 0x7f0) + 0x40f4);
+            *(rbx + 0x670) = *(rbx + 0x670) + *(int32_t *)(*(rbx + 0x7f0) + 0x40f8);
+            *(rbx + 0x678) = *(rbx + 0x678) + *(int32_t *)(*(rbx + 0x7f0) + 0x40fc);
+            *(rbx + 0x680) = *(rbx + 0x680) + *(int32_t *)(*(rbx + 0x7f0) + 0x4100);
+            *(rbx + 0x688) = *(rbx + 0x688) + *(int32_t *)(*(rbx + 0x7f0) + 0x4104);
+            *(rbx + 0x690) = *(rbx + 0x690) + *(int32_t *)(*(rbx + 0x7f0) + 0x4118);
+            *(rbx + 0x698) = *(rbx + 0x698) + *(int32_t *)(*(rbx + 0x7f0) + 0x4120);
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x4128) + *(rbx + 0x6a0);
+            *(rbx + 0x6a0) = rax;
+            *(rbx + 0x6a0) = (*(int32_t *)(*(rbx + 0x7f0) + 0x412c) << 0x20) + rax;
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x4130) + *(rbx + 0x6a8);
+            *(rbx + 0x6a8) = rax;
+            *(rbx + 0x6a8) = (*(int32_t *)(*(rbx + 0x7f0) + 0x4134) << 0x20) + rax;
+            *(rbx + 0x6b0) = *(rbx + 0x6b0) + *(int32_t *)(*(rbx + 0x7f0) + 0x4138);
+            rax = *(int32_t *)(*(rbx + 0x7f0) + 0x41a0);
+            *(rbx + 0x6b8) = *(rbx + 0x6b8) + rax;
+    }
+    else {
+            if ((rax & 0x2) != 0x0) {
+                    rax = _IOLog("%s %s: Hot unplug detected\n", rbx + 0x38b, "updateNicStats");
+            }
+    }
+    return rax;
+

@@ -1,0 +1,25 @@
+    r15 = arg0;
+    rax = (*(r15 + 0x4a0))(arg0, 0x3, 0x1, &var_22);
+    if (rax == 0x0) {
+            r14 = ((var_22 < 0x0 ? 0x1 : 0x0) & 0xff) + ((var_22 < 0x0 ? 0x1 : 0x0) & 0xff) * 0x2 + 0x1;
+            rbx = 0x40;
+            rcx = 0x1;
+            do {
+                    r12 = rcx & 0xffff;
+                    if (r12 == 0x1) {
+                            rax = 0x0;
+                    }
+                    else {
+                            rax = rbx;
+                    }
+                    rax = e1000_validate_nvm_checksum_with_offset(r15, rax & 0xffff);
+                    if (rax != 0x0) {
+                        break;
+                    }
+                    rbx = rbx + 0x40;
+                    rcx = r12 + 0x1;
+                    rax = 0x0;
+            } while (r12 < r14);
+    }
+    return rax;
+

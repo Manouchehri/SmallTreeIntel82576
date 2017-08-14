@@ -1,0 +1,18 @@
+    rbx = arg0;
+    if (rsi != 0x0) {
+            r14 = (rsi & rsi + 0xffffffffffffffff) == 0x0 ? 0x1 : 0x0;
+    }
+    else {
+            r14 = 0x0;
+    }
+    if ((*(int8_t *)(rbx + 0x784) & 0x2) != 0x0) {
+            rbx = rbx + 0x38b;
+            rcx = "false";
+            if (r14 != 0x0) {
+                    rcx = "true";
+            }
+            _IOLog("%s %s: Returning %s for 0x%08lx\n", rbx, "powerOfTwo", rcx, rsi);
+    }
+    rax = r14;
+    return rax;
+

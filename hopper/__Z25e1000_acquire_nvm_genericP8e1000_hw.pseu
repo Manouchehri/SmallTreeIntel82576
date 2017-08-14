@@ -1,0 +1,22 @@
+    r15 = arg0;
+    *(int32_t *)(*(r15 + 0x8) + 0x10) = *(int32_t *)(*(r15 + 0x8) + 0x10) | 0x40;
+    r14 = 0x0;
+    if ((*(int32_t *)(*(r15 + 0x8) + 0x10) & 0x80) == 0x0) {
+            rcx = 0xfffffc19;
+            do {
+                    rbx = rcx;
+                    _IODelay(0x5);
+                    rax = *(int32_t *)(*(r15 + 0x8) + 0x10);
+                    if (rbx == 0x0) {
+                        break;
+                    }
+                    rcx = rbx + 0x1;
+            } while ((rax & 0x80) == 0x0);
+            if (rbx == 0x0) {
+                    *(int32_t *)(*(r15 + 0x8) + 0x10) = rax & 0xffffffbf;
+                    r14 = 0xffffffff;
+            }
+    }
+    rax = r14;
+    return rax;
+

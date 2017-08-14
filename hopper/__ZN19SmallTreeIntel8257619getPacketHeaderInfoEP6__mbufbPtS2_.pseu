@@ -1,0 +1,72 @@
+    r15 = r8;
+    rbx = arg3;
+    var_74 = arg2;
+    r14 = arg1;
+    r12 = arg0;
+    if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+            _IOLog("%s %s: Entered\n", r12 + 0x38b, "getPacketHeaderInfo");
+    }
+    *(int16_t *)r15 = 0x0;
+    *(int16_t *)rbx = 0x0;
+    r13 = _mbuf_len(r14);
+    if (r13 <= 0xd) {
+            var_70 = rbx;
+            rbx = r15;
+            r15 = &var_38;
+            _mbuf_copydata(r14, 0x0, 0xe, r15);
+    }
+    else {
+            var_70 = rbx;
+            rbx = r15;
+            r15 = _mbuf_data(r14);
+    }
+    rax = *(int16_t *)(r15 + 0xc) & 0xffff;
+    if (rax != 0x8) goto .l1;
+
+loc_68e3:
+    if (r13 <= 0x21) {
+            r15 = &var_50;
+            _mbuf_copydata(r14, 0xe, 0x14, r15);
+    }
+    else {
+            r15 = r15 + 0xe;
+    }
+    *(int16_t *)var_70 = (*(int8_t *)r15 & 0xff & 0xf) * 0x4 + 0xe;
+    rax = *(int8_t *)(r15 + 0x9) & 0xff;
+    if (var_74 == 0x0) goto loc_696d;
+
+loc_692b:
+    if (rax != 0x6) goto .l1;
+
+loc_6934:
+    rax = *(int8_t *)r15 & 0xff;
+    rsi = (rax & 0xf) << 0x2;
+    if (r13 < (rax & 0xf) * 0x4 + 0x22) {
+            r13 = &var_68;
+            _mbuf_copydata(r14, rsi + 0xe, 0x14, r13);
+            rax = *(int8_t *)r15;
+    }
+    else {
+            r13 = r15 + rsi;
+    }
+    rax = ((*(int8_t *)(r13 + 0xc) >> 0x4 & 0xff) + (rax & 0xf & 0xff)) * 0x4 + 0xe;
+    goto loc_69a0;
+
+loc_69a0:
+    *(int16_t *)rbx = rax;
+    if ((*(int8_t *)(r12 + 0x785) & 0x1) != 0x0) {
+            rax = _IOLog("%s %s: Returning ip_hdr_len=%d pkt_hdr_len=%d\n", r12 + 0x38b, "getPacketHeaderInfo", *(int16_t *)var_70 & 0xffff, rax & 0xffff);
+    }
+    return rax;
+
+.l1:
+    return rax;
+
+loc_696d:
+    if (rax != 0x11) goto .l1;
+
+loc_6972:
+    rax = *(int8_t *)r15 & 0xff;
+    rax = (rax & 0xf) * 0x4 + 0x16;
+    goto loc_69a0;
+

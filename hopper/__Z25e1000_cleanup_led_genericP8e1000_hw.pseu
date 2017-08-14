@@ -1,0 +1,3 @@
+    *(int32_t *)(*(arg0 + 0x8) + 0xe00) = *(int32_t *)(arg0 + 0x124);
+    return 0x0;
+

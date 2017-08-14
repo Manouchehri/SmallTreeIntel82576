@@ -1,0 +1,33 @@
+    rbx = arg0;
+    r14 = *(int16_t *)(rbx + 0x34c) & 0xffff;
+    (*(rbx + 0x28))(arg0);
+    (*(rbx + 0x58))(rbx);
+    e1000_init_rx_addrs_generic(rbx, r14);
+    rdx = *(int16_t *)(rbx + 0x146);
+    if (rdx != 0x0) {
+            rax = 0x5200 + *(rbx + 0x8);
+            rcx = 0x0;
+            rdx = rdx & 0xffff;
+            do {
+                    *(int32_t *)rax = 0x0;
+                    rax = rax + 0x4;
+                    rcx = rcx + 0x1;
+            } while ((rcx & 0xffff) < rdx);
+    }
+    rdx = *(int16_t *)(rbx + 0x148);
+    if (rdx != 0x0) {
+            rax = 0xa000 + *(rbx + 0x8);
+            rcx = 0x0;
+            rdx = rdx & 0xffff;
+            do {
+                    *(int32_t *)rax = 0x0;
+                    rax = rax + 0x4;
+                    rcx = rcx + 0x1;
+            } while ((rcx & 0xffff) < rdx);
+    }
+    r14 = (*(rbx + 0xb0))(rbx);
+    *(int32_t *)(rbx + 0x580) = 0x5dc;
+    e1000_clear_hw_cntrs_82575(rbx);
+    rax = r14;
+    return rax;
+

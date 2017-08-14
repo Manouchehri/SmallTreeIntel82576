@@ -1,0 +1,3 @@
+    OSMetaClass::~OSMetaClass(STECUserClient::gMetaClass);
+    return;
+
