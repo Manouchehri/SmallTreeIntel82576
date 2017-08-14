@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# postinstall
+# i350
+# 
+# This software is the property of Small Tree Communications LLC and may
+# not be rented, leased, lent, un-bundled, resold, sublicensed or used
+# to create derivative works without the express written consent of Small
+# Tree Communications LLC.
+#
+# Created by Steve Betker on 12/10/13.
+# Copyright 2013 Small Tree Communications LLC. All rights reserved.
+
+# Symlink /usr/local/bin/stecutil to stecutil
+
+if [ ! -d /usr/local ]
+  then
+    mkdir /usr/local
+fi 
+
+if [ ! -d /usr/local/bin ]
+  then
+    mkdir /usr/local/bin
+fi 
+
+ln -s /Library/SmallTree/Tools/stecutil /usr/local/bin/stecutil
+
+# Force the kextcache to update.
+
+touch /System/Library/Extensions
+sync
+
+exit 0
